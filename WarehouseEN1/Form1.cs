@@ -19,7 +19,7 @@ namespace WarehouseEN1
 
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // katarina från VS!
         }
 
         private void ProdIDtextBox_TextChanged(object sender, EventArgs e)
