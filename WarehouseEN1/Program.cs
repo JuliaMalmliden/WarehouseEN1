@@ -12,7 +12,7 @@ namespace WarehouseEN1
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main() //WEEEEYWEEEEYY
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
