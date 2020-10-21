@@ -109,7 +109,7 @@
             this.ProductDisplayList.ItemHeight = 20;
             this.ProductDisplayList.Location = new System.Drawing.Point(25, 273);
             this.ProductDisplayList.Name = "ProductDisplayList";
-            this.ProductDisplayList.Size = new System.Drawing.Size(579, 124);
+            this.ProductDisplayList.Size = new System.Drawing.Size(579, 144);
             this.ProductDisplayList.TabIndex = 10;
             // 
             // ProductPageP

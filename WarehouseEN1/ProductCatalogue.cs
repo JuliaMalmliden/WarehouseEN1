@@ -8,6 +8,7 @@ namespace WarehouseEN1
 {
     class ProductCatalogue
     {
+        List<Product> products = new List<Product>(); 
         private void WriteProductsToFile()
         {
             string contents = JsonSerializer.Serialize(products);
