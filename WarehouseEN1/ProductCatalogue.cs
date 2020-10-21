@@ -11,14 +11,44 @@ namespace WarehouseEN1
 
         List<Product> products = new List<Product>();
 
-        // private void RaiseProductCatalogueChanged()
+        private string filename;
+
+        public void PersistentProductCatalogue()
+        {
+            filename = "Products.JSON";
+            ReadProductsFromFile();
+        }
+
+        /// <summary>
+        /// Private function to call the event in order to avoid repeating the null check.
+        /// </summary>
+        //private void RaiseCatalogueChanged()
         //{
-        //  if (CatalogueChanged != null)
-        //     CatalogueChanged();
-        //  }
+            //if (CatalogueChanged != null)
+           //     CatalogueChanged();
+        //}
+
+        private void WriteProductsToFile()
+        {
+            string contents = JsonSerializer.Serialize(products);
+            File.WriteAllText(filename, contents);
+        }
+        private void ReadProductsFromFile()
+        {
+            if (File.Exists(filename))
+            {
+                string fileContents = File.ReadAllText(filename);
+                products = JsonSerializer.Deserialize<List<Product>>(fileContents);
+            }
+            else products = new List<Product>();
+        }
+
+        //public event ChangeHandler CatalogueChanged;
+
         public void AddProduct(Product p)
         {
             products.Add(p);
+            WriteProductsToFile();
             //RaiseCatalogueChanged();
         }
 
@@ -37,7 +67,8 @@ namespace WarehouseEN1
                 return false;
             if (products.Remove(p))
             {
-                //RaiseCatalogueChanged();
+                WriteProductsToFile();
+               // RaiseCatalogueChanged();
                 return true;
             }
             else return false;
@@ -49,7 +80,8 @@ namespace WarehouseEN1
             if (p == null)
                 return false;
             p.ProductName = newName;
-            //RaiseCatalogueChanged();
+            WriteProductsToFile();
+           // RaiseCatalogueChanged();
             return true;
         }
 
@@ -59,7 +91,8 @@ namespace WarehouseEN1
             if (p == null)
                 return false;
             p.ProductPrice = price;
-            //RaiseCatalogueChanged();
+            WriteProductsToFile();
+           // RaiseCatalogueChanged();
             return true;
         }
 
@@ -68,27 +101,11 @@ namespace WarehouseEN1
             return products;
         }
 
-        public double GetTotalPrice()
-        {
-            return products.Sum(p => p.Price);
-        }
+        //public double GetTotalPrice()
+        //{
+          //  return products.Sum(p => p.Price);
+        //}
 
-
-        private void WriteProductsToFile()
-        {
-            string contents = JsonSerializer.Serialize(products);
-            File.WriteAllText("products.JSON", contents);
-        }
-
-        private void ReadProductsFromFile()
-        {
-            if (File.Exists("products.JSON"))
-            {
-                string fileContents = File.ReadAllText("products.JSON");
-                products = JsonSerializer.Deserialize<List<Product>>(fileContents);
-            }
-            else products = new List<Product>();
-        }
 
     }
 }
