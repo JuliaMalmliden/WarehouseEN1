@@ -7,8 +7,14 @@ using System.Text.Json;
 namespace WarehouseEN1
 {
     class ProductCatalogue
-    {
-        List<Product> products = new List<Product>(); 
+    { 
+
+        List<Product> products = new List<Product>();
+
+        public void Add(Product newPrd)
+        {
+           
+        }
         private void WriteProductsToFile()
         {
             string contents = JsonSerializer.Serialize(products);

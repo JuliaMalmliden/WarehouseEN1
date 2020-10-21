@@ -15,6 +15,7 @@ namespace WarehouseEN1
         [STAThread]
         static void Main() //WEEEEYWEEEEYY
         {
+            
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
