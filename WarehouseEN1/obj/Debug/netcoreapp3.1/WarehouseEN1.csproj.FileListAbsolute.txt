@@ -1,0 +1,6 @@
+C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.exe
+C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.csprojAssemblyReference.cache
+C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.Form1.resources
+C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.csproj.GenerateResource.cache
+C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.AssemblyInfoInputs.cache
+C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.AssemblyInfo.cs

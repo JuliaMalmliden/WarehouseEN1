@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace WarehouseEN1
 {
@@ -39,7 +41,6 @@ namespace WarehouseEN1
         {
             return ProductPrice >= 0 && ProductPrice <= 9999;
         }
-
 
 
     }

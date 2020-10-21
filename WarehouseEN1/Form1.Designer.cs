@@ -239,7 +239,7 @@
         private System.Windows.Forms.TextBox ProductStock;
         private System.Windows.Forms.TextBox ProdIDtextBox;
         private System.Windows.Forms.TextBox ProdNametextBox;
-        private System.Windows.Forms.TextBox ProductStocktextBox;
+        
     }
 }
 

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fmrpds0cusvrKNHJmnsEyHkUY+6V+V8CmmTnN7yDHKsh7u0TcPqWOxDKlV4kxpDTMVQI1O1wWEP/JA1Ip3NtHQ==",
+  "dgSpecHash": "3jUkn94/EF6wW0oKq0Plx1clPJ5L6kD208fWwtYYLK0rQNWAYNDzDEYm4JtDpBpkZK1u2tAtrMM5apFc6G4LmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\julia\\source\\repos\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\julia\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
+  ],
   "logs": []
 }
