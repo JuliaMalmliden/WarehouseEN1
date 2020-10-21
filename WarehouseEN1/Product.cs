@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace WarehouseEN1
 {
-    class Product
+    public class Product
     {
         private int productID;
         private string productName;
@@ -35,7 +35,7 @@ namespace WarehouseEN1
         }
         public override string ToString()
         {
-            return ProductName + "(" + ProductPrice + ")";
+            return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ NextRestock;
         }
         public bool PriceIsValid()
         {

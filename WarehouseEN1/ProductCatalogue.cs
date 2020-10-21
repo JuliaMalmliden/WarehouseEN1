@@ -6,14 +6,13 @@ using System.Text.Json;
 
 namespace WarehouseEN1
 {
-    class ProductCatalogue
-    { 
-
-        List<Product> products = new List<Product>();
-
+    public class ProductCatalogue
+    {
+        public delegate void ChangeHandler();
+        public List<Product> Products { get; set; }
         private string filename;
-
-        public void PersistentProductCatalogue()
+        public event ChangeHandler CatalogueChanged;
+        public ProductCatalogue()
         {
             filename = "Products.JSON";
             ReadProductsFromFile();
@@ -22,15 +21,15 @@ namespace WarehouseEN1
         /// <summary>
         /// Private function to call the event in order to avoid repeating the null check.
         /// </summary>
-        //private void RaiseCatalogueChanged()
-        //{
-            //if (CatalogueChanged != null)
-           //     CatalogueChanged();
-        //}
+        private void RaiseCatalogueChanged()
+        {
+            if (CatalogueChanged != null)
+                CatalogueChanged();
+        }
 
         private void WriteProductsToFile()
         {
-            string contents = JsonSerializer.Serialize(products);
+            string contents = JsonSerializer.Serialize(Products);
             File.WriteAllText(filename, contents);
         }
         private void ReadProductsFromFile()
@@ -38,23 +37,21 @@ namespace WarehouseEN1
             if (File.Exists(filename))
             {
                 string fileContents = File.ReadAllText(filename);
-                products = JsonSerializer.Deserialize<List<Product>>(fileContents);
+                Products = JsonSerializer.Deserialize<List<Product>>(fileContents);
             }
-            else products = new List<Product>();
+            else Products = new List<Product>();
         }
-
-        //public event ChangeHandler CatalogueChanged;
 
         public void AddProduct(Product p)
         {
-            products.Add(p);
+            Products.Add(p);
             WriteProductsToFile();
-            //RaiseCatalogueChanged();
+            RaiseCatalogueChanged();
         }
 
-        public Product FindProduct(string name)
+         Product FindProduct(string name)
         {
-            foreach (Product p in products)
+            foreach (Product p in Products)
                 if (p.ProductName == name)
                     return p;
             return null;
@@ -65,7 +62,7 @@ namespace WarehouseEN1
             Product p = FindProduct(name);
             if (p == null)
                 return false;
-            if (products.Remove(p))
+            if (Products.Remove(p))
             {
                 WriteProductsToFile();
                // RaiseCatalogueChanged();
@@ -96,10 +93,6 @@ namespace WarehouseEN1
             return true;
         }
 
-        public IEnumerable<Product> AllProducts()
-        {
-            return products;
-        }
 
         //public double GetTotalPrice()
         //{
