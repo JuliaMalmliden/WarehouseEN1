@@ -11,13 +11,14 @@ namespace WarehouseEN1
         private void WriteProductsToFile()
         {
             string contents = JsonSerializer.Serialize(products);
-            File.WriteAllText("products.JSON", contents);//EDiT
+            File.WriteAllText("products.JSON", contents);
         }
+
         private void ReadProductsFromFile()
         {
             if (File.Exists("products.JSON"))
             {
-                string fileContents = File.ReadAllText(filename);
+                string fileContents = File.ReadAllText("products.JSON");
                 products = JsonSerializer.Deserialize<List<Product>>(fileContents);
             }
             else products = new List<Product>();
