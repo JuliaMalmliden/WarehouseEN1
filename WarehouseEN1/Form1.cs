@@ -31,8 +31,6 @@ namespace WarehouseEN1
             RefreshListboxContents();
 
             Displaylist = new List<Product>();
-
-            ProductPageP.Invalidate(); 
             
         }
 
@@ -107,11 +105,6 @@ namespace WarehouseEN1
 
         }
 
-        private void ProductPageP_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
             CustomerForm CustomerMenu = new CustomerForm();
@@ -147,6 +140,11 @@ namespace WarehouseEN1
         private void ProNextRestocktextBox_TextChanged(object sender, EventArgs e)
         {
              
+        }
+
+        private void ProductpageLable_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

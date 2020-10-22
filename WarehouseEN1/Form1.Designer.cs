@@ -35,13 +35,13 @@
             this.ProductPricetextbox = new System.Windows.Forms.TextBox();
             this.ProductStocktextBox = new System.Windows.Forms.TextBox();
             this.ProductDisplayList = new System.Windows.Forms.ListBox();
-            this.ProductPageP = new System.Windows.Forms.RadioButton();
             this.CustomerPageP = new System.Windows.Forms.RadioButton();
             this.OrderPageP = new System.Windows.Forms.RadioButton();
             this.MenuLabel = new System.Windows.Forms.Label();
             this.ProdNametextBox = new System.Windows.Forms.TextBox();
             this.ProNextRestocktextBox = new System.Windows.Forms.TextBox();
             this.ProductAddButton = new System.Windows.Forms.Button();
+            this.ProductpageLable = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ProductList
@@ -112,18 +112,6 @@
             this.ProductDisplayList.TabIndex = 10;
             this.ProductDisplayList.SelectedIndexChanged += new System.EventHandler(this.ProductDisplayList_SelectedIndexChanged);
             // 
-            // ProductPageP
-            // 
-            this.ProductPageP.AutoSize = true;
-            this.ProductPageP.Location = new System.Drawing.Point(648, 42);
-            this.ProductPageP.Name = "ProductPageP";
-            this.ProductPageP.Size = new System.Drawing.Size(117, 24);
-            this.ProductPageP.TabIndex = 11;
-            this.ProductPageP.TabStop = true;
-            this.ProductPageP.Text = "Product Page";
-            this.ProductPageP.UseVisualStyleBackColor = true;
-            this.ProductPageP.CheckedChanged += new System.EventHandler(this.ProductPageP_CheckedChanged);
-            // 
             // CustomerPageP
             // 
             this.CustomerPageP.AutoSize = true;
@@ -185,18 +173,28 @@
             this.ProductAddButton.UseVisualStyleBackColor = true;
             this.ProductAddButton.Click += new System.EventHandler(this.ProductAddButton_Click);
             // 
+            // ProductpageLable
+            // 
+            this.ProductpageLable.AutoSize = true;
+            this.ProductpageLable.Location = new System.Drawing.Point(671, 49);
+            this.ProductpageLable.Name = "ProductpageLable";
+            this.ProductpageLable.Size = new System.Drawing.Size(139, 20);
+            this.ProductpageLable.TabIndex = 19;
+            this.ProductpageLable.Text = "Product page(Now)";
+            this.ProductpageLable.Click += new System.EventHandler(this.ProductpageLable_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(825, 450);
+            this.Controls.Add(this.ProductpageLable);
             this.Controls.Add(this.ProductAddButton);
             this.Controls.Add(this.ProNextRestocktextBox);
             this.Controls.Add(this.ProdNametextBox);
             this.Controls.Add(this.MenuLabel);
             this.Controls.Add(this.OrderPageP);
             this.Controls.Add(this.CustomerPageP);
-            this.Controls.Add(this.ProductPageP);
             this.Controls.Add(this.ProductDisplayList);
             this.Controls.Add(this.ProductStocktextBox);
             this.Controls.Add(this.ProductPricetextbox);
@@ -223,13 +221,12 @@
         private System.Windows.Forms.Button ProductAddButton;
         private System.Windows.Forms.TextBox ProNextRestocktextBox;
         private System.Windows.Forms.ListBox ProductDisplayList;
-        private System.Windows.Forms.RadioButton ProductPageP;
         private System.Windows.Forms.RadioButton CustomerPageP;
         private System.Windows.Forms.RadioButton OrderPageP;
         private System.Windows.Forms.Label MenuLabel;
         private System.Windows.Forms.TextBox ProductStock;
         private System.Windows.Forms.TextBox ProdNametextBox;
-        
+        private System.Windows.Forms.Label ProductpageLable;
     }
 }
 
