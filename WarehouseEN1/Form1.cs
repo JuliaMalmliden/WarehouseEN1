@@ -48,7 +48,7 @@ namespace WarehouseEN1
 
         private void ProdIDtextBox_TextChanged(object sender, EventArgs e)
         {
-            8productID = Convert.ToInt32(ProdIDtextBox.Text); 
+            productID = Convert.ToInt32(ProdIDtextBox.Text); 
         }
 
         private void ProdNametextBox_TextChanged(object sender, EventArgs e)
