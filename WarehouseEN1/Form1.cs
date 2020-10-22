@@ -15,7 +15,6 @@ namespace WarehouseEN1
     public partial class Form1 : Form
     {
         int selectedProduct;
-        private int productID;
         private string productName;
         private double productPrice;
         private int productStock;
@@ -32,6 +31,9 @@ namespace WarehouseEN1
             RefreshListboxContents();
 
             Displaylist = new List<Product>();
+
+            ProductPageP.Invalidate(); 
+            
         }
 
 
@@ -49,52 +51,38 @@ namespace WarehouseEN1
         {
             selectedProduct = ProductList.SelectedIndex;
             Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
+            
             ProdNametextBox.Text = prd.ProductName;
             ProductPricetextbox.Text = prd.ProductPrice.ToString();
             ProductStocktextBox.Text = prd.ProductStock.ToString();
             ProNextRestocktextBox.Text = prd.NextRestock.ToString(); 
         }
 
-
-        private void ProdNametextBox_TextChanged(object sender, EventArgs e)
+        private void GetTextBox()
         {
-            productName = ProdNametextBox.Text; 
-        }
+            productName = ProdNametextBox.Text;
+            productPrice = Convert.ToDouble(ProductPricetextbox.Text);
+            productStock = Convert.ToInt32(ProductStocktextBox.Text);
+            productStock = Convert.ToInt32(ProductStocktextBox.Text);
+            productStock = Convert.ToInt32(ProductStocktextBox.Text);
 
-        private void ProductPriceTextbox_TextChanged(object sender, EventArgs e)
-        {
-            productPrice = Convert.ToDouble(ProductPricetextbox.Text); 
         }
-
-        private void ProductStocktextBox_TextChanged(object sender, EventArgs e)
-        {
-            productStock = Convert.ToInt32(ProductStocktextBox.Text); 
-        }
-
-        private void ProNextRestocktextBox_TextChanged(object sender, EventArgs e)
-        {
-             
-        }
-
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
+            GetTextBox(); 
             productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
 
-            Product prod = new Product(productID, productName, productPrice, productStock, productRestock);
-
-            prodCatalogue.AddProduct(prod);
+            prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock);
 
         }
 
         private void ProductEditButton_Click(object sender, EventArgs e)
         {
+            GetTextBox(); 
             Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
-            string name = prd.ProductName;
+            int prdID = prd.ProductID; 
+            prodCatalogue.EditProduct(prdID, productName, productPrice, productStock, productRestock); 
 
-            prodCatalogue.RemoveProduct(name);
-
-            Product prod = new Product(productID, productName, productPrice, productStock, productRestock);
-            prodCatalogue.AddProduct(prod);
 
         }
 
@@ -126,7 +114,9 @@ namespace WarehouseEN1
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
-
+            CustomerForm CustomerMenu = new CustomerForm();
+            CustomerMenu.Show();
+            this.Hide();
         }
 
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
@@ -137,6 +127,26 @@ namespace WarehouseEN1
         private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }        
+        
+        private void ProdNametextBox_TextChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void ProductPriceTextbox_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ProductStocktextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ProNextRestocktextBox_TextChanged(object sender, EventArgs e)
+        {
+             
         }
     }
 }

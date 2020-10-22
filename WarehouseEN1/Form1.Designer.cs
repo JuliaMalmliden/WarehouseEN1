@@ -56,9 +56,9 @@
             // 
             // ProductEditButton
             // 
-            this.ProductEditButton.Location = new System.Drawing.Point(611, 245);
+            this.ProductEditButton.Location = new System.Drawing.Point(671, 215);
             this.ProductEditButton.Name = "ProductEditButton";
-            this.ProductEditButton.Size = new System.Drawing.Size(94, 46);
+            this.ProductEditButton.Size = new System.Drawing.Size(94, 51);
             this.ProductEditButton.TabIndex = 2;
             this.ProductEditButton.Text = "Edit";
             this.ProductEditButton.UseVisualStyleBackColor = true;
@@ -66,9 +66,9 @@
             // 
             // OutOfStockButton
             // 
-            this.OutOfStockButton.Location = new System.Drawing.Point(611, 297);
+            this.OutOfStockButton.Location = new System.Drawing.Point(611, 274);
             this.OutOfStockButton.Name = "OutOfStockButton";
-            this.OutOfStockButton.Size = new System.Drawing.Size(94, 56);
+            this.OutOfStockButton.Size = new System.Drawing.Size(154, 61);
             this.OutOfStockButton.TabIndex = 3;
             this.OutOfStockButton.Text = "Display out of stock";
             this.OutOfStockButton.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             // 
             // NextRestockButton
             // 
-            this.NextRestockButton.Location = new System.Drawing.Point(611, 359);
+            this.NextRestockButton.Location = new System.Drawing.Point(611, 341);
             this.NextRestockButton.Name = "NextRestockButton";
-            this.NextRestockButton.Size = new System.Drawing.Size(94, 68);
+            this.NextRestockButton.Size = new System.Drawing.Size(154, 68);
             this.NextRestockButton.TabIndex = 4;
             this.NextRestockButton.Text = "Display next restock";
             this.NextRestockButton.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             // 
             // ProductStocktextBox
             // 
-            this.ProductStocktextBox.Location = new System.Drawing.Point(324, 225);
+            this.ProductStocktextBox.Location = new System.Drawing.Point(284, 225);
             this.ProductStocktextBox.Name = "ProductStocktextBox";
             this.ProductStocktextBox.PlaceholderText = "Product Stock";
             this.ProductStocktextBox.Size = new System.Drawing.Size(96, 27);
@@ -168,7 +168,7 @@
             // 
             // ProNextRestocktextBox
             // 
-            this.ProNextRestocktextBox.Location = new System.Drawing.Point(454, 225);
+            this.ProNextRestocktextBox.Location = new System.Drawing.Point(386, 225);
             this.ProNextRestocktextBox.Name = "ProNextRestocktextBox";
             this.ProNextRestocktextBox.PlaceholderText = "Next Restock";
             this.ProNextRestocktextBox.Size = new System.Drawing.Size(151, 27);
@@ -177,7 +177,7 @@
             // 
             // ProductAddButton
             // 
-            this.ProductAddButton.Location = new System.Drawing.Point(611, 188);
+            this.ProductAddButton.Location = new System.Drawing.Point(572, 215);
             this.ProductAddButton.Name = "ProductAddButton";
             this.ProductAddButton.Size = new System.Drawing.Size(93, 51);
             this.ProductAddButton.TabIndex = 18;

@@ -13,10 +13,13 @@ namespace WarehouseEN1
         public List<Product> Products { get; set; }
         private string filename;
         public event ProductChangeHandler CatalogueChanged;
+        public int currentProdID; 
         public ProductCatalogue()
         {
             filename = "Products.JSON";
             ReadProductsFromFile();
+
+            CurrentProductID(); 
         }
 
         /// <summary>
@@ -27,6 +30,19 @@ namespace WarehouseEN1
             if (CatalogueChanged != null)
                 CatalogueChanged();
         }
+
+        public void CurrentProductID()
+        {
+            if (Products.Count == 0)
+            {
+                currentProdID = 0;
+            }
+            else
+            {
+                currentProdID = Products.Count; 
+            }
+        }
+
 
         private void WriteProductsToFile()
         {
@@ -43,57 +59,35 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-        public void AddProduct(Product p)
+        public void AddProduct(String productName, double productPrice, int productStock, DateTime productRestock)
         {
-            Products.Add(p);
+            currentProdID++;
+            try
+            {
+                Product prod = new Product(currentProdID, productName, productPrice, productStock, productRestock); 
+                Products.Add(prod);
+                WriteProductsToFile();
+                RaiseCatalogueChanged();
+            }
+            catch
+            {
+
+            }
+            
+        }
+
+        public void EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
+        {
+            Product product = Products.Single(p => p.ProductID == pID);
+            
+            product.ProductName = productName;
+            product.ProductPrice = productPrice;
+            product.ProductStock = productStock;
+            product.NextRestock = productRestock;
+
             WriteProductsToFile();
             RaiseCatalogueChanged();
-        }
-
-         Product FindProduct(string name)
-        {
-            foreach (Product p in Products)
-                if (p.ProductName == name)
-                    return p;
-            return null;
-        }
-
-        public bool RemoveProduct(string name)
-        {
-            Product p = FindProduct(name);
-            if (p == null)
-                return false;
-            if (Products.Remove(p))
-            {
-                WriteProductsToFile();
-               // RaiseCatalogueChanged();
-                return true;
-            }
-            else return false;
-        }
-
-        public bool RenameProduct(string name, string newName)
-        {
-            Product p = FindProduct(name);
-            if (p == null)
-                return false;
-            p.ProductName = newName;
-            WriteProductsToFile();
-           // RaiseCatalogueChanged();
-            return true;
-        }
-
-        public bool UpdateProductPrice(string name, double price)
-        {
-            Product p = FindProduct(name);
-            if (p == null)
-                return false;
-            p.ProductPrice = price;
-            WriteProductsToFile();
-           // RaiseCatalogueChanged();
-            return true;
-        }
-
+        } 
 
 
 
