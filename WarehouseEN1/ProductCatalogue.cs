@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 
@@ -8,10 +9,10 @@ namespace WarehouseEN1
 {
     public class ProductCatalogue
     {
-        public delegate void ChangeHandler();
+        public delegate void ProductChangeHandler();
         public List<Product> Products { get; set; }
         private string filename;
-        public event ChangeHandler CatalogueChanged;
+        public event ProductChangeHandler CatalogueChanged;
         public ProductCatalogue()
         {
             filename = "Products.JSON";
@@ -92,6 +93,9 @@ namespace WarehouseEN1
            // RaiseCatalogueChanged();
             return true;
         }
+
+
+
 
 
         //public double GetTotalPrice()

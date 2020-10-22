@@ -21,6 +21,7 @@ namespace WarehouseEN1
         private int productStock;
         private DateTime productRestock;
         private ProductCatalogue prodCatalogue;
+        private List<Product> Displaylist; 
         
         public Form1(ProductCatalogue prodCatalogue)
         {
@@ -29,11 +30,14 @@ namespace WarehouseEN1
 
             prodCatalogue.CatalogueChanged += RefreshListboxContents;
             RefreshListboxContents();
+
+            Displaylist = new List<Product>();
         }
 
 
         private void RefreshListboxContents()
         {
+            ProductDisplayList.Items.Clear();
             ProductList.Items.Clear();
             foreach (Product p in prodCatalogue.Products)
             {
@@ -44,12 +48,13 @@ namespace WarehouseEN1
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedProduct = ProductList.SelectedIndex;
+            Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
+            ProdNametextBox.Text = prd.ProductName;
+            ProductPricetextbox.Text = prd.ProductPrice.ToString();
+            ProductStocktextBox.Text = prd.ProductStock.ToString();
+            ProNextRestocktextBox.Text = prd.NextRestock.ToString(); 
         }
 
-        private void ProdIDtextBox_TextChanged(object sender, EventArgs e)
-        {
-            productID = Convert.ToInt32(ProdIDtextBox.Text); 
-        }
 
         private void ProdNametextBox_TextChanged(object sender, EventArgs e)
         {
@@ -83,12 +88,30 @@ namespace WarehouseEN1
 
         private void ProductEditButton_Click(object sender, EventArgs e)
         {
+            Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
+            string name = prd.ProductName;
+
+            prodCatalogue.RemoveProduct(name);
+
+            Product prod = new Product(productID, productName, productPrice, productStock, productRestock);
+            prodCatalogue.AddProduct(prod);
 
         }
 
         private void OutOfStockButton_Click(object sender, EventArgs e)
         {
+            for(int i= 0 ; i < prodCatalogue.Products.Count; i++)
+            { Product prd = prodCatalogue.Products.ElementAt(i); 
+                if (prd.ProductStock == 0)
+                {
+                    Displaylist.Add(prd); 
+                }
+            }
 
+            foreach (Product p in Displaylist)
+            {
+                ProductDisplayList.Items.Add(p);
+            }
         }
 
         private void NextRestockButton_Click(object sender, EventArgs e)
@@ -107,6 +130,11 @@ namespace WarehouseEN1
         }
 
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

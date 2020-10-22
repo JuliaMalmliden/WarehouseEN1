@@ -39,7 +39,6 @@
             this.CustomerPageP = new System.Windows.Forms.RadioButton();
             this.OrderPageP = new System.Windows.Forms.RadioButton();
             this.MenuLabel = new System.Windows.Forms.Label();
-            this.ProdIDtextBox = new System.Windows.Forms.TextBox();
             this.ProdNametextBox = new System.Windows.Forms.TextBox();
             this.ProNextRestocktextBox = new System.Windows.Forms.TextBox();
             this.ProductAddButton = new System.Windows.Forms.Button();
@@ -87,7 +86,7 @@
             // 
             // ProductPricetextbox
             // 
-            this.ProductPricetextbox.Location = new System.Drawing.Point(260, 224);
+            this.ProductPricetextbox.Location = new System.Drawing.Point(188, 225);
             this.ProductPricetextbox.Name = "ProductPricetextbox";
             this.ProductPricetextbox.PlaceholderText = "Price";
             this.ProductPricetextbox.Size = new System.Drawing.Size(90, 27);
@@ -96,7 +95,7 @@
             // 
             // ProductStocktextBox
             // 
-            this.ProductStocktextBox.Location = new System.Drawing.Point(356, 224);
+            this.ProductStocktextBox.Location = new System.Drawing.Point(324, 225);
             this.ProductStocktextBox.Name = "ProductStocktextBox";
             this.ProductStocktextBox.PlaceholderText = "Product Stock";
             this.ProductStocktextBox.Size = new System.Drawing.Size(96, 27);
@@ -107,10 +106,11 @@
             // 
             this.ProductDisplayList.FormattingEnabled = true;
             this.ProductDisplayList.ItemHeight = 20;
-            this.ProductDisplayList.Location = new System.Drawing.Point(25, 273);
+            this.ProductDisplayList.Location = new System.Drawing.Point(21, 274);
             this.ProductDisplayList.Name = "ProductDisplayList";
             this.ProductDisplayList.Size = new System.Drawing.Size(579, 144);
             this.ProductDisplayList.TabIndex = 10;
+            this.ProductDisplayList.SelectedIndexChanged += new System.EventHandler(this.ProductDisplayList_SelectedIndexChanged);
             // 
             // ProductPageP
             // 
@@ -157,30 +157,21 @@
             this.MenuLabel.TabIndex = 14;
             this.MenuLabel.Text = "Page Menu";
             // 
-            // ProdIDtextBox
-            // 
-            this.ProdIDtextBox.Location = new System.Drawing.Point(24, 224);
-            this.ProdIDtextBox.Name = "ProdIDtextBox";
-            this.ProdIDtextBox.PlaceholderText = "ProductID";
-            this.ProdIDtextBox.Size = new System.Drawing.Size(87, 27);
-            this.ProdIDtextBox.TabIndex = 15;
-            this.ProdIDtextBox.TextChanged += new System.EventHandler(this.ProdIDtextBox_TextChanged);
-            // 
             // ProdNametextBox
             // 
-            this.ProdNametextBox.Location = new System.Drawing.Point(117, 224);
+            this.ProdNametextBox.Location = new System.Drawing.Point(21, 225);
             this.ProdNametextBox.Name = "ProdNametextBox";
             this.ProdNametextBox.PlaceholderText = "Product Name";
-            this.ProdNametextBox.Size = new System.Drawing.Size(137, 27);
+            this.ProdNametextBox.Size = new System.Drawing.Size(161, 27);
             this.ProdNametextBox.TabIndex = 16;
             this.ProdNametextBox.TextChanged += new System.EventHandler(this.ProdNametextBox_TextChanged);
             // 
             // ProNextRestocktextBox
             // 
-            this.ProNextRestocktextBox.Location = new System.Drawing.Point(459, 225);
+            this.ProNextRestocktextBox.Location = new System.Drawing.Point(454, 225);
             this.ProNextRestocktextBox.Name = "ProNextRestocktextBox";
             this.ProNextRestocktextBox.PlaceholderText = "Next Restock";
-            this.ProNextRestocktextBox.Size = new System.Drawing.Size(144, 27);
+            this.ProNextRestocktextBox.Size = new System.Drawing.Size(151, 27);
             this.ProNextRestocktextBox.TabIndex = 17;
             this.ProNextRestocktextBox.TextChanged += new System.EventHandler(this.ProNextRestocktextBox_TextChanged);
             // 
@@ -202,7 +193,6 @@
             this.Controls.Add(this.ProductAddButton);
             this.Controls.Add(this.ProNextRestocktextBox);
             this.Controls.Add(this.ProdNametextBox);
-            this.Controls.Add(this.ProdIDtextBox);
             this.Controls.Add(this.MenuLabel);
             this.Controls.Add(this.OrderPageP);
             this.Controls.Add(this.CustomerPageP);
@@ -215,6 +205,7 @@
             this.Controls.Add(this.ProductEditButton);
             this.Controls.Add(this.ProductList);
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -237,7 +228,6 @@
         private System.Windows.Forms.RadioButton OrderPageP;
         private System.Windows.Forms.Label MenuLabel;
         private System.Windows.Forms.TextBox ProductStock;
-        private System.Windows.Forms.TextBox ProdIDtextBox;
         private System.Windows.Forms.TextBox ProdNametextBox;
         
     }
