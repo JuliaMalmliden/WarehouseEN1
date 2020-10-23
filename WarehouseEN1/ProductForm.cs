@@ -34,7 +34,6 @@ namespace WarehouseEN1
             
         }
 
-
         private void RefreshListboxContents()
         {
             ProductDisplayList.Items.Clear();
@@ -58,11 +57,50 @@ namespace WarehouseEN1
 
         private void GetTextBox()
         {
-            productName = ProdNametextBox.Text;
-            productPrice = Convert.ToDouble(ProductPricetextbox.Text);
-            productStock = Convert.ToInt32(ProductStocktextBox.Text);
-            productStock = Convert.ToInt32(ProductStocktextBox.Text);
-            productStock = Convert.ToInt32(ProductStocktextBox.Text);
+            try
+            {
+                productName = ProdNametextBox.Text;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Did not manage to execute because of: "+ ex);
+            }
+            try
+            {
+                productPrice = Convert.ToDouble(ProductPricetextbox.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Did not manage to execute because of: " + ex);
+            }
+            try
+            {
+                productStock = Convert.ToInt32(ProductStocktextBox.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Did not manage to execute because of: " + ex);
+            }
+            try
+            {
+                productStock = Convert.ToInt32(ProductStocktextBox.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Did not manage to execute because of: " + ex);
+            }
+            try
+            {
+                productStock = Convert.ToInt32(ProductStocktextBox.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Did not manage to execute because of: " + ex);
+            }
 
         }
         private void ProductAddButton_Click(object sender, EventArgs e)
@@ -70,7 +108,10 @@ namespace WarehouseEN1
             GetTextBox(); 
             productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
 
-            prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock);
+            if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
+            {
+                MessageBox.Show("Adding failed, please try again. See to that all fields are filled in correctly."); 
+            }
 
         }
 

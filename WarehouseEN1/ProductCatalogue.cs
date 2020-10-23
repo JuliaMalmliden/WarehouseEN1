@@ -22,10 +22,7 @@ namespace WarehouseEN1
             CurrentProductID(); 
         }
 
-        /// <summary>
-        /// Private function to call the event in order to avoid repeating the null check.
-        /// </summary>
-        private void RaiseCatalogueChanged()
+        private void RaiseCatalogueChanged() // avoiding to check for null all the time 
         {
             if (CatalogueChanged != null)
                 CatalogueChanged();
@@ -59,7 +56,7 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-        public void AddProduct(String productName, double productPrice, int productStock, DateTime productRestock)
+        public bool AddProduct(String productName, double productPrice, int productStock, DateTime productRestock)
         {
             currentProdID++;
             try
@@ -68,34 +65,36 @@ namespace WarehouseEN1
                 Products.Add(prod);
                 WriteProductsToFile();
                 RaiseCatalogueChanged();
+                return true; 
             }
             catch
             {
-
+                return false; 
             }
             
         }
 
-        public void EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
+        public bool EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
         {
+            try
+            {
             Product product = Products.Single(p => p.ProductID == pID);
             
-            product.ProductName = productName;
-            product.ProductPrice = productPrice;
-            product.ProductStock = productStock;
-            product.NextRestock = productRestock;
+                product.ProductName = productName;
+                product.ProductPrice = productPrice;
+                product.ProductStock = productStock;
+                product.NextRestock = productRestock;
 
-            WriteProductsToFile();
-            RaiseCatalogueChanged();
+                 WriteProductsToFile();
+                 RaiseCatalogueChanged();
+                return true; 
+            }
+            catch
+            {
+                return false; 
+            }
+
         } 
-
-
-
-
-        //public double GetTotalPrice()
-        //{
-          //  return products.Sum(p => p.Price);
-        //}
 
 
     }

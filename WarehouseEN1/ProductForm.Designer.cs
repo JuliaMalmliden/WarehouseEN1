@@ -48,7 +48,7 @@
             // 
             this.ProductList.FormattingEnabled = true;
             this.ProductList.ItemHeight = 20;
-            this.ProductList.Location = new System.Drawing.Point(21, 23);
+            this.ProductList.Location = new System.Drawing.Point(22, 29);
             this.ProductList.Name = "ProductList";
             this.ProductList.Size = new System.Drawing.Size(584, 184);
             this.ProductList.TabIndex = 0;
