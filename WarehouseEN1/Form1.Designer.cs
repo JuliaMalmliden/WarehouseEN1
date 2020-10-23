@@ -179,9 +179,9 @@
             this.ProductpageLable.AutoSize = true;
             this.ProductpageLable.Location = new System.Drawing.Point(671, 49);
             this.ProductpageLable.Name = "ProductpageLable";
-            this.ProductpageLable.Size = new System.Drawing.Size(139, 20);
+            this.ProductpageLable.Size = new System.Drawing.Size(143, 20);
             this.ProductpageLable.TabIndex = 19;
-            this.ProductpageLable.Text = "Product page(Now)";
+            this.ProductpageLable.Text = "Product page (Now)";
             this.ProductpageLable.Click += new System.EventHandler(this.ProductpageLable_Click);
             // 
             // Form1
