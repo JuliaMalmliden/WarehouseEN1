@@ -107,7 +107,7 @@ namespace WarehouseEN1
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
-            CustomerForm Customerform = new CustomerForm();
+            CustomerList Customerform = new CustomerList();
             Customerform.Show();
             this.Hide();
         }

@@ -50,7 +50,7 @@ namespace WarehouseEN1
 
         private void CustomerPageORBTN_CheckedChanged(object sender, EventArgs e)
         {
-            CustomerForm Customerform = new CustomerForm();
+            CustomerList Customerform = new CustomerList();
             Customerform.Show();
             this.Hide();
         }

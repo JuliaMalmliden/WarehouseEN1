@@ -56,9 +56,9 @@
             // 
             // ProductEditButton
             // 
-            this.ProductEditButton.Location = new System.Drawing.Point(671, 215);
+            this.ProductEditButton.Location = new System.Drawing.Point(658, 215);
             this.ProductEditButton.Name = "ProductEditButton";
-            this.ProductEditButton.Size = new System.Drawing.Size(94, 51);
+            this.ProductEditButton.Size = new System.Drawing.Size(107, 51);
             this.ProductEditButton.TabIndex = 2;
             this.ProductEditButton.Text = "Edit";
             this.ProductEditButton.UseVisualStyleBackColor = true;
@@ -166,9 +166,9 @@
             // 
             // ProductAddButton
             // 
-            this.ProductAddButton.Location = new System.Drawing.Point(572, 215);
+            this.ProductAddButton.Location = new System.Drawing.Point(543, 215);
             this.ProductAddButton.Name = "ProductAddButton";
-            this.ProductAddButton.Size = new System.Drawing.Size(93, 51);
+            this.ProductAddButton.Size = new System.Drawing.Size(109, 51);
             this.ProductAddButton.TabIndex = 18;
             this.ProductAddButton.Text = "Add";
             this.ProductAddButton.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             this.ProductpageLable.Text = "Product page (Now)";
             this.ProductpageLable.Click += new System.EventHandler(this.ProductpageLable_Click);
             // 
-            // Form1
+            // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -203,7 +203,7 @@
             this.Controls.Add(this.OutOfStockButton);
             this.Controls.Add(this.ProductEditButton);
             this.Controls.Add(this.ProductList);
-            this.Name = "Form1";
+            this.Name = "ProductForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
