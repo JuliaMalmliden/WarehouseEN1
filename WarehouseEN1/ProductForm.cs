@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
-    public partial class Form1 : Form
+    public partial class ProductForm : Form
     {
         int selectedProduct;
         private string productName;
@@ -22,7 +22,7 @@ namespace WarehouseEN1
         private ProductCatalogue prodCatalogue;
         private List<Product> Displaylist; 
         
-        public Form1(ProductCatalogue prodCatalogue)
+        public ProductForm(ProductCatalogue prodCatalogue)
         {
             this.prodCatalogue = prodCatalogue;
             InitializeComponent();

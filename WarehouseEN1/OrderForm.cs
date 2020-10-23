@@ -42,7 +42,8 @@ namespace WarehouseEN1
 
         private void ProductPageRBTN_CheckedChanged(object sender, EventArgs e)
         {
-            Form1 Productform = new Form1();
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
+            ProductForm Productform = new ProductForm(prodCatalogue);
             Productform.Show();
             this.Hide();
         }

@@ -1,6 +1,6 @@
 ﻿namespace WarehouseEN1
 {
-    partial class Form1
+    partial class ProductForm
     {
         /// <summary>
         ///  Required designer variable.
