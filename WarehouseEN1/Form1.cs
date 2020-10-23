@@ -107,14 +107,16 @@ namespace WarehouseEN1
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
-            CustomerForm CustomerMenu = new CustomerForm();
-            CustomerMenu.Show();
+            CustomerForm Customerform = new CustomerForm();
+            Customerform.Show();
             this.Hide();
         }
 
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
         {
-
+            OrderForm Orderfrom = new OrderForm();
+            Orderfrom.Show();
+            this.Hide();
         }
 
         private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)

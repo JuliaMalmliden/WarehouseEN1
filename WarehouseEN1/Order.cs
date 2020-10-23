@@ -23,13 +23,13 @@ namespace WarehouseEN1
         public Order() 
         { 
         }
-        public Order(int on, int cid, string oa, List<Product> ol, string s, Customer c)
+        public Order(int on, int cid, string oa, List<Product> ol, Customer c)
         {
             OrderNumber = on;
             CustomerID = cid;
             OrderAddress = oa;
             OrderList = ol;
-            State = s;
+            State = "Ordered"; ;
             cUstomer = c; 
 
         }

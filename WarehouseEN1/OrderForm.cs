@@ -14,5 +14,44 @@ namespace WarehouseEN1
         {
             InitializeComponent();
         }
+
+        private void OrderList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BatchProcessButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DispatchedOrdersButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PendingOrdersButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OrderDisplayList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductPageRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            Form1 Productform = new Form1();
+            Productform.Show();
+            this.Hide();
+        }
+
+        private void CustomerPageORBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            CustomerForm Customerform = new CustomerForm();
+            Customerform.Show();
+            this.Hide();
+        }
     }
 }

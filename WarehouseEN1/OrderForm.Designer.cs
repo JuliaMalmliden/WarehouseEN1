@@ -47,6 +47,7 @@
             this.OrderList.Name = "OrderList";
             this.OrderList.Size = new System.Drawing.Size(717, 204);
             this.OrderList.TabIndex = 0;
+            this.OrderList.SelectedIndexChanged += new System.EventHandler(this.OrderList_SelectedIndexChanged);
             // 
             // ProductPageRBTN
             // 
@@ -58,6 +59,7 @@
             this.ProductPageRBTN.TabStop = true;
             this.ProductPageRBTN.Text = "Product Page";
             this.ProductPageRBTN.UseVisualStyleBackColor = true;
+            this.ProductPageRBTN.CheckedChanged += new System.EventHandler(this.ProductPageRBTN_CheckedChanged);
             // 
             // CustomerPageORBTN
             // 
@@ -69,6 +71,7 @@
             this.CustomerPageORBTN.TabStop = true;
             this.CustomerPageORBTN.Text = "Customer Page";
             this.CustomerPageORBTN.UseVisualStyleBackColor = true;
+            this.CustomerPageORBTN.CheckedChanged += new System.EventHandler(this.CustomerPageORBTN_CheckedChanged);
             // 
             // OrderPageLable
             // 
@@ -96,6 +99,7 @@
             this.BatchProcessButton.TabIndex = 5;
             this.BatchProcessButton.Text = "Batch-Process";
             this.BatchProcessButton.UseVisualStyleBackColor = true;
+            this.BatchProcessButton.Click += new System.EventHandler(this.BatchProcessButton_Click);
             // 
             // DispatchedOrdersButton
             // 
@@ -105,6 +109,7 @@
             this.DispatchedOrdersButton.TabIndex = 6;
             this.DispatchedOrdersButton.Text = "Display Dispatched Orders";
             this.DispatchedOrdersButton.UseVisualStyleBackColor = true;
+            this.DispatchedOrdersButton.Click += new System.EventHandler(this.DispatchedOrdersButton_Click);
             // 
             // PendingOrdersButton
             // 
@@ -114,6 +119,7 @@
             this.PendingOrdersButton.TabIndex = 7;
             this.PendingOrdersButton.Text = "Display Pending Orders";
             this.PendingOrdersButton.UseVisualStyleBackColor = true;
+            this.PendingOrdersButton.Click += new System.EventHandler(this.PendingOrdersButton_Click);
             // 
             // OrderDisplayList
             // 
@@ -123,6 +129,7 @@
             this.OrderDisplayList.Name = "OrderDisplayList";
             this.OrderDisplayList.Size = new System.Drawing.Size(570, 224);
             this.OrderDisplayList.TabIndex = 8;
+            this.OrderDisplayList.SelectedIndexChanged += new System.EventHandler(this.OrderDisplayList_SelectedIndexChanged);
             // 
             // OrderForm
             // 
