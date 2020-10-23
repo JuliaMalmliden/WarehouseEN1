@@ -144,6 +144,7 @@
             this.MenuLabel.Size = new System.Drawing.Size(82, 20);
             this.MenuLabel.TabIndex = 14;
             this.MenuLabel.Text = "Page Menu";
+            this.MenuLabel.Click += new System.EventHandler(this.MenuLabel_Click);
             // 
             // ProdNametextBox
             // 
@@ -205,6 +206,7 @@
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
