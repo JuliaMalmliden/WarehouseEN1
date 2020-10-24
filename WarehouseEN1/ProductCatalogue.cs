@@ -78,7 +78,7 @@ namespace WarehouseEN1
         {
             try
             {
-            Product product = Products.Single(p => p.ProductID == pID);
+                Product product = Products.Single(p => p.ProductID == pID);
             
                 product.ProductName = productName;
                 product.ProductPrice = productPrice;
