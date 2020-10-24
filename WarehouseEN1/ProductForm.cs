@@ -18,7 +18,7 @@ namespace WarehouseEN1
         private string productName;
         private double productPrice;
         private int productStock;
-        private DateTime productRestock;
+        private string productRestock; 
         private ProductCatalogue prodCatalogue;
         private List<Product> Displaylist; 
         
@@ -52,7 +52,7 @@ namespace WarehouseEN1
             ProdNametextBox.Text = prd.ProductName;
             ProductPricetextbox.Text = prd.ProductPrice.ToString();
             ProductStocktextBox.Text = prd.ProductStock.ToString();
-            ProNextRestocktextBox.Text = prd.NextRestock.ToString(); 
+            ProNextRestocktextBox.Text = prd.NextRestock; 
         }
 
         private void GetTextBox()
@@ -85,9 +85,8 @@ namespace WarehouseEN1
             }
             try
             {
-                
-                productRestock = Convert.ToDateTime(ProductStocktextBox.Text);
-                string productrestock = productRestock.ToShortDateString(); //Return 00/00/0000
+
+                productRestock = ProNextRestocktextBox.Text; 
             }
             catch (Exception ex)
             {
@@ -100,7 +99,7 @@ namespace WarehouseEN1
         {
             GetTextBox();
 
-            if (prodCatalogue.AddProduct(productName, productPrice, productStock, productrestock) == false)
+            if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
             {
                 MessageBox.Show("Adding failed, please try again. See to that all fields are filled in correctly."); 
             }
