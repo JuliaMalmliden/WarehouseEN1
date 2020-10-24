@@ -22,7 +22,7 @@ namespace WarehouseEN1
             CurrentProductID(); 
         }
 
-        private void RaiseCatalogueChanged() // avoiding to check for null all the time 
+        private void RaiseCatalogueChanged() //to check if a change was made and if so update the catalogue
         {
             if (CatalogueChanged != null)
                 CatalogueChanged();
@@ -56,7 +56,7 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-        public bool AddProduct(String productName, double productPrice, int productStock, DateTime productRestock)
+        public bool AddProduct(String productName, double productPrice, int productStock, string productRestock)
         {
             currentProdID++;
             try
@@ -74,7 +74,7 @@ namespace WarehouseEN1
             
         }
 
-        public bool EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
+        public bool EditProduct(int pID, String productName, double productPrice, int productStock, string productRestock)
         {
             try
             {

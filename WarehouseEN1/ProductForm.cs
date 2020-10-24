@@ -85,30 +85,22 @@ namespace WarehouseEN1
             }
             try
             {
-                productStock = Convert.ToInt32(ProductStocktextBox.Text);
-
+                
+                productRestock = Convert.ToDateTime(ProductStocktextBox.Text);
+                string productrestock = productRestock.ToShortDateString(); //Return 00/00/0000
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Did not manage to execute because of: " + ex);
             }
-            try
-            {
-                productStock = Convert.ToInt32(ProductStocktextBox.Text);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
-            }
+    
 
         }
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
-            GetTextBox(); 
-            productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
+            GetTextBox();
 
-            if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
+            if (prodCatalogue.AddProduct(productName, productPrice, productStock, productrestock) == false)
             {
                 MessageBox.Show("Adding failed, please try again. See to that all fields are filled in correctly."); 
             }
