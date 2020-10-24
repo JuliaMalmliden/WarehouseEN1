@@ -17,3 +17,22 @@ C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\Wa
 C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.genruntimeconfig.cache
 C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.CustomerList.resources
 C:\Users\julia\source\repos\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.ProductForm.resources
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.exe
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.deps.json
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.runtimeconfig.json
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.runtimeconfig.dev.json
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.dll
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\WarehouseEN1.pdb
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.csprojAssemblyReference.cache
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.CustomerList.resources
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.OrderForm.resources
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.ProductForm.resources
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.csproj.GenerateResource.cache
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.AssemblyInfoInputs.cache
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.AssemblyInfo.cs
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.csproj.CoreCompileInputs.cache
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.csproj.CopyComplete
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.dll
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.pdb
+C:\Users\katar\OneDrive\Desktop\Op2. HT20\WarehouseEN1\WarehouseEN1\obj\Debug\netcoreapp3.1\WarehouseEN1.genruntimeconfig.cache
