@@ -42,6 +42,7 @@
             this.ProNextRestocktextBox = new System.Windows.Forms.TextBox();
             this.ProductAddButton = new System.Windows.Forms.Button();
             this.ProductpageLable = new System.Windows.Forms.Label();
+            this.MakeNewOrderPageP = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // ProductList
@@ -115,7 +116,7 @@
             // CustomerPageP
             // 
             this.CustomerPageP.AutoSize = true;
-            this.CustomerPageP.Location = new System.Drawing.Point(648, 72);
+            this.CustomerPageP.Location = new System.Drawing.Point(647, 89);
             this.CustomerPageP.Name = "CustomerPageP";
             this.CustomerPageP.Size = new System.Drawing.Size(129, 24);
             this.CustomerPageP.TabIndex = 12;
@@ -127,7 +128,7 @@
             // OrderPageP
             // 
             this.OrderPageP.AutoSize = true;
-            this.OrderPageP.Location = new System.Drawing.Point(648, 102);
+            this.OrderPageP.Location = new System.Drawing.Point(647, 130);
             this.OrderPageP.Name = "OrderPageP";
             this.OrderPageP.Size = new System.Drawing.Size(104, 24);
             this.OrderPageP.TabIndex = 13;
@@ -177,18 +178,31 @@
             // ProductpageLable
             // 
             this.ProductpageLable.AutoSize = true;
-            this.ProductpageLable.Location = new System.Drawing.Point(671, 49);
+            this.ProductpageLable.Location = new System.Drawing.Point(670, 53);
             this.ProductpageLable.Name = "ProductpageLable";
             this.ProductpageLable.Size = new System.Drawing.Size(143, 20);
             this.ProductpageLable.TabIndex = 19;
             this.ProductpageLable.Text = "Product page (Now)";
             this.ProductpageLable.Click += new System.EventHandler(this.ProductpageLable_Click);
             // 
+            // MakeNewOrderPageP
+            // 
+            this.MakeNewOrderPageP.AutoSize = true;
+            this.MakeNewOrderPageP.Location = new System.Drawing.Point(647, 171);
+            this.MakeNewOrderPageP.Name = "MakeNewOrderPageP";
+            this.MakeNewOrderPageP.Size = new System.Drawing.Size(142, 24);
+            this.MakeNewOrderPageP.TabIndex = 20;
+            this.MakeNewOrderPageP.TabStop = true;
+            this.MakeNewOrderPageP.Text = "Make New Order";
+            this.MakeNewOrderPageP.UseVisualStyleBackColor = true;
+            this.MakeNewOrderPageP.CheckedChanged += new System.EventHandler(this.MakeNewOrderPageP_CheckedChanged);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 450);
+            this.Controls.Add(this.MakeNewOrderPageP);
             this.Controls.Add(this.ProductpageLable);
             this.Controls.Add(this.ProductAddButton);
             this.Controls.Add(this.ProNextRestocktextBox);
@@ -229,6 +243,7 @@
         private System.Windows.Forms.TextBox ProductStock;
         private System.Windows.Forms.TextBox ProdNametextBox;
         private System.Windows.Forms.Label ProductpageLable;
+        private System.Windows.Forms.RadioButton MakeNewOrderPageP;
     }
 }
 

@@ -41,6 +41,7 @@
             this.ProductPageC = new System.Windows.Forms.RadioButton();
             this.CustomerPageLable = new System.Windows.Forms.Label();
             this.OrderPageC = new System.Windows.Forms.RadioButton();
+            this.MakeNewOrderPageC = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // CustomerName
@@ -172,11 +173,23 @@
             this.OrderPageC.UseVisualStyleBackColor = true;
             this.OrderPageC.CheckedChanged += new System.EventHandler(this.OrderPageC_CheckedChanged);
             // 
+            // MakeNewOrderPageC
+            // 
+            this.MakeNewOrderPageC.AutoSize = true;
+            this.MakeNewOrderPageC.Location = new System.Drawing.Point(606, 172);
+            this.MakeNewOrderPageC.Name = "MakeNewOrderPageC";
+            this.MakeNewOrderPageC.Size = new System.Drawing.Size(142, 24);
+            this.MakeNewOrderPageC.TabIndex = 14;
+            this.MakeNewOrderPageC.TabStop = true;
+            this.MakeNewOrderPageC.Text = "Make New Order";
+            this.MakeNewOrderPageC.UseVisualStyleBackColor = true;
+            // 
             // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MakeNewOrderPageC);
             this.Controls.Add(this.OrderPageC);
             this.Controls.Add(this.CustomerPageLable);
             this.Controls.Add(this.ProductPageC);
@@ -211,5 +224,6 @@
         private System.Windows.Forms.RadioButton ProductPageC;
         private System.Windows.Forms.Label CustomerPageLable;
         private System.Windows.Forms.RadioButton OrderPageC;
+        private System.Windows.Forms.RadioButton MakeNewOrderPageC;
     }
 }

@@ -159,7 +159,12 @@ namespace WarehouseEN1
             Orderfrom.Show();
             this.Hide();
         }
-
+        private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
+        {
+            NewOrderForm Neworderform = new NewOrderForm();
+            Neworderform.Show();
+            this.Hide();
+        }
         private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -199,5 +204,7 @@ namespace WarehouseEN1
         {
 
         }
+
+
     }
 }
