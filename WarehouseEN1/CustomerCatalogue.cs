@@ -37,7 +37,7 @@ namespace WarehouseEN1
             if (File.Exists(filename))
             {
                 string fileContents = File.ReadAllText(filename);
-                Customers = JsonSerializer.Deserialize<List<Customers>>(fileContents);
+                Customers = JsonSerializer.Deserialize<List<Customer>>(fileContents);
             }
             else Customers = new List<Customer>();
         }
@@ -45,7 +45,7 @@ namespace WarehouseEN1
         public void AddCustomer(Customer obj)
         {
             Customers.Add(obj);
-            WriteProductsToFile();
+            WriteCustomersToFile();
             RaiseCatalogueChanged();
         }
 
@@ -59,14 +59,12 @@ namespace WarehouseEN1
         Customer GetCustomerbyID(int id)		//raise exeption if no customer
         {
             foreach (Customer obj in Customers)
-                if (obj.customerID == id)
+                if (obj.CustomerID == id)
                 {
                     return obj;
                 }
-                else
-                {
-                    return null;
-                }
+
+            return null; 
         }
 
         public bool RemoveCustomer(int custID)		//safest to use id incase customers have the same name 

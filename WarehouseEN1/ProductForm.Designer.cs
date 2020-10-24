@@ -1,6 +1,6 @@
 ﻿namespace WarehouseEN1
 {
-    partial class Form1
+    partial class ProductForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -35,21 +35,20 @@
             this.ProductPricetextbox = new System.Windows.Forms.TextBox();
             this.ProductStocktextBox = new System.Windows.Forms.TextBox();
             this.ProductDisplayList = new System.Windows.Forms.ListBox();
-            this.ProductPageP = new System.Windows.Forms.RadioButton();
             this.CustomerPageP = new System.Windows.Forms.RadioButton();
             this.OrderPageP = new System.Windows.Forms.RadioButton();
             this.MenuLabel = new System.Windows.Forms.Label();
-            this.ProdIDtextBox = new System.Windows.Forms.TextBox();
             this.ProdNametextBox = new System.Windows.Forms.TextBox();
             this.ProNextRestocktextBox = new System.Windows.Forms.TextBox();
             this.ProductAddButton = new System.Windows.Forms.Button();
+            this.ProductpageLable = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ProductList
             // 
             this.ProductList.FormattingEnabled = true;
             this.ProductList.ItemHeight = 20;
-            this.ProductList.Location = new System.Drawing.Point(21, 23);
+            this.ProductList.Location = new System.Drawing.Point(22, 29);
             this.ProductList.Name = "ProductList";
             this.ProductList.Size = new System.Drawing.Size(584, 184);
             this.ProductList.TabIndex = 0;
@@ -57,9 +56,9 @@
             // 
             // ProductEditButton
             // 
-            this.ProductEditButton.Location = new System.Drawing.Point(611, 245);
+            this.ProductEditButton.Location = new System.Drawing.Point(658, 215);
             this.ProductEditButton.Name = "ProductEditButton";
-            this.ProductEditButton.Size = new System.Drawing.Size(94, 46);
+            this.ProductEditButton.Size = new System.Drawing.Size(107, 51);
             this.ProductEditButton.TabIndex = 2;
             this.ProductEditButton.Text = "Edit";
             this.ProductEditButton.UseVisualStyleBackColor = true;
@@ -67,9 +66,9 @@
             // 
             // OutOfStockButton
             // 
-            this.OutOfStockButton.Location = new System.Drawing.Point(611, 297);
+            this.OutOfStockButton.Location = new System.Drawing.Point(611, 274);
             this.OutOfStockButton.Name = "OutOfStockButton";
-            this.OutOfStockButton.Size = new System.Drawing.Size(94, 56);
+            this.OutOfStockButton.Size = new System.Drawing.Size(154, 61);
             this.OutOfStockButton.TabIndex = 3;
             this.OutOfStockButton.Text = "Display out of stock";
             this.OutOfStockButton.UseVisualStyleBackColor = true;
@@ -77,9 +76,9 @@
             // 
             // NextRestockButton
             // 
-            this.NextRestockButton.Location = new System.Drawing.Point(611, 359);
+            this.NextRestockButton.Location = new System.Drawing.Point(611, 341);
             this.NextRestockButton.Name = "NextRestockButton";
-            this.NextRestockButton.Size = new System.Drawing.Size(94, 68);
+            this.NextRestockButton.Size = new System.Drawing.Size(154, 68);
             this.NextRestockButton.TabIndex = 4;
             this.NextRestockButton.Text = "Display next restock";
             this.NextRestockButton.UseVisualStyleBackColor = true;
@@ -87,7 +86,7 @@
             // 
             // ProductPricetextbox
             // 
-            this.ProductPricetextbox.Location = new System.Drawing.Point(260, 224);
+            this.ProductPricetextbox.Location = new System.Drawing.Point(188, 225);
             this.ProductPricetextbox.Name = "ProductPricetextbox";
             this.ProductPricetextbox.PlaceholderText = "Price";
             this.ProductPricetextbox.Size = new System.Drawing.Size(90, 27);
@@ -96,7 +95,7 @@
             // 
             // ProductStocktextBox
             // 
-            this.ProductStocktextBox.Location = new System.Drawing.Point(356, 224);
+            this.ProductStocktextBox.Location = new System.Drawing.Point(284, 225);
             this.ProductStocktextBox.Name = "ProductStocktextBox";
             this.ProductStocktextBox.PlaceholderText = "Product Stock";
             this.ProductStocktextBox.Size = new System.Drawing.Size(96, 27);
@@ -107,22 +106,11 @@
             // 
             this.ProductDisplayList.FormattingEnabled = true;
             this.ProductDisplayList.ItemHeight = 20;
-            this.ProductDisplayList.Location = new System.Drawing.Point(25, 273);
+            this.ProductDisplayList.Location = new System.Drawing.Point(21, 274);
             this.ProductDisplayList.Name = "ProductDisplayList";
             this.ProductDisplayList.Size = new System.Drawing.Size(579, 144);
             this.ProductDisplayList.TabIndex = 10;
-            // 
-            // ProductPageP
-            // 
-            this.ProductPageP.AutoSize = true;
-            this.ProductPageP.Location = new System.Drawing.Point(648, 42);
-            this.ProductPageP.Name = "ProductPageP";
-            this.ProductPageP.Size = new System.Drawing.Size(117, 24);
-            this.ProductPageP.TabIndex = 11;
-            this.ProductPageP.TabStop = true;
-            this.ProductPageP.Text = "Product Page";
-            this.ProductPageP.UseVisualStyleBackColor = true;
-            this.ProductPageP.CheckedChanged += new System.EventHandler(this.ProductPageP_CheckedChanged);
+            this.ProductDisplayList.SelectedIndexChanged += new System.EventHandler(this.ProductDisplayList_SelectedIndexChanged);
             // 
             // CustomerPageP
             // 
@@ -156,57 +144,58 @@
             this.MenuLabel.Size = new System.Drawing.Size(82, 20);
             this.MenuLabel.TabIndex = 14;
             this.MenuLabel.Text = "Page Menu";
-            // 
-            // ProdIDtextBox
-            // 
-            this.ProdIDtextBox.Location = new System.Drawing.Point(24, 224);
-            this.ProdIDtextBox.Name = "ProdIDtextBox";
-            this.ProdIDtextBox.PlaceholderText = "ProductID";
-            this.ProdIDtextBox.Size = new System.Drawing.Size(87, 27);
-            this.ProdIDtextBox.TabIndex = 15;
-            this.ProdIDtextBox.TextChanged += new System.EventHandler(this.ProdIDtextBox_TextChanged);
+            this.MenuLabel.Click += new System.EventHandler(this.MenuLabel_Click);
             // 
             // ProdNametextBox
             // 
-            this.ProdNametextBox.Location = new System.Drawing.Point(117, 224);
+            this.ProdNametextBox.Location = new System.Drawing.Point(21, 225);
             this.ProdNametextBox.Name = "ProdNametextBox";
             this.ProdNametextBox.PlaceholderText = "Product Name";
-            this.ProdNametextBox.Size = new System.Drawing.Size(137, 27);
+            this.ProdNametextBox.Size = new System.Drawing.Size(161, 27);
             this.ProdNametextBox.TabIndex = 16;
             this.ProdNametextBox.TextChanged += new System.EventHandler(this.ProdNametextBox_TextChanged);
             // 
             // ProNextRestocktextBox
             // 
-            this.ProNextRestocktextBox.Location = new System.Drawing.Point(459, 225);
+            this.ProNextRestocktextBox.Location = new System.Drawing.Point(386, 225);
             this.ProNextRestocktextBox.Name = "ProNextRestocktextBox";
             this.ProNextRestocktextBox.PlaceholderText = "Next Restock";
-            this.ProNextRestocktextBox.Size = new System.Drawing.Size(144, 27);
+            this.ProNextRestocktextBox.Size = new System.Drawing.Size(151, 27);
             this.ProNextRestocktextBox.TabIndex = 17;
             this.ProNextRestocktextBox.TextChanged += new System.EventHandler(this.ProNextRestocktextBox_TextChanged);
             // 
             // ProductAddButton
             // 
-            this.ProductAddButton.Location = new System.Drawing.Point(611, 188);
+            this.ProductAddButton.Location = new System.Drawing.Point(543, 215);
             this.ProductAddButton.Name = "ProductAddButton";
-            this.ProductAddButton.Size = new System.Drawing.Size(93, 51);
+            this.ProductAddButton.Size = new System.Drawing.Size(109, 51);
             this.ProductAddButton.TabIndex = 18;
             this.ProductAddButton.Text = "Add";
             this.ProductAddButton.UseVisualStyleBackColor = true;
             this.ProductAddButton.Click += new System.EventHandler(this.ProductAddButton_Click);
             // 
-            // Form1
+            // ProductpageLable
+            // 
+            this.ProductpageLable.AutoSize = true;
+            this.ProductpageLable.Location = new System.Drawing.Point(671, 49);
+            this.ProductpageLable.Name = "ProductpageLable";
+            this.ProductpageLable.Size = new System.Drawing.Size(143, 20);
+            this.ProductpageLable.TabIndex = 19;
+            this.ProductpageLable.Text = "Product page (Now)";
+            this.ProductpageLable.Click += new System.EventHandler(this.ProductpageLable_Click);
+            // 
+            // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(825, 450);
+            this.Controls.Add(this.ProductpageLable);
             this.Controls.Add(this.ProductAddButton);
             this.Controls.Add(this.ProNextRestocktextBox);
             this.Controls.Add(this.ProdNametextBox);
-            this.Controls.Add(this.ProdIDtextBox);
             this.Controls.Add(this.MenuLabel);
             this.Controls.Add(this.OrderPageP);
             this.Controls.Add(this.CustomerPageP);
-            this.Controls.Add(this.ProductPageP);
             this.Controls.Add(this.ProductDisplayList);
             this.Controls.Add(this.ProductStocktextBox);
             this.Controls.Add(this.ProductPricetextbox);
@@ -214,8 +203,10 @@
             this.Controls.Add(this.OutOfStockButton);
             this.Controls.Add(this.ProductEditButton);
             this.Controls.Add(this.ProductList);
-            this.Name = "Form1";
+            this.Name = "ProductForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,14 +223,12 @@
         private System.Windows.Forms.Button ProductAddButton;
         private System.Windows.Forms.TextBox ProNextRestocktextBox;
         private System.Windows.Forms.ListBox ProductDisplayList;
-        private System.Windows.Forms.RadioButton ProductPageP;
         private System.Windows.Forms.RadioButton CustomerPageP;
         private System.Windows.Forms.RadioButton OrderPageP;
         private System.Windows.Forms.Label MenuLabel;
         private System.Windows.Forms.TextBox ProductStock;
-        private System.Windows.Forms.TextBox ProdIDtextBox;
         private System.Windows.Forms.TextBox ProdNametextBox;
-        
+        private System.Windows.Forms.Label ProductpageLable;
     }
 }
 

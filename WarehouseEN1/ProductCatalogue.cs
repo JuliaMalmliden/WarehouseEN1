@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 
@@ -8,24 +9,37 @@ namespace WarehouseEN1
 {
     public class ProductCatalogue
     {
-        public delegate void ChangeHandler();
+        public delegate void ProductChangeHandler();
         public List<Product> Products { get; set; }
         private string filename;
-        public event ChangeHandler CatalogueChanged;
+        public event ProductChangeHandler CatalogueChanged;
+        public int currentProdID; 
         public ProductCatalogue()
         {
             filename = "Products.JSON";
             ReadProductsFromFile();
+
+            CurrentProductID(); 
         }
 
-        /// <summary>
-        /// Private function to call the event in order to avoid repeating the null check.
-        /// </summary>
-        private void RaiseCatalogueChanged()
+        private void RaiseCatalogueChanged() // avoiding to check for null all the time 
         {
             if (CatalogueChanged != null)
                 CatalogueChanged();
         }
+
+        public void CurrentProductID()
+        {
+            if (Products.Count == 0)
+            {
+                currentProdID = 0;
+            }
+            else
+            {
+                currentProdID = Products.Count; 
+            }
+        }
+
 
         private void WriteProductsToFile()
         {
@@ -42,62 +56,45 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-        public void AddProduct(Product p)
+        public bool AddProduct(String productName, double productPrice, int productStock, DateTime productRestock)
         {
-            Products.Add(p);
-            WriteProductsToFile();
-            RaiseCatalogueChanged();
-        }
-
-         Product FindProduct(string name)
-        {
-            foreach (Product p in Products)
-                if (p.ProductName == name)
-                    return p;
-            return null;
-        }
-
-        public bool RemoveProduct(string name)
-        {
-            Product p = FindProduct(name);
-            if (p == null)
-                return false;
-            if (Products.Remove(p))
+            currentProdID++;
+            try
             {
+                Product prod = new Product(currentProdID, productName, productPrice, productStock, productRestock); 
+                Products.Add(prod);
                 WriteProductsToFile();
-               // RaiseCatalogueChanged();
-                return true;
+                RaiseCatalogueChanged();
+                return true; 
             }
-            else return false;
+            catch
+            {
+                return false; 
+            }
+            
         }
 
-        public bool RenameProduct(string name, string newName)
+        public bool EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
         {
-            Product p = FindProduct(name);
-            if (p == null)
-                return false;
-            p.ProductName = newName;
-            WriteProductsToFile();
-           // RaiseCatalogueChanged();
-            return true;
-        }
+            try
+            {
+            Product product = Products.Single(p => p.ProductID == pID);
+            
+                product.ProductName = productName;
+                product.ProductPrice = productPrice;
+                product.ProductStock = productStock;
+                product.NextRestock = productRestock;
 
-        public bool UpdateProductPrice(string name, double price)
-        {
-            Product p = FindProduct(name);
-            if (p == null)
-                return false;
-            p.ProductPrice = price;
-            WriteProductsToFile();
-           // RaiseCatalogueChanged();
-            return true;
-        }
+                 WriteProductsToFile();
+                 RaiseCatalogueChanged();
+                return true; 
+            }
+            catch
+            {
+                return false; 
+            }
 
-
-        //public double GetTotalPrice()
-        //{
-          //  return products.Sum(p => p.Price);
-        //}
+        } 
 
 
     }
