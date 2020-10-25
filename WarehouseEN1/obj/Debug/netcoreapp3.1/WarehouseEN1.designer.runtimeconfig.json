@@ -6,8 +6,8 @@
       "version": "3.1.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\julia\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\julia\\.nuget\\packages",
+      "C:\\Users\\katar\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\katar\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "configProperties": {
