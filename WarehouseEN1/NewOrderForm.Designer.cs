@@ -42,6 +42,7 @@
             this.CustomerPageN = new System.Windows.Forms.RadioButton();
             this.OrderPageN = new System.Windows.Forms.RadioButton();
             this.NewOrderLable = new System.Windows.Forms.Label();
+            this.PayRadioButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // ProductList
@@ -185,11 +186,24 @@
             this.NewOrderLable.TabIndex = 14;
             this.NewOrderLable.Text = "Make New Order (Now)";
             // 
+            // PayRadioButton
+            // 
+            this.PayRadioButton.AutoSize = true;
+            this.PayRadioButton.Location = new System.Drawing.Point(337, 464);
+            this.PayRadioButton.Name = "PayRadioButton";
+            this.PayRadioButton.Size = new System.Drawing.Size(52, 24);
+            this.PayRadioButton.TabIndex = 15;
+            this.PayRadioButton.TabStop = true;
+            this.PayRadioButton.Text = "Pay";
+            this.PayRadioButton.UseVisualStyleBackColor = true;
+            this.PayRadioButton.CheckedChanged += new System.EventHandler(this.PayRadioButton_CheckedChanged);
+            // 
             // NewOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 507);
+            this.Controls.Add(this.PayRadioButton);
             this.Controls.Add(this.NewOrderLable);
             this.Controls.Add(this.OrderPageN);
             this.Controls.Add(this.CustomerPageN);
@@ -228,5 +242,6 @@
         private System.Windows.Forms.RadioButton CustomerPageN;
         private System.Windows.Forms.RadioButton OrderPageN;
         private System.Windows.Forms.Label NewOrderLable;
+        private System.Windows.Forms.RadioButton PayRadioButton;
     }
 }

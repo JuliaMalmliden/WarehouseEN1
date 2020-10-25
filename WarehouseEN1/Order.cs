@@ -7,33 +7,46 @@ namespace WarehouseEN1
     {
 
         private int orderNumber;
-        private int customerID;
-        private String orderAddress;
-        private List<Product> orderList;
-        private Customer customer; 
+        private Customer customer;        
         private DateTime orderDate; //added order date
-
+        private String deliveryAddress;
+        private bool paymentCompleted;
+        private bool paymentRefunded;
+        private bool dispatched; 
+        private List<Product> items;
 
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
-        public int CustomerID { get { return customerID; } set { customerID = value; } }
-        public string OrderAddress { get { return orderAddress; } set { orderAddress = value; } }
-        public List<Product> OrderList { get { return orderList; } set { orderList = value; } }
-        public string State { get; private set; }
-        public Customer Customer { get {return customer; } set { customer = value; } }
+        public Customer Customer { get {return customer; } set { customer = value; } }       
         public DateTime OrderDate  { get { return orderDate; }  set { orderDate = value; } }
+        public string DeliveryAddress { get { return deliveryAddress; } set { deliveryAddress = value; } }
+        public bool PaymentCompleted { get { return paymentCompleted; } set { paymentCompleted = value; } }
+        public bool PaymentRefunded { get { return paymentRefunded; } set { paymentRefunded = value; } }
+        public bool Dispatched { get { return dispatched; } set { dispatched = value; } }        
+        public List<Product> Items { get { return items; } set { items = value; } }
+        public string State { get; private set; }
 
         public Order() 
         { 
         }
-        public Order(int on, int cid, string oa, List<Product> ol, Customer c, DateTime date)
+        public Order(int on, Customer c, string da, List<Product> i, DateTime date, bool pc)
         {
             OrderNumber = on;
-            CustomerID = cid;
-            OrderAddress = oa;
-            OrderList = ol;
-            State = "Ordered"; ;
             Customer = c;
             OrderDate = date;
+            deliveryAddress = da;      
+            paymentCompleted = pc;
+            paymentRefunded = false;
+            dispatched = false; 
+            Items = i;
+
+
+            State = "Ordered"; //Behövs det? 
+            
+
+        }
+        public override string ToString()
+        {   
+            return "ID: " + OrderNumber + "    Name:  " + Customer.Name + "     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
         }
         public void ChangeState(string aState)
         {
@@ -41,6 +54,14 @@ namespace WarehouseEN1
             {
                 State = aState;
             }
+        }
+        public void RefundPayment()
+        {
+            paymentRefunded = true; 
+        }
+        public void DispatchOrder()
+        {
+            dispatched = true; 
         }
 
 

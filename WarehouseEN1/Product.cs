@@ -12,11 +12,10 @@ namespace WarehouseEN1
         private int productID;
         private string productName;
         private double productPrice;
-      //  private DateTime productStock;
-       // private DateTime nextRestock; 
-
         private int productStock;
-        private string nextRestock; 
+       private DateTime nextRestock;
+        private char[] nrestock = new char[8];
+
         public int ProductID { get { return productID; } set { productID = value; } }
         public string ProductName 
         { 
@@ -51,7 +50,7 @@ namespace WarehouseEN1
                 productStock = value; 
             } 
         }
-        public string NextRestock //DateTime NextRestock 
+        public DateTime NextRestock //DateTime NextRestock 
         { 
             get { return nextRestock; } 
             set 
@@ -63,7 +62,7 @@ namespace WarehouseEN1
         {
 
         }
-        public Product(int id, string nm, double pr, int stk, string ns)     //DateTime stk, DateTime ns)
+        public Product(int id, string nm, double pr, int stk, DateTime  ns)  
         {
             ProductID = id; 
             ProductName = nm;
@@ -73,8 +72,14 @@ namespace WarehouseEN1
 
         }
         public override string ToString()
-        {
-            return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ NextRestock;
+        {   //string nr = NextRestock.ToString(); 
+            
+            //for(int i = 0 ; i <= 8; i++)
+            //{
+              //  nrestock[0] = nr[0];
+            //}
+            //string restock = nrestock.ToString(); 
+            return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ restock;
         }
 
 

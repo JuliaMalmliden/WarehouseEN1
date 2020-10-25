@@ -48,6 +48,10 @@ namespace WarehouseEN1
         private void AddressTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }       
+        private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void PlaceOrderButton_Click(object sender, EventArgs e)
@@ -87,5 +91,7 @@ namespace WarehouseEN1
         {
 
         }
+
+
     }
 }
