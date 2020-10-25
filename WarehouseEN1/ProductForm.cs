@@ -51,7 +51,7 @@ namespace WarehouseEN1
             
             ProdNametextBox.Text = prd.ProductName;
             ProductPricetextbox.Text = prd.ProductPrice.ToString();
-            ProductStocktextBox.Text = prd.ProductStock.ToString();
+            ProductStocktextBox.Text = prd.ProductStock.ToString();     // have dates in type DateTime. prd.ProductStock.ToShortString(); 
             ProNextRestocktextBox.Text = prd.NextRestock; 
         }
 
@@ -139,9 +139,15 @@ namespace WarehouseEN1
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
-            CustomerList Customerform = new CustomerList();
+            /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
             Customerform.Show();
+            this.Hide(); */
+
+            CustomerCatalogue custCatalogue = new CustomerCatalogue();
+            CustomerList CustomerList = new CustomerList(custCatalogue);
+            CustomerList.Show();
             this.Hide();
+
         }
 
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)

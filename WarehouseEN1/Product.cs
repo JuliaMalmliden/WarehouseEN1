@@ -12,6 +12,9 @@ namespace WarehouseEN1
         private int productID;
         private string productName;
         private double productPrice;
+      //  private DateTime productStock;
+       // private DateTime nextRestock; 
+
         private int productStock;
         private string nextRestock; 
         public int ProductID { get { return productID; } set { productID = value; } }
@@ -36,7 +39,7 @@ namespace WarehouseEN1
                 productPrice = value; 
             } 
         }
-        public int ProductStock 
+        public int ProductStock //DateTime ProductStock
         { 
             get { return productStock; } 
             set 
@@ -48,7 +51,7 @@ namespace WarehouseEN1
                 productStock = value; 
             } 
         }
-        public string NextRestock 
+        public string NextRestock //DateTime NextRestock 
         { 
             get { return nextRestock; } 
             set 
@@ -60,7 +63,7 @@ namespace WarehouseEN1
         {
 
         }
-        public Product(int id, string nm, double pr, int stk, string ns)
+        public Product(int id, string nm, double pr, int stk, string ns)     //DateTime stk, DateTime ns)
         {
             ProductID = id; 
             ProductName = nm;

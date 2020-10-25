@@ -70,8 +70,9 @@ namespace WarehouseEN1
 
         private void CustomerPageN_CheckedChanged(object sender, EventArgs e)
         {
-            CustomerList Customerform = new CustomerList();
-            Customerform.Show();
+            CustomerCatalogue custCatalogue = new CustomerCatalogue();
+            CustomerList CustomerList = new CustomerList(custCatalogue);
+            CustomerList.Show();
             this.Hide();
         }
 

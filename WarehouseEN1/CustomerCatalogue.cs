@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
@@ -11,16 +13,30 @@ namespace WarehouseEN1
         public delegate void ChangeHandler();
         public List<Customer> Customers { get; set; }
         private string filename;
-        public event ChangeHandler CatalogueChanged;	
+        public event ChangeHandler CatalogueChanged;
+        public int currentCustID;
         public CustomerCatalogue()
         {
             filename = "Customer.JSON";
             ReadCustomersFromFile();
+
+            CurrentCustomerID();
         }
 
         /// <summary>
         /// Private function to call the event in order to avoid repeating the null check.
         /// </summary>
+        public void CurrentCustomerID()
+        {
+            if (Customers.Count == 0)
+            {
+                currentCustID = 0;
+            }
+            else
+            {
+                currentCustID = Customers.Count;
+            }
+        }
         private void RaiseCatalogueChanged()
         {
             if (CatalogueChanged != null)
@@ -42,21 +58,31 @@ namespace WarehouseEN1
             else Customers = new List<Customer>();
         }
 
-        public void AddCustomer(Customer obj)
+        public bool AddCustomer(string name, string phone,string email)
         {
-            Customers.Add(obj);
-            WriteCustomersToFile();
-            RaiseCatalogueChanged();
+            currentCustID++;
+            try
+            {
+                Customer obj = new Customer(currentCustID, name, phone, email);
+                Customers.Add(obj);
+                WriteCustomersToFile();
+                RaiseCatalogueChanged();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        Customer FindCustomer(string fname, string lname) 
+        Customer FindCustomer(string name) 
         {
             foreach (Customer obj in Customers)
-                if (obj.Fname == fname && obj.Lname == lname)
+                if (obj.Name == name)
                     return obj;
             return null;
         }
-        Customer GetCustomerbyID(int id)		//raise exeption if no customer
+        Customer GetCustomerbyID(int id)		//DONT NEED THIS
         {
             foreach (Customer obj in Customers)
                 if (obj.CustomerID == id)
@@ -67,7 +93,7 @@ namespace WarehouseEN1
             return null; 
         }
 
-        public bool RemoveCustomer(int custID)		//safest to use id incase customers have the same name 
+        public bool RemoveCustomerID(int custID)		//safest to use id incase customers have the same name 
         {
             if (GetCustomerbyID(custID) != null)
             {
@@ -78,32 +104,30 @@ namespace WarehouseEN1
             }
 			else
             {
-				//raise exception
                 return false;
             }
 
         }
 
-        public bool UpdateCustomer(int custID, string fname, string lname, string email) //maybe split to own functions for each
+        public bool UpdateCustomer(int custID, string name, string email, string ph) //maybe split to own functions for each
         {
-            if (GetCustomerbyID(custID) != null)
-            {
-                Customer obj = GetCustomerbyID(custID);
-                obj.Fname = fname;
-                obj.Lname = lname;
-                obj.EMail = email;
-                WriteCustomersToFile();
-                return true;
-            }
-            else
-            {
-                //raise exception
-                return false;
-            }
+                try
+                {
+                    Customer customer = Customers.Single(c => c.CustomerID == custID); //????whyyyyy
+                                                                                       //Customer obj = FindCustomer(name);
+
+                    customer.Name = name;
+                    customer.EMail = email;
+                    customer.PhoneN = ph;
+                    WriteCustomersToFile();
+                    RaiseCatalogueChanged();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
         }
-
-
-
 
 
     }

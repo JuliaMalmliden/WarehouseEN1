@@ -13,7 +13,10 @@ namespace WarehouseEN1
         public List<Product> Products { get; set; }
         private string filename;
         public event ProductChangeHandler CatalogueChanged;
-        public int currentProdID; 
+        public int currentProdID;
+    
+        
+        //DateTime currentTime = new DateTime(2019, 1, 1);
         public ProductCatalogue()
         {
             filename = "Products.JSON";
@@ -56,7 +59,7 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-        public bool AddProduct(String productName, double productPrice, int productStock, string productRestock)
+       public bool AddProduct(String productName, double productPrice, int productStock, string productRestock) //string productRestock)
         {
             currentProdID++;
             try

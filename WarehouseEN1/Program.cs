@@ -20,6 +20,12 @@ namespace WarehouseEN1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ProductForm(prodCatalogue));
+
+           /* var currentTime = DateTime.Now;
+            currentTime.ToShortDateString();
+            Console.WriteLine(currentTime.ToShortDateString());
+            */
         }
+
     }
 }
