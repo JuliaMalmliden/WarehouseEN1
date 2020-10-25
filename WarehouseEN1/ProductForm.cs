@@ -18,7 +18,7 @@ namespace WarehouseEN1
         private string productName;
         private double productPrice;
         private int productStock;
-        private DateTime productRestock;
+        private string productRestock; 
         private ProductCatalogue prodCatalogue;
         private List<Product> Displaylist; 
         
@@ -52,7 +52,7 @@ namespace WarehouseEN1
             ProdNametextBox.Text = prd.ProductName;
             ProductPricetextbox.Text = prd.ProductPrice.ToString();
             ProductStocktextBox.Text = prd.ProductStock.ToString();
-            ProNextRestocktextBox.Text = prd.NextRestock.ToString(); 
+            ProNextRestocktextBox.Text = prd.NextRestock; 
         }
 
         private void GetTextBox()
@@ -85,28 +85,19 @@ namespace WarehouseEN1
             }
             try
             {
-                productStock = Convert.ToInt32(ProductStocktextBox.Text);
 
+                productRestock = ProNextRestocktextBox.Text; 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Did not manage to execute because of: " + ex);
             }
-            try
-            {
-                productStock = Convert.ToInt32(ProductStocktextBox.Text);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
-            }
+    
 
         }
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
-            GetTextBox(); 
-            productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
+            GetTextBox();
 
             if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
             {
@@ -159,7 +150,12 @@ namespace WarehouseEN1
             Orderfrom.Show();
             this.Hide();
         }
-
+        private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
+        {
+            NewOrderForm Neworderform = new NewOrderForm();
+            Neworderform.Show();
+            this.Hide();
+        }
         private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -199,5 +195,7 @@ namespace WarehouseEN1
         {
 
         }
+
+
     }
 }

@@ -54,5 +54,12 @@ namespace WarehouseEN1
             Customerform.Show();
             this.Hide();
         }
+
+        private void MakeNewOrderPage_CheckedChanged(object sender, EventArgs e)
+        {
+            NewOrderForm Neworderform = new NewOrderForm();
+            Neworderform.Show();
+            this.Hide();
+        }
     }
 }

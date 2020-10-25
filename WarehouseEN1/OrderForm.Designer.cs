@@ -37,6 +37,7 @@
             this.DispatchedOrdersButton = new System.Windows.Forms.Button();
             this.PendingOrdersButton = new System.Windows.Forms.Button();
             this.OrderDisplayList = new System.Windows.Forms.ListBox();
+            this.MakeNewOrderPage = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // OrderList
@@ -131,11 +132,24 @@
             this.OrderDisplayList.TabIndex = 8;
             this.OrderDisplayList.SelectedIndexChanged += new System.EventHandler(this.OrderDisplayList_SelectedIndexChanged);
             // 
+            // MakeNewOrderPage
+            // 
+            this.MakeNewOrderPage.AutoSize = true;
+            this.MakeNewOrderPage.Location = new System.Drawing.Point(764, 163);
+            this.MakeNewOrderPage.Name = "MakeNewOrderPage";
+            this.MakeNewOrderPage.Size = new System.Drawing.Size(142, 24);
+            this.MakeNewOrderPage.TabIndex = 9;
+            this.MakeNewOrderPage.TabStop = true;
+            this.MakeNewOrderPage.Text = "Make New Order";
+            this.MakeNewOrderPage.UseVisualStyleBackColor = true;
+            this.MakeNewOrderPage.CheckedChanged += new System.EventHandler(this.MakeNewOrderPage_CheckedChanged);
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(931, 516);
+            this.Controls.Add(this.MakeNewOrderPage);
             this.Controls.Add(this.OrderDisplayList);
             this.Controls.Add(this.PendingOrdersButton);
             this.Controls.Add(this.DispatchedOrdersButton);
@@ -163,5 +177,6 @@
         private System.Windows.Forms.Button DispatchedOrdersButton;
         private System.Windows.Forms.Button PendingOrdersButton;
         private System.Windows.Forms.ListBox OrderDisplayList;
+        private System.Windows.Forms.RadioButton MakeNewOrderPage;
     }
 }
