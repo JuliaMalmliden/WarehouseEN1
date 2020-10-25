@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace WarehouseEN1
 {
-    class OrderCatalogue
+    public class OrderCatalogue
     {
         public delegate void OrderChangeHandler();
         public List<Order> Orders { get; set; }

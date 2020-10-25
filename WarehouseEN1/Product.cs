@@ -79,7 +79,7 @@ namespace WarehouseEN1
               //  nrestock[0] = nr[0];
             //}
             //string restock = nrestock.ToString(); 
-            return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ restock;
+            return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ NextRestock;
         }
 
 

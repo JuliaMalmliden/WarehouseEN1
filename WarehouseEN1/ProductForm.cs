@@ -162,8 +162,11 @@ namespace WarehouseEN1
         }
         private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
         {
-            NewOrderForm Neworderform = new NewOrderForm();
-            Neworderform.Show();
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
+            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue();
+            NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
+            NewOrderform.Show();
             this.Hide();
         }
         private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)
