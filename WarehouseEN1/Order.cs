@@ -11,6 +11,7 @@ namespace WarehouseEN1
         private String orderAddress;
         private List<Product> orderList;
         private Customer customer; 
+        private DateTime orderDate; //added order date
 
 
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
@@ -18,20 +19,21 @@ namespace WarehouseEN1
         public string OrderAddress { get { return orderAddress; } set { orderAddress = value; } }
         public List<Product> OrderList { get { return orderList; } set { orderList = value; } }
         public string State { get; private set; }
-        public Customer cUstomer { get {return customer; } set { customer = value; } }
+        public Customer Customer { get {return customer; } set { customer = value; } }
+        public DateTime OrderDate  { get { return orderDate; }  set { orderDate = value; } }
 
         public Order() 
         { 
         }
-        public Order(int on, int cid, string oa, List<Product> ol, Customer c)
+        public Order(int on, int cid, string oa, List<Product> ol, Customer c, DateTime date)
         {
             OrderNumber = on;
             CustomerID = cid;
             OrderAddress = oa;
             OrderList = ol;
             State = "Ordered"; ;
-            cUstomer = c; 
-
+            Customer = c;
+            OrderDate = date;
         }
         public void ChangeState(string aState)
         {

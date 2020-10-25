@@ -5,32 +5,30 @@ using System.Text;
 namespace WarehouseEN1
 {
 
-    //DOB ?
-
     public class Customer
     {
         private int customerID;
-        private string fname;      //first name
-        private string lname;   //last name
+        private string name;      
         private string eMail;
+        private string phoneN;
 
         public int CustomerID { get { return customerID; } set { customerID = value; } }
-        public string Fname { get { return fname; } set { fname = value; } }
-        public string Lname { get { return lname; } set { lname = value; } }
+        public string Name { get { return name; } set { name = value; } }
         public string EMail { get { return eMail; } set { eMail = value; } }
+        public string PhoneN { get { return phoneN; } set { phoneN = value; } }
 
         Customer() { }
 
-        Customer(int id, string fn, string ln, string em)
-        {
+       public Customer(int id, string name, string em, string pn)
+       {
             CustomerID = id;
-            Fname = fn;
-            Lname = ln;
+            Name = name;
             EMail = em;
-        }
+            PhoneN = pn;
+       }
         public override string ToString()
         {
-            return "ID: " + CustomerID + "    FirstName:  " + Fname + "LastName" + Lname + "   Email: " + eMail;
+            return "ID: " + CustomerID + "  Name:  " + Name  + "  Phone number" + phoneN + "   Email: " + eMail;
 
         }
 
