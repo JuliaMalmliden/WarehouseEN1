@@ -27,14 +27,10 @@ namespace WarehouseEN1
                 OrderList.Items.Add(o);
             }
         }
-        private void OrderList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
-           // Sortera beställningar efter datum och tid.  
+           // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
             //Reducera stock anpassat efter Order. 
            // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true. 
         }
@@ -48,14 +44,21 @@ namespace WarehouseEN1
                                             OrderDisplayList.Items.Add(order);
                                       }
         }
-
+        private void NonDispatchedOrderButton_Click(object sender, EventArgs e)
+        {
+            IEnumerable<Order> query = from order in orderCatalogue.Orders
+                                       where order.Dispatched == false
+                                       select order;
+            foreach (Order order in query)
+            {
+                OrderDisplayList.Items.Add(order);
+            }
+        }
         private void PendingOrdersButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void OrderDisplayList_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            //OrderDisplaylistan ska visa  "the earliest time the order can be dispatched"  --> FirstAvailable date
+            //For Pending orders, display the list of customers and their contact
+            //information, along with the number of the pending order.
 
         }
 
@@ -88,5 +91,14 @@ namespace WarehouseEN1
             NewOrderform.Show();
             this.Hide();
         }
+        private void OrderList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void OrderDisplayList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -38,6 +38,7 @@
             this.PendingOrdersButton = new System.Windows.Forms.Button();
             this.OrderDisplayList = new System.Windows.Forms.ListBox();
             this.MakeNewOrderPage = new System.Windows.Forms.RadioButton();
+            this.NonDispatchedOrderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OrderList
@@ -96,7 +97,7 @@
             // 
             this.BatchProcessButton.Location = new System.Drawing.Point(11, 259);
             this.BatchProcessButton.Name = "BatchProcessButton";
-            this.BatchProcessButton.Size = new System.Drawing.Size(121, 65);
+            this.BatchProcessButton.Size = new System.Drawing.Size(121, 41);
             this.BatchProcessButton.TabIndex = 5;
             this.BatchProcessButton.Text = "Batch-Process";
             this.BatchProcessButton.UseVisualStyleBackColor = true;
@@ -104,9 +105,9 @@
             // 
             // DispatchedOrdersButton
             // 
-            this.DispatchedOrdersButton.Location = new System.Drawing.Point(11, 343);
+            this.DispatchedOrdersButton.Location = new System.Drawing.Point(10, 306);
             this.DispatchedOrdersButton.Name = "DispatchedOrdersButton";
-            this.DispatchedOrdersButton.Size = new System.Drawing.Size(121, 70);
+            this.DispatchedOrdersButton.Size = new System.Drawing.Size(122, 53);
             this.DispatchedOrdersButton.TabIndex = 6;
             this.DispatchedOrdersButton.Text = "Display Dispatched Orders";
             this.DispatchedOrdersButton.UseVisualStyleBackColor = true;
@@ -114,9 +115,9 @@
             // 
             // PendingOrdersButton
             // 
-            this.PendingOrdersButton.Location = new System.Drawing.Point(11, 433);
+            this.PendingOrdersButton.Location = new System.Drawing.Point(11, 427);
             this.PendingOrdersButton.Name = "PendingOrdersButton";
-            this.PendingOrdersButton.Size = new System.Drawing.Size(120, 60);
+            this.PendingOrdersButton.Size = new System.Drawing.Size(121, 60);
             this.PendingOrdersButton.TabIndex = 7;
             this.PendingOrdersButton.Text = "Display Pending Orders";
             this.PendingOrdersButton.UseVisualStyleBackColor = true;
@@ -144,11 +145,22 @@
             this.MakeNewOrderPage.UseVisualStyleBackColor = true;
             this.MakeNewOrderPage.CheckedChanged += new System.EventHandler(this.MakeNewOrderPage_CheckedChanged);
             // 
+            // NonDispatchedOrderButton
+            // 
+            this.NonDispatchedOrderButton.Location = new System.Drawing.Point(12, 367);
+            this.NonDispatchedOrderButton.Name = "NonDispatchedOrderButton";
+            this.NonDispatchedOrderButton.Size = new System.Drawing.Size(120, 54);
+            this.NonDispatchedOrderButton.TabIndex = 10;
+            this.NonDispatchedOrderButton.Text = "Display NonDispatched";
+            this.NonDispatchedOrderButton.UseVisualStyleBackColor = true;
+            this.NonDispatchedOrderButton.Click += new System.EventHandler(this.NonDispatchedOrderButton_Click);
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(931, 516);
+            this.Controls.Add(this.NonDispatchedOrderButton);
             this.Controls.Add(this.MakeNewOrderPage);
             this.Controls.Add(this.OrderDisplayList);
             this.Controls.Add(this.PendingOrdersButton);
@@ -178,5 +190,6 @@
         private System.Windows.Forms.Button PendingOrdersButton;
         private System.Windows.Forms.ListBox OrderDisplayList;
         private System.Windows.Forms.RadioButton MakeNewOrderPage;
+        private System.Windows.Forms.Button NonDispatchedOrderButton;
     }
 }
