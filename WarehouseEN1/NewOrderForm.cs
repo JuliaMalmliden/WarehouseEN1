@@ -15,8 +15,14 @@ namespace WarehouseEN1
         private CustomerCatalogue customerCatalogue; 
         private OrderCatalogue orderCatalogue; 
         private List<Product> Productlist;
-        private List<Product> Cart; 
-        private int selectedProduct; 
+        private List<OrderLine> Cart; 
+        private int selectedProduct;
+        private bool paymentCompleted; 
+        private DateTime dateOfOrder;
+        private Product prd;
+        private int amount;
+        private string address; 
+
         public NewOrderForm(ProductCatalogue prodCatalogue, OrderCatalogue orderCatalogue, CustomerCatalogue customerCatalogue)
         {
             this.prodCatalogue = prodCatalogue;
@@ -28,7 +34,7 @@ namespace WarehouseEN1
             RefreshListboxContents();
 
             Productlist = new List<Product>();
-            Cart = new List<Product>();
+            Cart = new List<OrderLine>();
         }
 
         private void RefreshListboxContents()
@@ -62,12 +68,20 @@ namespace WarehouseEN1
 
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
-            Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
-            int amount = Convert.ToInt32(ProductAmountTextBox.Text); 
-            for(int i = 0; i < amount; i++)
+            try
             {
-                Cart.Add(prd); 
+                prd = prodCatalogue.Products.ElementAt(selectedProduct);
+                amount = Convert.ToInt32(ProductAmountTextBox.Text);
+                OrderLine orderLine = new OrderLine(prd, amount);
+                Cart.Add(orderLine);
+                ProductAmountTextBox.Clear(); 
             }
+            catch (Exception ex)
+            {
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                // MessageBox.Show("Did not manage to execute because of: "+ ex);
+            }
+
         }
 
         private void CartList_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,7 +91,10 @@ namespace WarehouseEN1
 
         private void TotalCostLable_Click(object sender, EventArgs e)
         {
+            TotalCostLable.Text = (Convert.ToDouble(TotalCostLable.Text) + prd.ProductPrice* amount).ToString();
 
+            //var Total = Cart.Sum(); 
+            //TotalCostLable.Text = 
         }
 
         private void CostumerTextBox_TextChanged(object sender, EventArgs e)
@@ -92,16 +109,25 @@ namespace WarehouseEN1
         private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
         {
 
+            if (PayRadioButton.Checked == true) 
+            {paymentCompleted = true; } 
+            else 
+            { paymentCompleted = false;}
+
+
         }
 
         private void PlaceOrderButton_Click(object sender, EventArgs e)
-        {
-
+        {   int customer = Convert.ToInt32(CostumerTextBox.Text);
+            dateOfOrder = DateTime.Now;
+            address = AddressTextBox.Text;
+            orderCatalogue.AddOrder(customer, address, Cart, dateOfOrder, paymentCompleted); 
         }
 
         private void DeleteOrderButton_Click(object sender, EventArgs e)
         {
-
+            Cart.Clear();
+            RefreshListboxContents(); 
         }
 
         private void ProductPageN_CheckedChanged(object sender, EventArgs e)
@@ -129,12 +155,7 @@ namespace WarehouseEN1
 
         private void NewOrderForm_Load(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(); 
-            NewOrderForm NewOrderform = new NewOrderForm( prodCatalogue,  orderCatalogue,  customerCatalogue);
-            NewOrderform.Show();
-            this.Hide(); 
+
         }
 
 

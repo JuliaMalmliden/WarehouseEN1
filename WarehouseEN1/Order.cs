@@ -13,7 +13,7 @@ namespace WarehouseEN1
         private bool paymentCompleted;
         private bool paymentRefunded;
         private bool dispatched; 
-        private List<Product> items;
+        private List<OrderLine> items;
 
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
         public Customer Customer { get {return customer; } set { customer = value; } }       
@@ -22,13 +22,13 @@ namespace WarehouseEN1
         public bool PaymentCompleted { get { return paymentCompleted; } set { paymentCompleted = value; } }
         public bool PaymentRefunded { get { return paymentRefunded; } set { paymentRefunded = value; } }
         public bool Dispatched { get { return dispatched; } set { dispatched = value; } }        
-        public List<Product> Items { get { return items; } set { items = value; } }
+        public List<OrderLine> Items { get { return items; } set { items = value; } }
         public string State { get; private set; }
 
         public Order() 
         { 
         }
-        public Order(int on, Customer c, string da, List<Product> i, DateTime date, bool pc)
+        public Order(int on, Customer c, string da, List<OrderLine> i, DateTime date, bool pc)
         {
             OrderNumber = on;
             Customer = c;
