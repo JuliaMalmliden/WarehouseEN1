@@ -45,25 +45,21 @@ namespace WarehouseEN1
             {
                 ProductList.Items.Add(p);
             }
-
-            
-           // for(int i = 0; i < Cart.Count(); i++)
-            //{
-             //   Cart.ElementAt(i); 
-               // CartList.Items.Add(i); 
-           // }
-            
-
-            
+        }
+        private void ClearAllFields()
+        {
+            CostumerTextBox.Text = ""; 
+            AddressTextBox.Text = "";
+            if (PayRadioButton.Checked)
+            {
+                PayRadioButton.Checked = false;
+            }
+            Cart.Clear();
+            RefreshListboxContents();
         }
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedProduct = ProductList.SelectedIndex;
-        }
-
-        private void ProductAmountTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void AddToCartButton_Click(object sender, EventArgs e)
@@ -74,7 +70,8 @@ namespace WarehouseEN1
                 amount = Convert.ToInt32(ProductAmountTextBox.Text);
                 OrderLine orderLine = new OrderLine(prd, amount);
                 Cart.Add(orderLine);
-                ProductAmountTextBox.Clear(); 
+                ProductAmountTextBox.Clear();
+                CartList.Items.Add( prd.ProductName + " (" + amount + " st)" ); 
             }
             catch (Exception ex)
             {
@@ -83,12 +80,6 @@ namespace WarehouseEN1
             }
 
         }
-
-        private void CartList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TotalCostLable_Click(object sender, EventArgs e)
         {
             TotalCostLable.Text = (Convert.ToDouble(TotalCostLable.Text) + prd.ProductPrice* amount).ToString();
@@ -96,16 +87,7 @@ namespace WarehouseEN1
             //var Total = Cart.Sum(); 
             //TotalCostLable.Text = 
         }
-
-        private void CostumerTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }       
+   
         private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -114,14 +96,23 @@ namespace WarehouseEN1
             else 
             { paymentCompleted = false;}
 
-
         }
 
         private void PlaceOrderButton_Click(object sender, EventArgs e)
-        {   int customer = Convert.ToInt32(CostumerTextBox.Text);
-            dateOfOrder = DateTime.Now;
-            address = AddressTextBox.Text;
-            orderCatalogue.AddOrder(customer, address, Cart, dateOfOrder, paymentCompleted); 
+        {  try
+            {
+                int customer = Convert.ToInt32(CostumerTextBox.Text);
+                dateOfOrder = DateTime.Now;
+                address = AddressTextBox.Text;
+                orderCatalogue.AddOrder(customer, address, Cart, dateOfOrder, paymentCompleted);
+                MessageBox.Show("Order placed, thank you for buying your things at KJ´s!");
+                ClearAllFields(); 
+
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void DeleteOrderButton_Click(object sender, EventArgs e)
@@ -129,6 +120,9 @@ namespace WarehouseEN1
             Cart.Clear();
             RefreshListboxContents(); 
         }
+
+
+
 
         private void ProductPageN_CheckedChanged(object sender, EventArgs e)
         {
@@ -153,6 +147,25 @@ namespace WarehouseEN1
             this.Hide();
         }
 
+
+
+
+        private void CostumerTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }       
+        private void CartList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void ProductAmountTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void AddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }    
         private void NewOrderForm_Load(object sender, EventArgs e)
         {
 
