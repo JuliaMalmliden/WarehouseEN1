@@ -46,6 +46,7 @@ namespace WarehouseEN1
 
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             selectedProduct = ProductList.SelectedIndex;
             Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
             
