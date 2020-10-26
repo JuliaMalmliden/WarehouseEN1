@@ -18,7 +18,7 @@ namespace WarehouseEN1
         private string productName;
         private double productPrice;
         private int productStock;
-        private string productRestock; 
+        private DateTime productRestock; 
         private ProductCatalogue prodCatalogue;
         private List<Product> Displaylist; 
         
@@ -36,7 +36,7 @@ namespace WarehouseEN1
 
         private void RefreshListboxContents()
         {
-            ProductDisplayList.Items.Clear();
+            ProductDisplayList.Items.Clear(); 
             ProductList.Items.Clear();
             foreach (Product p in prodCatalogue.Products)
             {
@@ -52,8 +52,8 @@ namespace WarehouseEN1
             
             ProdNametextBox.Text = prd.ProductName;
             ProductPricetextbox.Text = prd.ProductPrice.ToString();
-            ProductStocktextBox.Text = prd.ProductStock.ToString();     // have dates in type DateTime. prd.ProductStock.ToShortString(); 
-            ProNextRestocktextBox.Text = prd.NextRestock; 
+            ProductStocktextBox.Text = prd.ProductStock.ToString();     // have data in type int. prd.ProductStock.ToShortString(); 
+            ProNextRestocktextBox.Text = prd.NextRestock.ToString();    // Have data in type DateTime  
         }
 
         private void GetTextBox()
@@ -87,7 +87,8 @@ namespace WarehouseEN1
             try
             {
 
-                productRestock = ProNextRestocktextBox.Text; 
+                productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
+                
             }
             catch (Exception ex)
             {
@@ -118,8 +119,11 @@ namespace WarehouseEN1
         }
 
         private void OutOfStockButton_Click(object sender, EventArgs e)
-        {
-            for(int i= 0 ; i < prodCatalogue.Products.Count; i++)
+        {   
+            RefreshListboxContents();
+            Displaylist.Clear();
+            
+            for (int i= 0 ; i < prodCatalogue.Products.Count; i++)
             { Product prd = prodCatalogue.Products.ElementAt(i); 
                 if (prd.ProductStock == 0)
                 {
@@ -159,8 +163,11 @@ namespace WarehouseEN1
         }
         private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
         {
-            NewOrderForm Neworderform = new NewOrderForm();
-            Neworderform.Show();
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
+            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue();
+            NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
+            NewOrderform.Show();
             this.Hide();
         }
         private void ProductDisplayList_SelectedIndexChanged(object sender, EventArgs e)

@@ -183,6 +183,7 @@
             this.MakeNewOrderPageC.TabStop = true;
             this.MakeNewOrderPageC.Text = "Make New Order";
             this.MakeNewOrderPageC.UseVisualStyleBackColor = true;
+            this.MakeNewOrderPageC.CheckedChanged += new System.EventHandler(this.MakeNewOrderPageC_CheckedChanged);
             // 
             // CustomerList
             // 

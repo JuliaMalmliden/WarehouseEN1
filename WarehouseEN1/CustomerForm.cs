@@ -145,5 +145,15 @@ namespace WarehouseEN1
             Orderfrom.Show();
             this.Hide();
         }
+
+        private void MakeNewOrderPageC_CheckedChanged(object sender, EventArgs e)
+        {
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
+            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue();
+            NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
+            NewOrderform.Show();
+            this.Hide();
+        }
     }
 }

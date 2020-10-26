@@ -59,7 +59,7 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-       public bool AddProduct(String productName, double productPrice, int productStock, string productRestock) //string productRestock)
+       public bool AddProduct(String productName, double productPrice, int productStock, DateTime productRestock) //string productRestock)
         {
             currentProdID++;
             try
@@ -77,7 +77,7 @@ namespace WarehouseEN1
             
         }
 
-        public bool EditProduct(int pID, String productName, double productPrice, int productStock, string productRestock)
+        public bool EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
         {
             try
             {
