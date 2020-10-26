@@ -41,11 +41,11 @@ namespace WarehouseEN1
             }
 
             
-            for(int i = 0; i < Cart.Count(); i++)
-            {
-                Cart.ElementAt(i); 
-                CartList.Items.Add(i); 
-            }
+           // for(int i = 0; i < Cart.Count(); i++)
+            //{
+             //   Cart.ElementAt(i); 
+               // CartList.Items.Add(i); 
+           // }
             
 
             
