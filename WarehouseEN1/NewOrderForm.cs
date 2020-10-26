@@ -39,17 +39,15 @@ namespace WarehouseEN1
             {
                 ProductList.Items.Add(p);
             }
-            if(Cart.Count() == 0) 
-            {
 
-            }
-            else 
+            
+            for(int i = 0; i < Cart.Count(); i++)
             {
-                foreach(Product p in Cart)
-                {
-                    CartList.Items.Add(p); 
-                }
+                Cart.ElementAt(i); 
+                CartList.Items.Add(i); 
             }
+            
+
             
         }
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
