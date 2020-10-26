@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4ETaTJ9vThfo4jgWFCcq/lFDYW2YDdw/0nX+DRwnePEx28Q7UPdkYyDaQb0qx85O5dU2sHnZVj7X9vka9vDLeA==",
+  "dgSpecHash": "zM23Q9eP9Gedaw0r9yPg9IwMy3DDRDoHMTgL5J2jSEDpUkVR+SbSPUPfj1X7VCxqbL23bXV5sOwol6KrS6ZmXQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\katar\\OneDrive\\Desktop\\Op2. HT20\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
+  "projectFilePath": "C:\\Users\\julia\\source\\repos\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\katar\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
+    "C:\\Users\\julia\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
 }
