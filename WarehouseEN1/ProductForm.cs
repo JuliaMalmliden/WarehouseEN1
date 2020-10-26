@@ -64,7 +64,8 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: "+ ex);
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+               // MessageBox.Show("Did not manage to execute because of: "+ ex);
             }
             try
             {
@@ -73,7 +74,8 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                //MessageBox.Show("Did not manage to execute because of: " + ex);
             }
             try
             {
@@ -82,7 +84,8 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                //MessageBox.Show("Did not manage to execute because of: " + ex);
             }
             try
             {
@@ -92,19 +95,29 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                //MessageBox.Show("Did not manage to execute because of: " + ex);
             }
-    
+
 
         }
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
+            try
+            {
+                prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock);
+            }
+            catch (Exception ex)
+            {
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
 
-            if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
+            }
+
+            /*if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
             {
                 MessageBox.Show("Adding failed, please try again. See to that all fields are filled in correctly."); 
-            }
+            }*/
 
         }
 

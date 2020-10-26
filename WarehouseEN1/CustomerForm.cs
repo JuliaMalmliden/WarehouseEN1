@@ -18,9 +18,10 @@ namespace WarehouseEN1
         private string phone;
         private CustomerCatalogue custCatalogue;
         private List<Customer> Displaylist;
-
-        public CustomerList(CustomerCatalogue custCatalogue)
+        //Customer customer;
+        public CustomerList(CustomerCatalogue custCatalogue) //Customer cust) //new cust
         {
+            //customer = cust;
             this.custCatalogue = custCatalogue;
             InitializeComponent();
 
@@ -123,7 +124,9 @@ namespace WarehouseEN1
 
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
+           // var oldest = customer.Customer.OrderBy(b => b.Name).Take(10).SelectMany(b => b.Authors).Distinct();
 
+           // ShowInAuthors(authors);
         }
 
         private void RecentOrdersButton_Click(object sender, EventArgs e)

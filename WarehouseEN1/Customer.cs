@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace WarehouseEN1
 {
-
     public class Customer
     {
         private int customerID;
