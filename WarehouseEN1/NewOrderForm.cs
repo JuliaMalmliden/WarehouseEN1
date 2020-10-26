@@ -142,7 +142,9 @@ namespace WarehouseEN1
 
         private void OrderPageN_CheckedChanged(object sender, EventArgs e)
         {
-            OrderForm Orderfrom = new OrderForm();
+            CustomerCatalogue custCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue); 
+            OrderForm Orderfrom = new OrderForm(orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }

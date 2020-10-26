@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -10,11 +11,22 @@ namespace WarehouseEN1
 {
     public partial class OrderForm : Form
     {
-        public OrderForm()
+        OrderCatalogue orderCatalogue; 
+        public OrderForm(OrderCatalogue orderCatalogue)
         {
+            this.orderCatalogue = orderCatalogue; 
             InitializeComponent();
         }
+        private void RefreshListboxContents()
+        {
+            OrderList.Items.Clear();
+            OrderDisplayList.Items.Clear();
 
+            foreach (Order o in orderCatalogue.Orders)
+            {
+                OrderList.Items.Add(o);
+            }
+        }
         private void OrderList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -22,12 +34,19 @@ namespace WarehouseEN1
 
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
-
+           // Sortera beställningar efter datum och tid.  
+            //Reducera stock anpassat efter Order. 
+           // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true. 
         }
 
-        private void DispatchedOrdersButton_Click(object sender, EventArgs e)
+        private void DispatchedOrdersButton_Click(object sender, EventArgs e) 
         {
-
+            IEnumerable<Order> query = from order in orderCatalogue.Orders
+                                       where order.Dispatched == true select order;
+                                      foreach (Order order in query)
+                                      {
+                                            OrderDisplayList.Items.Add(order);
+                                      }
         }
 
         private void PendingOrdersButton_Click(object sender, EventArgs e)

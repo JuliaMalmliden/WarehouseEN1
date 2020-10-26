@@ -46,7 +46,7 @@
             this.OrderList.ItemHeight = 20;
             this.OrderList.Location = new System.Drawing.Point(11, 38);
             this.OrderList.Name = "OrderList";
-            this.OrderList.Size = new System.Drawing.Size(717, 204);
+            this.OrderList.Size = new System.Drawing.Size(736, 204);
             this.OrderList.TabIndex = 0;
             this.OrderList.SelectedIndexChanged += new System.EventHandler(this.OrderList_SelectedIndexChanged);
             // 
@@ -128,7 +128,7 @@
             this.OrderDisplayList.ItemHeight = 20;
             this.OrderDisplayList.Location = new System.Drawing.Point(157, 263);
             this.OrderDisplayList.Name = "OrderDisplayList";
-            this.OrderDisplayList.Size = new System.Drawing.Size(570, 224);
+            this.OrderDisplayList.Size = new System.Drawing.Size(590, 224);
             this.OrderDisplayList.TabIndex = 8;
             this.OrderDisplayList.SelectedIndexChanged += new System.EventHandler(this.OrderDisplayList_SelectedIndexChanged);
             // 
