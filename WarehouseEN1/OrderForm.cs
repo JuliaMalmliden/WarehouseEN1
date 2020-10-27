@@ -42,6 +42,7 @@ namespace WarehouseEN1
 
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
+
            // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
             //Reducera stock anpassat efter Order. 
            // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true. 
