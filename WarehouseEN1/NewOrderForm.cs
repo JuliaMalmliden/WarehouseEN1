@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 
@@ -41,10 +42,35 @@ namespace WarehouseEN1
         {
             ProductList.Items.Clear();
             CartList.Items.Clear();
-            foreach (Product p in prodCatalogue.Products)
+            try
             {
-                ProductList.Items.Add(p);
+                IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                       select prod;
+                foreach (Product prod in query)
+                {
+                    ProductList.Items.Add(prod);
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+            try
+            {
+                IEnumerable<OrderLine> query2 = from item in Cart
+                                                select item;
+                foreach (OrderLine item in query2)
+                {
+                    CartList.Items.Add(item.OrderedProduct.ProductName.ToString() + " (" + item.Count + " st) ");
+                }
+            }
+           catch(Exception ex)
+            {
+
+            }
+
+
+
         }
         private void ClearAllFields()
         {
@@ -71,7 +97,7 @@ namespace WarehouseEN1
                 OrderLine orderLine = new OrderLine(prd, amount);
                 Cart.Add(orderLine);
                 ProductAmountTextBox.Clear();
-                CartList.Items.Add( prd.ProductName + " (" + amount + " st)" ); 
+                RefreshListboxContents(); 
             }
             catch (Exception ex)
             {

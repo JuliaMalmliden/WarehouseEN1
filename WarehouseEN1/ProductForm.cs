@@ -20,7 +20,7 @@ namespace WarehouseEN1
         private int productStock;
         private DateTime productRestock; 
         private ProductCatalogue prodCatalogue;
-        private List<Product> Displaylist; 
+        public List<Product> Displaylist; 
         
         public ProductForm(ProductCatalogue prodCatalogue)
         {
@@ -38,9 +38,12 @@ namespace WarehouseEN1
         {
             ProductDisplayList.Items.Clear(); 
             ProductList.Items.Clear();
-            foreach (Product p in prodCatalogue.Products)
+
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         select prod;
+            foreach (Product prod in query)
             {
-                ProductList.Items.Add(p);
+                ProductList.Items.Add(prod);
             }
         }
 
@@ -135,19 +138,27 @@ namespace WarehouseEN1
         {   
             RefreshListboxContents();
             Displaylist.Clear();
-            
-            for (int i= 0 ; i < prodCatalogue.Products.Count; i++)
-            { Product prd = prodCatalogue.Products.ElementAt(i); 
-                if (prd.ProductStock == 0)
-                {
-                    Displaylist.Add(prd); 
-                }
+
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         where prod.ProductStock == 0
+                                         select prod;
+            foreach (Product prod in query)
+            {
+                ProductDisplayList.Items.Add(prod);
             }
 
-            foreach (Product p in Displaylist)
-            {
-                ProductDisplayList.Items.Add(p);
-            }
+            //for (int i= 0 ; i < prodCatalogue.Products.Count; i++)
+            //{ Product prd = prodCatalogue.Products.ElementAt(i); 
+            //    if (prd.ProductStock == 0)
+            //    {
+            //        Displaylist.Add(prd); 
+            //    }
+            //}
+           //foreach (Product p in Displaylist)
+           // {
+           //     ProductDisplayList.Items.Add(p);
+           // }
+ 
         }
 
         private void NextRestockButton_Click(object sender, EventArgs e)
