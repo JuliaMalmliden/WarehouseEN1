@@ -171,8 +171,10 @@ namespace WarehouseEN1
 
         private void CustomerPageN_CheckedChanged(object sender, EventArgs e)
         {
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
             CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            CustomerList CustomerList = new CustomerList(custCatalogue);
+            OrderCatalogue ordCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue);
+            CustomerList CustomerList = new CustomerList(custCatalogue, ordCatalogue);
             CustomerList.Show();
             this.Hide();
         }

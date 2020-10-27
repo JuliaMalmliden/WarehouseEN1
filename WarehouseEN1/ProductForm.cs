@@ -182,9 +182,10 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
             Customerform.Show();
             this.Hide(); */
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
 
             CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue ordCatalogue = new OrderCatalogue(custCatalogue); //test 2252
+            OrderCatalogue ordCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue); //test 2252
             CustomerList CustomerList = new CustomerList(custCatalogue, ordCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
@@ -194,6 +195,7 @@ namespace WarehouseEN1
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
+
             CustomerCatalogue custCatalogue = new CustomerCatalogue();
             OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue);
             OrderForm Orderfrom = new OrderForm(orderCatalogue);
