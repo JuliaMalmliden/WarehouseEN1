@@ -91,7 +91,7 @@ namespace WarehouseEN1
             this.Hide();*/
 
             CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            CustomerList CustomerList = new CustomerList(custCatalogue);
+            CustomerList CustomerList = new CustomerList(custCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }
@@ -100,7 +100,7 @@ namespace WarehouseEN1
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
             CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue);
+            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
             NewOrderform.Show();
             this.Hide();

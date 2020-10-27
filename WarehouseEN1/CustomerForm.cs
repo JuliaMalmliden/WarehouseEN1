@@ -17,12 +17,12 @@ namespace WarehouseEN1
         private string email;
         private string phone;
         private CustomerCatalogue custCatalogue;
-        private OrderCatalogue ordCatalogue;
+     ///   private OrderCatalogue ordCatalogue;
         private List<Customer> Displaylist;
         //Customer customer;
         public CustomerList(CustomerCatalogue custCatalogue, OrderCatalogue ordCatalogue) //Customer cust) //new cust
         {
-            this.ordCatalogue = ordCatalogue;
+           // this.ordCatalogue = ordCatalogue;
             this.custCatalogue = custCatalogue;
             InitializeComponent();
 
@@ -141,19 +141,19 @@ namespace WarehouseEN1
             {
                 Customer customer = custCatalogue.Customers.ElementAt(selectedCustomer);
 
-                IEnumerable<Order> query = from ord in ordCatalogue.Orders
-                                             where ord.Customer == customer
-                                              select ord;
-                foreach (Order ord in query)
+              //  IEnumerable<Order> query = from ord in ordCatalogue.Orders
+                //                             where ord.Customer == customer
+                  //                            select ord;
+              /*  foreach (Order ord in query)
                 {
                     CustomerDisplayListBox.Items.Add(ord);
-                }
+                }*/
             }
             catch (Exception ex)
             {
 
             }
-
+               
           //  IEnumerable<order> query = from order in OrderCatalogue.Orders
             //                           where Customer == selectedCustomer
               //                            select customer;
@@ -187,8 +187,9 @@ namespace WarehouseEN1
 
         private void OrderPageC_CheckedChanged(object sender, EventArgs e)
         {
+            ProductCatalogue prodCatalogue = new ProductCatalogue();
             CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue);
+            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue);
             OrderForm Orderfrom = new OrderForm(orderCatalogue);
             Orderfrom.Show();
             this.Hide();
@@ -198,7 +199,7 @@ namespace WarehouseEN1
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
             CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue);
+            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
             NewOrderform.Show();
             this.Hide();

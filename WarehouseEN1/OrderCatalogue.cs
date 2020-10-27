@@ -73,7 +73,7 @@ namespace WarehouseEN1
                 //}
 
 
-                Order order = new Order(currentOrderID, c, deliveryaddress, orderlist, date, paymentcompleted);
+                Order order = new Order(currentOrderID, customer, deliveryaddress, orderlist, date, paymentcompleted);
                 Orders.Add(order);
                 WriteOrdersToFile();
                 RaiseCatalogueChanged();
