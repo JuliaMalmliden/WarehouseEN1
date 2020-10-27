@@ -23,7 +23,6 @@ namespace WarehouseEN1
         public bool PaymentRefunded { get { return paymentRefunded; } set { paymentRefunded = value; } }
         public bool Dispatched { get { return dispatched; } set { dispatched = value; } }        
         public List<OrderLine> Items { get { return items; } set { items = value; } }
-        public string State { get; private set; }
 
         public Order() 
         { 
@@ -42,9 +41,8 @@ namespace WarehouseEN1
         }
         public override string ToString()
         {   
-            return "ID: " + OrderNumber + "     Name: " + Customer.Name +"     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
+            return "ID: " + OrderNumber + /*"     Name: " + Customer.Name +*/"     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
         }
-
         public void RefundPayment()
         {
             paymentRefunded = true; 
