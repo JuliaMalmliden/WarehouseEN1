@@ -184,7 +184,8 @@ namespace WarehouseEN1
             this.Hide(); */
 
             CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            CustomerList CustomerList = new CustomerList(custCatalogue);
+            OrderCatalogue ordCatalogue = new OrderCatalogue(custCatalogue); //test 2252
+            CustomerList CustomerList = new CustomerList(custCatalogue, ordCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
 
