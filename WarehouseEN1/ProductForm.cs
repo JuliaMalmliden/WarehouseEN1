@@ -38,12 +38,18 @@ namespace WarehouseEN1
         {
             ProductDisplayList.Items.Clear(); 
             ProductList.Items.Clear();
-
-            IEnumerable<Product> query = from prod in prodCatalogue.Products
-                                         select prod;
-            foreach (Product prod in query)
+            try
             {
-                ProductList.Items.Add(prod);
+                IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                             select prod;
+                foreach (Product prod in query)
+                {
+                    ProductList.Items.Add(prod);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
@@ -146,24 +152,29 @@ namespace WarehouseEN1
             {
                 ProductDisplayList.Items.Add(prod);
             }
-
-            //for (int i= 0 ; i < prodCatalogue.Products.Count; i++)
-            //{ Product prd = prodCatalogue.Products.ElementAt(i); 
-            //    if (prd.ProductStock == 0)
-            //    {
-            //        Displaylist.Add(prd); 
-            //    }
-            //}
-           //foreach (Product p in Displaylist)
-           // {
-           //     ProductDisplayList.Items.Add(p);
-           // }
  
         }
 
         private void NextRestockButton_Click(object sender, EventArgs e)
         {
+            RefreshListboxContents();
+            Displaylist.Clear();
 
+            List<DateTime> Restockdates = new List<DateTime>(); 
+
+            foreach (Product p in prodCatalogue.Products)
+            {
+                Restockdates.Add(p.NextRestock); 
+            }
+            DateTime minDate = Restockdates.Min();
+
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         where prod.NextRestock == minDate
+                                         select prod;
+            foreach (Product prod in query)
+            {
+                ProductDisplayList.Items.Add(prod);
+            }
         }
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)

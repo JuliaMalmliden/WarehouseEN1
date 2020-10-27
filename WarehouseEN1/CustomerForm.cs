@@ -37,10 +37,20 @@ namespace WarehouseEN1
         {
             CustomerDisplayListBox.Items.Clear();
             CustomerListBox.Items.Clear();
-            foreach (Customer c in custCatalogue.Customers)
+            try
             {
-                CustomerListBox.Items.Add(c);
+                IEnumerable<Customer> query = from customer in custCatalogue.Customers
+                                                select customer;
+                foreach (Customer customer in query)
+                {
+                    CustomerListBox.Items.Add(customer);
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
 
@@ -124,10 +134,23 @@ namespace WarehouseEN1
 
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
-           // var oldest = customer.Customer.OrderBy(b => b.Name).Take(10).SelectMany(b => b.Authors).Distinct();
+        //    IEnumerable<order> query = from order in OrderCatalogue.Orders
+        //                               where Customer == selectedCustomer
+        //                                  select customer;
+        //    foreach (Customer customer in query)
+        //    {
+        //        CustomerListBox.Items.Add(customer);
+        //    }
+        //}
+        //    catch (Exception ex)
+        //    {
 
-           // ShowInAuthors(authors);
-        }
+        //    }
+
+    // var oldest = customer.Customer.OrderBy(b => b.Name).Take(10).SelectMany(b => b.Authors).Distinct();
+
+    // ShowInAuthors(authors);
+}
 
         private void RecentOrdersButton_Click(object sender, EventArgs e)
         {
