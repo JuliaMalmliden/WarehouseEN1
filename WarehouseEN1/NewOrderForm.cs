@@ -22,7 +22,9 @@ namespace WarehouseEN1
         private DateTime dateOfOrder;
         private Product prd;
         private int amount;
-        private string address; 
+        private string address;
+        private Customer cust; 
+
 
         public NewOrderForm(ProductCatalogue prodCatalogue, OrderCatalogue orderCatalogue, CustomerCatalogue customerCatalogue)
         {
@@ -127,10 +129,19 @@ namespace WarehouseEN1
         private void PlaceOrderButton_Click(object sender, EventArgs e)
         {  try
             {
-                int customer = Convert.ToInt32(CostumerTextBox.Text);
+                int c = Convert.ToInt32(CostumerTextBox.Text);
+               
+                IEnumerable<Customer> query2 = from cus in customerCatalogue.Customers
+                                               where cus.CustomerID == c
+                                               select cus;
+                foreach (Customer cus in query2)
+                {
+                    cust = cus;
+                }
+
                 dateOfOrder = DateTime.Now;
                 address = AddressTextBox.Text;
-                orderCatalogue.AddOrder(customer, address, Cart, dateOfOrder, paymentCompleted);
+                orderCatalogue.AddOrder(cust, address, Cart, dateOfOrder, paymentCompleted);
                 MessageBox.Show("Order placed, thank you for buying your things at KJ´s!");
                 ClearAllFields(); 
 

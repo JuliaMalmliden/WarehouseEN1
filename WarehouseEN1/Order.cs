@@ -39,22 +39,12 @@ namespace WarehouseEN1
             dispatched = false; 
             Items = i;
 
-
-            State = "Ordered"; //Behövs det? 
-            
-
         }
         public override string ToString()
         {   
-            return "ID: " + OrderNumber + "    Name:  " + Customer.Name + "     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
+            return "ID: " + OrderNumber + "     Name: " + Customer.Name +"     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
         }
-        public void ChangeState(string aState)
-        {
-            if (aState == "Packed" || aState == "Dispatched" || aState == "Delivered")
-            {
-                State = aState;
-            }
-        }
+
         public void RefundPayment()
         {
             paymentRefunded = true; 

@@ -15,7 +15,7 @@ namespace WarehouseEN1
         private string filename;
         public event OrderChangeHandler CatalogueChanged;
         public int currentOrderID;
-        Customer c;
+        private Customer c;
         public OrderCatalogue(CustomerCatalogue customerCatalogue)
         {          
             this.customerCatalogue = customerCatalogue; 
@@ -55,19 +55,21 @@ namespace WarehouseEN1
             }
             else Orders = new List<Order>();
         }
-        public bool AddOrder(int customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
+        public bool AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
         {
             currentOrderID++;
             try
             {
-                for (int i = 0; i< customerCatalogue.Customers.Count; i++)
-                {
-                    int customerID = customerCatalogue.Customers.ElementAt(i).CustomerID; 
-                    if (customer == customerID)
-                    {
-                        c = customerCatalogue.Customers.ElementAt(i);
-                    }
-                }
+                //for (int i = 0; i< customerCatalogue.Customers.Count; i++)
+                //{
+                //    int customerID = customerCatalogue.Customers.ElementAt(i).CustomerID; 
+                //    if (customer == customerID)
+                //    {
+                //        c = customerCatalogue.Customers.ElementAt(i);
+                //    }
+                //}
+
+
                 Order order = new Order(currentOrderID, c, deliveryaddress, orderlist, date, paymentcompleted);
                 Orders.Add(order);
                 WriteOrdersToFile();

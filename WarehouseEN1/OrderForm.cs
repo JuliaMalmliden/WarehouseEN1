@@ -16,16 +16,28 @@ namespace WarehouseEN1
         {
             this.orderCatalogue = orderCatalogue; 
             InitializeComponent();
+
+            RefreshListboxContents(); 
         }
         private void RefreshListboxContents()
         {
             OrderList.Items.Clear();
             OrderDisplayList.Items.Clear();
 
-            foreach (Order o in orderCatalogue.Orders)
+            try
             {
-                OrderList.Items.Add(o);
+                IEnumerable<Order> query = from order in orderCatalogue.Orders
+                                                select order;
+                foreach (Order order in query)
+                {
+                    OrderList.Items.Add(order);
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
         private void BatchProcessButton_Click(object sender, EventArgs e)
@@ -56,9 +68,10 @@ namespace WarehouseEN1
         }
         private void PendingOrdersButton_Click(object sender, EventArgs e)
         {
+           
+            
             //OrderDisplaylistan ska visa  "the earliest time the order can be dispatched"  --> FirstAvailable date
-            //For Pending orders, display the list of customers and their contact
-            //information, along with the number of the pending order.
+            //For Pending orders, display the list of customers and their contact information, along with the number of the pending order.
 
         }
 

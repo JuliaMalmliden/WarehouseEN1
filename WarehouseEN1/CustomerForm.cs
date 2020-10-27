@@ -134,6 +134,8 @@ namespace WarehouseEN1
 
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
+
+
         //    IEnumerable<order> query = from order in OrderCatalogue.Orders
         //                               where Customer == selectedCustomer
         //                                  select customer;
