@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
@@ -11,14 +12,16 @@ namespace WarehouseEN1
     {
         public delegate void OrderChangeHandler();
         public CustomerCatalogue customerCatalogue;
+        public ProductCatalogue productCatalogue;
         public List<Order> Orders { get; set; }
         private string filename;
         public event OrderChangeHandler CatalogueChanged;
         public int currentOrderID;
-        private Customer c;
-        public OrderCatalogue(CustomerCatalogue customerCatalogue)
+        private List<Order> NonDispatchedorders; 
+        public OrderCatalogue(CustomerCatalogue customerCatalogue, ProductCatalogue productCatalogue)
         {          
-            this.customerCatalogue = customerCatalogue; 
+            this.customerCatalogue = customerCatalogue;
+            this.productCatalogue = productCatalogue; 
             filename = "Order.JSON";
             ReadOrdersFromFile();
 
@@ -82,5 +85,40 @@ namespace WarehouseEN1
             }
 
         }
+        public void BatchProcessOrders()
+        {
+            // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
+            //Reducera stock anpassat efter Order. 
+            // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true.
+            IEnumerable<Order> query = from order in Orders
+                                       where order.Dispatched == false
+                                       select order;
+            foreach (Order order in query)
+            {
+                NonDispatchedorders.Add(order);
+            }
+            //foreach(Order order in NonDispatchedorders)
+            //{
+            //  if(order.Items.Contains(Product.Stock == 0)
+            //}
+            List<DateTime> dates = new List<DateTime>();
+            foreach (Order o in NonDispatchedorders)
+            {
+                dates.Add(o.OrderDate); 
+            }
+            DateTime minDate = dates.Min();
+            IEnumerable<Order> query2 = from order in NonDispatchedorders
+                                        where order.OrderDate == minDate
+                                        select order; 
+            
+
+                                        //IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                        // where prod.NextRestock == minDate
+                                        // select prod;
+
+
+            WriteOrdersToFile();
+        }
+
     }
 }
