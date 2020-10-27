@@ -43,23 +43,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\katar\\.nuget\\packages\\": {},
+    "C:\\Users\\julia\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\katar\\OneDrive\\Desktop\\Op2. HT20\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
+      "projectUniqueName": "C:\\Users\\julia\\source\\repos\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
       "projectName": "WarehouseEN1",
-      "projectPath": "C:\\Users\\katar\\OneDrive\\Desktop\\Op2. HT20\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
-      "packagesPath": "C:\\Users\\katar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\katar\\OneDrive\\Desktop\\Op2. HT20\\WarehouseEN1\\WarehouseEN1\\obj\\",
+      "projectPath": "C:\\Users\\julia\\source\\repos\\WarehouseEN1\\WarehouseEN1\\WarehouseEN1.csproj",
+      "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\julia\\source\\repos\\WarehouseEN1\\WarehouseEN1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\katar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\julia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
