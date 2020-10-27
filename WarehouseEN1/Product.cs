@@ -6,7 +6,9 @@ using System.Text.Json;
 using System.Windows.Forms;
 
 namespace WarehouseEN1
+
 {
+   
     public class Product
     {
         private int productID;
