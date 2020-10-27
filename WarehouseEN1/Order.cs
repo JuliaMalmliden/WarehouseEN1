@@ -41,7 +41,7 @@ namespace WarehouseEN1
         }
         public override string ToString()
         {   
-            return "ID: " + OrderNumber + /*"     Name: " + Customer.Name +*/"     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
+            return "ID: " + OrderNumber + "     Name: " + Customer.Name +"     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
         }
         public void RefundPayment()
         {
