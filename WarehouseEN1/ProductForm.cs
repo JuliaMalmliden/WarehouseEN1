@@ -20,7 +20,7 @@ namespace WarehouseEN1
         private int productStock;
         private DateTime productRestock; 
         private ProductCatalogue prodCatalogue;
-        private List<Product> Displaylist; 
+        public List<Product> Displaylist; 
         
         public ProductForm(ProductCatalogue prodCatalogue)
         {
@@ -38,9 +38,18 @@ namespace WarehouseEN1
         {
             ProductDisplayList.Items.Clear(); 
             ProductList.Items.Clear();
-            foreach (Product p in prodCatalogue.Products)
+            try
             {
-                ProductList.Items.Add(p);
+                IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                             select prod;
+                foreach (Product prod in query)
+                {
+                    ProductList.Items.Add(prod);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
@@ -135,24 +144,37 @@ namespace WarehouseEN1
         {   
             RefreshListboxContents();
             Displaylist.Clear();
-            
-            for (int i= 0 ; i < prodCatalogue.Products.Count; i++)
-            { Product prd = prodCatalogue.Products.ElementAt(i); 
-                if (prd.ProductStock == 0)
-                {
-                    Displaylist.Add(prd); 
-                }
-            }
 
-            foreach (Product p in Displaylist)
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         where prod.ProductStock == 0
+                                         select prod;
+            foreach (Product prod in query)
             {
-                ProductDisplayList.Items.Add(p);
+                ProductDisplayList.Items.Add(prod);
             }
+ 
         }
 
         private void NextRestockButton_Click(object sender, EventArgs e)
         {
+            RefreshListboxContents();
+            Displaylist.Clear();
 
+            List<DateTime> Restockdates = new List<DateTime>(); 
+
+            foreach (Product p in prodCatalogue.Products)
+            {
+                Restockdates.Add(p.NextRestock); 
+            }
+            DateTime minDate = Restockdates.Min();
+
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         where prod.NextRestock == minDate
+                                         select prod;
+            foreach (Product prod in query)
+            {
+                ProductDisplayList.Items.Add(prod);
+            }
         }
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
@@ -170,7 +192,9 @@ namespace WarehouseEN1
 
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
         {
-            OrderForm Orderfrom = new OrderForm();
+            CustomerCatalogue custCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue);
+            OrderForm Orderfrom = new OrderForm(orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
@@ -178,7 +202,7 @@ namespace WarehouseEN1
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
             CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue);
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
             NewOrderform.Show();
             this.Hide();

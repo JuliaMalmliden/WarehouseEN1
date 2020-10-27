@@ -37,10 +37,20 @@ namespace WarehouseEN1
         {
             CustomerDisplayListBox.Items.Clear();
             CustomerListBox.Items.Clear();
-            foreach (Customer c in custCatalogue.Customers)
+            try
             {
-                CustomerListBox.Items.Add(c);
+                IEnumerable<Customer> query = from customer in custCatalogue.Customers
+                                                select customer;
+                foreach (Customer customer in query)
+                {
+                    CustomerListBox.Items.Add(customer);
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
 
@@ -124,10 +134,25 @@ namespace WarehouseEN1
 
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
-           // var oldest = customer.Customer.OrderBy(b => b.Name).Take(10).SelectMany(b => b.Authors).Distinct();
 
-           // ShowInAuthors(authors);
-        }
+
+        //    IEnumerable<order> query = from order in OrderCatalogue.Orders
+        //                               where Customer == selectedCustomer
+        //                                  select customer;
+        //    foreach (Customer customer in query)
+        //    {
+        //        CustomerListBox.Items.Add(customer);
+        //    }
+        //}
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+
+    // var oldest = customer.Customer.OrderBy(b => b.Name).Take(10).SelectMany(b => b.Authors).Distinct();
+
+    // ShowInAuthors(authors);
+}
 
         private void RecentOrdersButton_Click(object sender, EventArgs e)
         {
@@ -144,7 +169,9 @@ namespace WarehouseEN1
 
         private void OrderPageC_CheckedChanged(object sender, EventArgs e)
         {
-            OrderForm Orderfrom = new OrderForm();
+            CustomerCatalogue custCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue);
+            OrderForm Orderfrom = new OrderForm(orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
@@ -153,7 +180,7 @@ namespace WarehouseEN1
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
             CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue);
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
             NewOrderform.Show();
             this.Hide();

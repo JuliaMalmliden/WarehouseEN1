@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 
@@ -15,8 +16,16 @@ namespace WarehouseEN1
         private CustomerCatalogue customerCatalogue; 
         private OrderCatalogue orderCatalogue; 
         private List<Product> Productlist;
-        private List<Product> Cart; 
-        private int selectedProduct; 
+        private List<OrderLine> Cart; 
+        private int selectedProduct;
+        private bool paymentCompleted; 
+        private DateTime dateOfOrder;
+        private Product prd;
+        private int amount;
+        private string address;
+        private Customer cust; 
+
+
         public NewOrderForm(ProductCatalogue prodCatalogue, OrderCatalogue orderCatalogue, CustomerCatalogue customerCatalogue)
         {
             this.prodCatalogue = prodCatalogue;
@@ -28,81 +37,129 @@ namespace WarehouseEN1
             RefreshListboxContents();
 
             Productlist = new List<Product>();
-            Cart = new List<Product>();
+            Cart = new List<OrderLine>();
         }
 
         private void RefreshListboxContents()
         {
             ProductList.Items.Clear();
             CartList.Items.Clear();
-            foreach (Product p in prodCatalogue.Products)
+            try
             {
-                ProductList.Items.Add(p);
+                IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                       select prod;
+                foreach (Product prod in query)
+                {
+                    ProductList.Items.Add(prod);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            try
+            {
+                IEnumerable<OrderLine> query2 = from item in Cart
+                                                select item;
+                foreach (OrderLine item in query2)
+                {
+                    CartList.Items.Add(item.OrderedProduct.ProductName.ToString() + " (" + item.Count + " st) ");
+                }
+            }
+           catch(Exception ex)
+            {
+
             }
 
-            
-           // for(int i = 0; i < Cart.Count(); i++)
-            //{
-             //   Cart.ElementAt(i); 
-               // CartList.Items.Add(i); 
-           // }
-            
 
-            
+
+        }
+        private void ClearAllFields()
+        {
+            CostumerTextBox.Text = ""; 
+            AddressTextBox.Text = "";
+            if (PayRadioButton.Checked)
+            {
+                PayRadioButton.Checked = false;
+            }
+            Cart.Clear();
+            RefreshListboxContents();
         }
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedProduct = ProductList.SelectedIndex;
         }
 
-        private void ProductAmountTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
-            Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
-            int amount = Convert.ToInt32(ProductAmountTextBox.Text); 
-            for(int i = 0; i < amount; i++)
+            try
             {
-                Cart.Add(prd); 
+                prd = prodCatalogue.Products.ElementAt(selectedProduct);
+                amount = Convert.ToInt32(ProductAmountTextBox.Text);
+                OrderLine orderLine = new OrderLine(prd, amount);
+                Cart.Add(orderLine);
+                ProductAmountTextBox.Clear();
+                RefreshListboxContents(); 
             }
+            catch (Exception ex)
+            {
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                // MessageBox.Show("Did not manage to execute because of: "+ ex);
+            }
+
         }
-
-        private void CartList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TotalCostLable_Click(object sender, EventArgs e)
         {
+            TotalCostLable.Text = (Convert.ToDouble(TotalCostLable.Text) + prd.ProductPrice* amount).ToString();
 
+            //var Total = Cart.Sum(); 
+            //TotalCostLable.Text = 
         }
-
-        private void CostumerTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }       
+   
         private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+
+            if (PayRadioButton.Checked == true) 
+            {paymentCompleted = true; } 
+            else 
+            { paymentCompleted = false;}
 
         }
 
         private void PlaceOrderButton_Click(object sender, EventArgs e)
-        {
+        {  try
+            {
+                int c = Convert.ToInt32(CostumerTextBox.Text);
+               
+                IEnumerable<Customer> query2 = from cus in customerCatalogue.Customers
+                                               where cus.CustomerID == c
+                                               select cus;
+                foreach (Customer cus in query2)
+                {
+                    cust = cus;
+                }
 
+                dateOfOrder = DateTime.Now;
+                address = AddressTextBox.Text;
+                orderCatalogue.AddOrder(cust, address, Cart, dateOfOrder, paymentCompleted);
+                MessageBox.Show("Order placed, thank you for buying your things at KJ´s!");
+                ClearAllFields(); 
+
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void DeleteOrderButton_Click(object sender, EventArgs e)
         {
-
+            Cart.Clear();
+            RefreshListboxContents(); 
         }
+
+
+
 
         private void ProductPageN_CheckedChanged(object sender, EventArgs e)
         {
@@ -122,19 +179,35 @@ namespace WarehouseEN1
 
         private void OrderPageN_CheckedChanged(object sender, EventArgs e)
         {
-            OrderForm Orderfrom = new OrderForm();
+            CustomerCatalogue custCatalogue = new CustomerCatalogue();
+            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue); 
+            OrderForm Orderfrom = new OrderForm(orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
 
+
+
+
+        private void CostumerTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }       
+        private void CartList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void ProductAmountTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void AddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }    
         private void NewOrderForm_Load(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(); 
-            NewOrderForm NewOrderform = new NewOrderForm( prodCatalogue,  orderCatalogue,  customerCatalogue);
-            NewOrderform.Show();
-            this.Hide(); 
+
         }
 
 
