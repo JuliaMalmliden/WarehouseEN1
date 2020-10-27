@@ -16,14 +16,18 @@ namespace WarehouseEN1
         private string customerName;
         private string email;
         private string phone;
+        private ProductCatalogue prodCatalogue;
         private CustomerCatalogue custCatalogue;
-     ///   private OrderCatalogue ordCatalogue;
+        private OrderCatalogue orderCatalogue;      
         private List<Customer> Displaylist;
         //Customer customer;
-        public CustomerList(CustomerCatalogue custCatalogue, OrderCatalogue ordCatalogue) //Customer cust) //new cust
+        public CustomerList(ProductCatalogue prodCatalogue,CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
         {
            // this.ordCatalogue = ordCatalogue;
-            this.custCatalogue = custCatalogue;
+            this.custCatalogue = customerCatalogue;
+            this.prodCatalogue = prodCatalogue;
+            this.orderCatalogue = orderCatalogue; 
+            
             InitializeComponent();
 
             custCatalogue.CatalogueChanged += RefreshListboxContents;
@@ -179,28 +183,24 @@ namespace WarehouseEN1
 
         private void ProductPageC_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            ProductForm Productform = new ProductForm(prodCatalogue);
+
+            ProductForm Productform = new ProductForm(prodCatalogue, custCatalogue, orderCatalogue);
             Productform.Show();
             this.Hide();
         }
 
         private void OrderPageC_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue);
-            OrderForm Orderfrom = new OrderForm(orderCatalogue);
+
+            OrderForm Orderfrom = new OrderForm(prodCatalogue, custCatalogue, orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
 
         private void MakeNewOrderPageC_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
-            NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
+
+            NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, custCatalogue);
             NewOrderform.Show();
             this.Hide();
         }

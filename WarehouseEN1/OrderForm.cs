@@ -11,9 +11,14 @@ namespace WarehouseEN1
 {
     public partial class OrderForm : Form
     {
-        OrderCatalogue orderCatalogue; 
-        public OrderForm(OrderCatalogue orderCatalogue)
+        private ProductCatalogue prodCatalogue;
+        private CustomerCatalogue customerCatalogue;
+        private OrderCatalogue orderCatalogue; 
+
+        public OrderForm(ProductCatalogue prodCatalogue, CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue)
         {
+            this.customerCatalogue = customerCatalogue;
+            this.prodCatalogue = prodCatalogue; 
             this.orderCatalogue = orderCatalogue; 
             InitializeComponent();
 
@@ -77,9 +82,8 @@ namespace WarehouseEN1
         }
 
         private void ProductPageRBTN_CheckedChanged(object sender, EventArgs e)
-        {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            ProductForm Productform = new ProductForm(prodCatalogue);
+        { 
+            ProductForm Productform = new ProductForm(prodCatalogue,  customerCatalogue,  orderCatalogue);
             Productform.Show();
             this.Hide();
         }
@@ -89,18 +93,14 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();
             Customerform.Show();
             this.Hide();*/
-
-            CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            CustomerList CustomerList = new CustomerList(custCatalogue, orderCatalogue);
+            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }
 
         private void MakeNewOrderPage_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
+
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
             NewOrderform.Show();
             this.Hide();

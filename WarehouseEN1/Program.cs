@@ -21,7 +21,7 @@ namespace WarehouseEN1
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProductForm(prodCatalogue));
+            Application.Run(new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue));
 
            /* var currentTime = DateTime.Now;
             currentTime.ToShortDateString();
