@@ -141,27 +141,22 @@ namespace WarehouseEN1
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
                    GetTextBox();
-                    // CustomerDisplayListBox.Items.Clear();
-                    try
-                   {
+                   CustomerDisplayListBox.Items.Clear();
+            try
+            {
 
-                       Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
-                        int custID = cust.CustomerID;
+                Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
+                int custID = cust.CustomerID;
 
-
-                //IEnumerable<Customer> query = from customer in custCatalogue.Customers
-                //                              where customer.CustomerID == cust.CustomerID
-                //                              select customer;
-                //foreach (Customer customer in query)
-                //{
-                //    CustomerDisplayListBox.Items.Add(customer);
-                //}
                 IEnumerable<Order> query = from ord in orderCatalogue.Orders
-                                           where ord.Customer == cust   //ord.Customer.CustomerID == cust.CustomerID
+                                           where ord.Customer.CustomerID == cust.CustomerID  
+                                           && (ord.OrderDate - DateTime.Now).TotalDays >30
                                            select ord;
+
+
                 foreach (Order ord in query)
                 {
-                    CustomerDisplayListBox.Items.Add(cust);
+                    CustomerDisplayListBox.Items.Add(ord);
                 }
             }
             catch (Exception ex)
@@ -170,23 +165,35 @@ namespace WarehouseEN1
 
             }
 
-            //    IEnumerable<order> query = from order in OrderCatalogue.Orders
-            //                               where Customer == selectedCustomer
-            //                               select customer;
-            //    foreach (Customer customer in query)
-            //    {
-            //        CustomerListBox.Items.Add(customer);
-            //    }
-            //}
-            //    catch (Exception ex)
-            //    {
-
-            //    }
-
         }
 
     private void RecentOrdersButton_Click(object sender, EventArgs e)
         {
+            GetTextBox();
+            CustomerDisplayListBox.Items.Clear();
+            try
+            {
+
+                Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
+                int custID = cust.CustomerID;
+
+                IEnumerable<Order> query = from ord in orderCatalogue.Orders
+                                           where ord.Customer.CustomerID == cust.CustomerID
+                                           && (ord.OrderDate - DateTime.Now).TotalDays <= 30
+                                           select ord;
+
+
+                foreach (Order ord in query)
+                {
+                    CustomerDisplayListBox.Items.Add(ord);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
+
+            }
+
 
         }
 
