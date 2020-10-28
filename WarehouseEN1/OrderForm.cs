@@ -56,6 +56,7 @@ namespace WarehouseEN1
 
         private void DispatchedOrdersButton_Click(object sender, EventArgs e) 
         {
+            OrderDisplayList.Items.Clear();
             try
             {
                 IEnumerable<Order> query = from order in orderCatalogue.Orders
@@ -72,8 +73,10 @@ namespace WarehouseEN1
             }
        
         }
-        private void NonDispatchedOrderButton_Click(object sender, EventArgs e)
+        /*Pending if no payment, not enough stock then dispatch will be false, othewise it's dispatched */
+        private void PendingOrdersButton_Click(object sender, EventArgs e)
         {
+            OrderDisplayList.Items.Clear();
             try
             {
                 IEnumerable<Order> query = from order in orderCatalogue.Orders
@@ -81,21 +84,19 @@ namespace WarehouseEN1
                                            select order;
                 foreach (Order order in query)
                 {
-                    OrderDisplayList.Items.Add(order);
-                }
+                    OrderDisplayList.Items.Add(order.Customer);
+                    //OrderDisplayList.Items.Add(order.orerId);
 
+                    // OrderDisplayList.Items.Add(order.);
+
+
+                }
             }
             catch (Exception ex)
             {
 
                 throw new OrderExceptions("Did not manage to execute because of: ", ex);
             }
-
-        }
-        private void PendingOrdersButton_Click(object sender, EventArgs e)
-        {
-           
-            
             //OrderDisplaylistan ska visa  "the earliest time the order can be dispatched"  --> FirstAvailable date
             //For Pending orders, display the list of customers and their contact information, along with the number of the pending order.
 

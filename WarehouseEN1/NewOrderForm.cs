@@ -61,6 +61,7 @@ namespace WarehouseEN1
             }
             try
             {
+
                 IEnumerable<OrderLine> query2 = from item in Cart
                                                 select item;
                 foreach (OrderLine item in query2)
@@ -68,7 +69,7 @@ namespace WarehouseEN1
                     CartList.Items.Add(item.OrderedProduct.ProductName.ToString() + " (" + item.Count + " st) ");
                 }
             }
-           catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
