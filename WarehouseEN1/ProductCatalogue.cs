@@ -59,22 +59,15 @@ namespace WarehouseEN1
             else Products = new List<Product>();
         }
 
-       public bool AddProduct(String productName, double productPrice, int productStock, DateTime productRestock) //string productRestock)
+       public void AddProduct(String productName, double productPrice, int productStock, DateTime productRestock) //string productRestock)
         {
             currentProdID++;
-            try
-            {
+            
                 Product prod = new Product(currentProdID, productName, productPrice, productStock, productRestock); 
                 Products.Add(prod);
                 WriteProductsToFile();
                 RaiseCatalogueChanged();
-                return true; 
-            }
-            catch
-            {
-                return false; 
-            }
-            
+
         }
 
         public bool EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)

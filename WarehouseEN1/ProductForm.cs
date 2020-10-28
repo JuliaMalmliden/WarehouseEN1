@@ -128,11 +128,6 @@ namespace WarehouseEN1
 
             }
 
-            /*if (prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock) == false)
-            {
-                MessageBox.Show("Adding failed, please try again. See to that all fields are filled in correctly."); 
-            }*/
-
         }
 
         private void ProductEditButton_Click(object sender, EventArgs e)

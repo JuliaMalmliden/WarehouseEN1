@@ -26,7 +26,7 @@ namespace WarehouseEN1
         public bool Dispatched { get { return dispatched; } set { dispatched = value; } }        
         public List<OrderLine> Items { get { return items; } set { items = value; } }
 
-        public Order() 
+        public Order()
         { 
         }
         public Order(int on, Customer c, string da, List<OrderLine> i, DateTime date, bool pc)//Customer c, string da, List<OrderLine> i, DateTime date, bool pc)
