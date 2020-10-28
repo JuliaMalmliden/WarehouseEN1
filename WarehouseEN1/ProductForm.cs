@@ -20,11 +20,15 @@ namespace WarehouseEN1
         private int productStock;
         private DateTime productRestock; 
         private ProductCatalogue prodCatalogue;
+        private CustomerCatalogue customerCatalogue;
+        private OrderCatalogue orderCatalogue; 
         public List<Product> Displaylist; 
         
-        public ProductForm(ProductCatalogue prodCatalogue)
+        public ProductForm(ProductCatalogue prodCatalogue, CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue)
         {
             this.prodCatalogue = prodCatalogue;
+            this.customerCatalogue = customerCatalogue;
+            this.orderCatalogue = orderCatalogue; 
             InitializeComponent();
 
             prodCatalogue.CatalogueChanged += RefreshListboxContents;
@@ -182,11 +186,7 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
             Customerform.Show();
             this.Hide(); */
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-
-            CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue ordCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue); //test 2252
-            CustomerList CustomerList = new CustomerList(custCatalogue, ordCatalogue); //only cust before
+            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
 
@@ -194,19 +194,13 @@ namespace WarehouseEN1
 
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-
-            CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue);
-            OrderForm Orderfrom = new OrderForm(orderCatalogue);
+            OrderForm Orderfrom = new OrderForm(prodCatalogue, customerCatalogue, orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
         private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
+
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, customerCatalogue);
             NewOrderform.Show();
             this.Hide();

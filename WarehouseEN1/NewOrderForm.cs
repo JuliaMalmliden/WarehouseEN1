@@ -163,28 +163,21 @@ namespace WarehouseEN1
 
         private void ProductPageN_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            ProductForm Productform = new ProductForm(prodCatalogue);
+            ProductForm Productform = new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue);
             Productform.Show();
             this.Hide();
         }
 
         private void CustomerPageN_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue ordCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue);
-            CustomerList CustomerList = new CustomerList(custCatalogue, ordCatalogue);
+            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }
 
         private void OrderPageN_CheckedChanged(object sender, EventArgs e)
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue custCatalogue = new CustomerCatalogue();
-            OrderCatalogue orderCatalogue = new OrderCatalogue(custCatalogue, prodCatalogue); 
-            OrderForm Orderfrom = new OrderForm(orderCatalogue);
+            OrderForm Orderfrom = new OrderForm(prodCatalogue, customerCatalogue, orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }

@@ -57,6 +57,21 @@ namespace WarehouseEN1
                 Orders = JsonSerializer.Deserialize<List<Order>>(fileContents);
             }
             else Orders = new List<Order>();
+
+            foreach (Order order in Orders)
+            {
+                var cid = order.Customer.CustomerID;
+                order.Customer = customerCatalogue.Customers.Single(c => c.CustomerID == cid);
+
+                foreach (OrderLine ol in order.Items)
+                {
+                    var pid = ol.OrderedProduct.ProductID;
+                    ol.OrderedProduct = productCatalogue.Products.Single(p => p.ProductID == pid); 
+                }
+
+            }
+
+
         }
         public bool AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
         {

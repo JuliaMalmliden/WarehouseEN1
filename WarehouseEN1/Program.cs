@@ -15,11 +15,13 @@ namespace WarehouseEN1
         static void Main() //WEEEEYWEEEEYY
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
+            CustomerCatalogue customerCatalogue = new CustomerCatalogue(); 
+            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue); 
             
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProductForm(prodCatalogue));
+            Application.Run(new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue));
 
            /* var currentTime = DateTime.Now;
             currentTime.ToShortDateString();
