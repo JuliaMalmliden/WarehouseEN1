@@ -122,10 +122,14 @@ namespace WarehouseEN1
         private void CustomerAddButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
-
-            if (custCatalogue.AddCustomer(customerName, phone, email) == false)
+            try
             {
-                MessageBox.Show("Adding failed, please try again. See to that all fields are filled in correctly.");
+                custCatalogue.AddCustomer(customerName, phone, email);
+            }
+            catch (Exception ex)
+            {
+
+                throw new CustomerExceptions("Adding failed, please try again. See to that all fields are filled in correctly.", ex);
             }
         }
 

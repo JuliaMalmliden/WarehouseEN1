@@ -66,21 +66,14 @@ namespace WarehouseEN1
             else Customers = new List<Customer>();
         }
 
-        public bool AddCustomer(string name, string phone,string email)
+        public void AddCustomer(string name, string phone,string email)
         {
             currentCustID++;
-            try
-            {
-                Customer obj = new Customer(currentCustID, name, phone, email);
-                Customers.Add(obj);
-                WriteCustomersToFile();
-                RaiseCatalogueChanged();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            Customer obj = new Customer(currentCustID, name, phone, email);
+            Customers.Add(obj);
+            WriteCustomersToFile();
+            RaiseCatalogueChanged();
+            
         }
 
         Customer FindCustomer(string name) 
@@ -101,7 +94,7 @@ namespace WarehouseEN1
             return null; 
         }
 
-        public bool RemoveCustomerID(int custID)		//safest to use id incase customers have the same name 
+        public bool RemoveCustomerID(int custID)
         {
             if (GetCustomerbyID(custID) != null)
             {
@@ -117,24 +110,17 @@ namespace WarehouseEN1
 
         }
 
-        public bool UpdateCustomer(int custID, string name, string ph, string email) //maybe split to own functions for each
+        public void UpdateCustomer(int custID, string name, string ph, string email)
         {
-                try
-                {
-                    Customer customer = Customers.Single(c => c.CustomerID == custID); //????whyyyyy
-                                                                                       //Customer obj = FindCustomer(name);
 
-                    customer.Name = name;
-                    customer.EMail = email;
-                    customer.PhoneN = ph;
-                    WriteCustomersToFile();
-                    RaiseCatalogueChanged();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+            Customer customer = Customers.Single(c => c.CustomerID == custID); 
+
+            customer.Name = name;
+            customer.EMail = email;
+            customer.PhoneN = ph;
+            WriteCustomersToFile();
+            RaiseCatalogueChanged();
+            
         }
 
 

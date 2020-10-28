@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WarehouseEN1
@@ -49,9 +50,30 @@ namespace WarehouseEN1
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
 
-           // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
+            // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
             //Reducera stock anpassat efter Order. 
-           // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true. 
+            // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true.
+
+            OrderDisplayList.Items.Clear();
+            try
+            {
+                IEnumerable<Order> query = from order in orderCatalogue.Orders
+                                           where order.Dispatched == true
+                                           orderby order.OrderDate descending
+                                           //where order in orderLines  //hur ska få fram orderlines och kolla stock?
+                                           select order;
+                foreach (Order order in query)
+                {
+                    OrderDisplayList.Items.Add(order);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
+            }
+
+
         }
 
         private void DispatchedOrdersButton_Click(object sender, EventArgs e) 
@@ -59,8 +81,12 @@ namespace WarehouseEN1
             OrderDisplayList.Items.Clear();
             try
             {
-                IEnumerable<Order> query = from order in orderCatalogue.Orders
-                                       where order.Dispatched == true select order;
+                IEnumerable<Order> query = (from order in orderCatalogue.Orders
+                                            where order.Dispatched == true
+                                            select order);
+                                             //.Union(from pro in prodCatalogue
+                                             //       where pro.stock > 0
+                                             //       select pro.nextRestock) ;
                foreach (Order order in query)
                {
                      OrderDisplayList.Items.Add(order);
@@ -79,14 +105,17 @@ namespace WarehouseEN1
             OrderDisplayList.Items.Clear();
             try
             {
-                IEnumerable<Order> query = from order in orderCatalogue.Orders
-                                           where order.Dispatched == false
-                                           select order;
+                IEnumerable<Order> query = (from order in orderCatalogue.Orders
+                                            where order.Dispatched == false
+                                            select order);
                 foreach (Order order in query)
                 {
+                    var numPending= query.Count();
                     OrderDisplayList.Items.Add(order.Customer);
-                    //OrderDisplayList.Items.Add(order.orerId);
+                    OrderDisplayList.Items.Add(numPending);
 
+
+                    // OrderDisplayList.Items.Add(order.OrderNumber);  //testa denna visar 1
                     // OrderDisplayList.Items.Add(order.);
 
 

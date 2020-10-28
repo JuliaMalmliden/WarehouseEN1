@@ -8,7 +8,7 @@ namespace WarehouseEN1
 
         private int orderNumber;
         private Customer customer;        
-        private DateTime orderDate; //added order date
+        private DateTime orderDate; 
         private String deliveryAddress;
         private bool paymentCompleted;
         private bool paymentRefunded;
@@ -29,11 +29,10 @@ namespace WarehouseEN1
         public Order()
         { 
         }
-        public Order(int on, Customer c, string da, List<OrderLine> i, DateTime date, bool pc)//Customer c, string da, List<OrderLine> i, DateTime date, bool pc)
+        public Order(int on, Customer c, string da, List<OrderLine> i, DateTime date, bool pc)
         {
             OrderNumber = on;
             Customer = c;            
-           // CustID = custid; //so that we only save cutomer id
             OrderDate = date;
             deliveryAddress = da;      
             paymentCompleted = pc;

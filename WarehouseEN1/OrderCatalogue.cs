@@ -76,11 +76,10 @@ namespace WarehouseEN1
 
 
         }
-        public bool AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)//Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
+        public void AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)//Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
         {
             currentOrderID++;
-            try
-            {
+
                 //for (int i = 0; i< customerCatalogue.Customers.Count; i++)
                 //{
                 //    int customerID = customerCatalogue.Customers.ElementAt(i).CustomerID; 
@@ -95,12 +94,6 @@ namespace WarehouseEN1
                 Orders.Add(order);
                 WriteOrdersToFile();
                 RaiseCatalogueChanged();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
 
         }
         public void BatchProcessOrders()

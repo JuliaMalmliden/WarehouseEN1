@@ -60,7 +60,7 @@ namespace WarehouseEN1
         }
 
        public void AddProduct(String productName, double productPrice, int productStock, DateTime productRestock) //string productRestock)
-        {
+       {
             currentProdID++;
             
                 Product prod = new Product(currentProdID, productName, productPrice, productStock, productRestock); 
@@ -68,13 +68,11 @@ namespace WarehouseEN1
                 WriteProductsToFile();
                 RaiseCatalogueChanged();
 
-        }
+       }
 
-        public bool EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
+        public void EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
         {
-            try
-            {
-                Product product = Products.Single(p => p.ProductID == pID);
+               Product product = Products.Single(p => p.ProductID == pID);
             
                 product.ProductName = productName;
                 product.ProductPrice = productPrice;
@@ -83,12 +81,6 @@ namespace WarehouseEN1
 
                  WriteProductsToFile();
                  RaiseCatalogueChanged();
-                return true; 
-            }
-            catch
-            {
-                return false; 
-            }
 
         } 
 
