@@ -117,7 +117,9 @@ namespace WarehouseEN1
             }
             //foreach(Order order in NonDispatchedorders)
             //{
-            //  if(order.Items.Contains(Product.Stock == 0)
+            //    if (order.Items.Contains(
+  
+            //      Product pro = productCatalogue.Products.Single(p => p.ProductStock == 0); 
             //}
             List<DateTime> dates = new List<DateTime>();
             foreach (Order o in NonDispatchedorders)
