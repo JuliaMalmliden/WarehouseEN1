@@ -98,48 +98,17 @@ namespace WarehouseEN1
         }
         public void BatchProcessOrders()
         {
-            // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
-            //Reducera stock anpassat efter Order. 
-            // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true.
-            //IEnumerable<Order> query = from order in Orders
-            //                           where order.Dispatched == false
-            //                           select order;
-            //foreach (Order order in query)
-            //{
-            //    NonDispatchedorders.Add(order);
-            //}
+            var orders = Orders.Where(o => !o.Dispatched && o.PaymentCompleted && o.Items.All(o => o.OrderedProduct.ProductStock >= o.Count)); //o=> o.OrderedProduct.FirstAvailableDate <= DateTime.Now)// kan vara att datetime ska vara mindre 
+            orders = orders.OrderByDescending(o => o.OrderDate);
+            foreach(Order order in orders)
+            {
+                order.Dispatched = true;
+                foreach (OrderLine orderline in order.Items)
+                {
 
-            //foreach (Order order in NonDispatchedorders)
-            //{
-            //    for(int i = 0; i < order.Items.Count; i++)
-            //    {
-            //       orderLine i in order(i)
-            //    }
-            //}
-            //IEnumerable<Product> query2 = from p in productCatalogue.Products
-            //                                 where p.ProductStock == 0
-            //                                 select p;
-
-            //foreach (Order order in NonDispatchedorders)
-            //{
-            //    foreach(Product orderedproduct in order.Items)
-
-            //}
-            //List<DateTime> dates = new List<DateTime>();
-            //foreach (order o in nondispatchedorders)
-            //{
-            //    dates.add(o.orderdate);
-            //}
-            //datetime mindate = dates.min();
-            //ienumerable<order> query3 = from order in nondispatchedorders
-            //                            where order.orderdate == mindate
-            //                            select order;
-
-
-            //ienumerable<product> query = from prod in prodcatalogue.products
-            //                             where prod.nextrestock == mindate
-            //                             select prod;
-
+                }
+            }
+               
 
             WriteOrdersToFile();
         }
