@@ -21,11 +21,10 @@ namespace WarehouseEN1
         private OrderCatalogue orderCatalogue;      
         private List<Customer> Displaylist;
         //Customer customer;
-        public CustomerList(ProductCatalogue prodCatalogue,CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
+        public CustomerList(CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
         {
-           // this.ordCatalogue = ordCatalogue;
             this.custCatalogue = customerCatalogue;
-            this.prodCatalogue = prodCatalogue;
+            //this.prodCatalogue = prodCatalogue;
             this.orderCatalogue = orderCatalogue; 
             
             InitializeComponent();
@@ -53,6 +52,7 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
+                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
 
             }
 
@@ -90,13 +90,14 @@ namespace WarehouseEN1
         }
         private void GetTextBox()
         {
+
             try
             {
                 customerName = CustomerName.Text;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
             try
             {
@@ -105,7 +106,7 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
             try
             {
@@ -114,7 +115,7 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
         }
 
@@ -136,47 +137,55 @@ namespace WarehouseEN1
             custCatalogue.UpdateCustomer(custID, customerName, phone, email);
             
         }
-
+        /*more than a month old*/
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
-            GetTextBox();
-            CustomerDisplayListBox.Items.Clear();
-            try
-            {
-                Customer customer = custCatalogue.Customers.ElementAt(selectedCustomer);
+                   GetTextBox();
+                    // CustomerDisplayListBox.Items.Clear();
+                    try
+                   {
 
-              //  IEnumerable<Order> query = from ord in ordCatalogue.Orders
-                //                             where ord.Customer == customer
-                  //                            select ord;
-              /*  foreach (Order ord in query)
+                       Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
+                        int custID = cust.CustomerID;
+
+
+                //IEnumerable<Customer> query = from customer in custCatalogue.Customers
+                //                              where customer.CustomerID == cust.CustomerID
+                //                              select customer;
+                //foreach (Customer customer in query)
+                //{
+                //    CustomerDisplayListBox.Items.Add(customer);
+                //}
+                IEnumerable<Order> query = from ord in orderCatalogue.Orders
+                                           where ord.Customer == cust   //ord.Customer.CustomerID == cust.CustomerID
+                                           select ord;
+                foreach (Order ord in query)
                 {
-                    CustomerDisplayListBox.Items.Add(ord);
-                }*/
+                    CustomerDisplayListBox.Items.Add(cust);
+                }
             }
             catch (Exception ex)
             {
+                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
 
             }
-               
-          //  IEnumerable<order> query = from order in OrderCatalogue.Orders
-            //                           where Customer == selectedCustomer
-              //                            select customer;
-        //    foreach (Customer customer in query)
-        //    {
-        //        CustomerListBox.Items.Add(customer);
-        //    }
-        //}
-        //    catch (Exception ex)
-        //    {
 
-        //    }
+            //    IEnumerable<order> query = from order in OrderCatalogue.Orders
+            //                               where Customer == selectedCustomer
+            //                               select customer;
+            //    foreach (Customer customer in query)
+            //    {
+            //        CustomerListBox.Items.Add(customer);
+            //    }
+            //}
+            //    catch (Exception ex)
+            //    {
 
-    // var oldest = customer.Customer.OrderBy(b => b.Name).Take(10).SelectMany(b => b.Authors).Distinct();
+            //    }
 
-    // ShowInAuthors(authors);
-}
+        }
 
-        private void RecentOrdersButton_Click(object sender, EventArgs e)
+    private void RecentOrdersButton_Click(object sender, EventArgs e)
         {
 
         }

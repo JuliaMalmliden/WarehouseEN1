@@ -60,20 +60,23 @@ namespace WarehouseEN1
 
             foreach (Order order in Orders)
             {
-                var cid = order.Customer.CustomerID;
+                //  var cid = order.Customer.Name; //works with customer name, email, and phone. something wrong with id.
+                //  order.Customer = customerCatalogue.Customers.Single(c => c.Name == cid);
+
+                var cid = order.Customer.CustomerID;    //Name works
                 order.Customer = customerCatalogue.Customers.Single(c => c.CustomerID == cid);
 
                 foreach (OrderLine ol in order.Items)
                 {
                     var pid = ol.OrderedProduct.ProductID;
-                    ol.OrderedProduct = productCatalogue.Products.Single(p => p.ProductID == pid); 
+                    ol.OrderedProduct = productCatalogue.Products.Single(p => p.ProductID == pid);
                 }
 
             }
 
 
         }
-        public bool AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
+        public bool AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)//Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
         {
             currentOrderID++;
             try
@@ -87,7 +90,7 @@ namespace WarehouseEN1
                 //    }
                 //}
 
-
+                //customer
                 Order order = new Order(currentOrderID, customer, deliveryaddress, orderlist, date, paymentcompleted);
                 Orders.Add(order);
                 WriteOrdersToFile();
@@ -133,6 +136,13 @@ namespace WarehouseEN1
 
 
             WriteOrdersToFile();
+        }
+        public void DisplayPreviousOrers(Customer cust)
+        {
+            IEnumerable<Order> query = from ord in Orders
+                                       where ord.Customer.CustomerID == cust.CustomerID
+                                       select ord;
+
         }
 
     }

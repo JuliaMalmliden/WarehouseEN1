@@ -15,8 +15,10 @@ namespace WarehouseEN1
         private bool dispatched; 
         private List<OrderLine> items;
 
+
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
-        public Customer Customer { get {return customer; } set { customer = value; } }       
+        public Customer Customer { get {return customer; } set { customer = value; } }
+
         public DateTime OrderDate  { get { return orderDate; }  set { orderDate = value; } }
         public string DeliveryAddress { get { return deliveryAddress; } set { deliveryAddress = value; } }
         public bool PaymentCompleted { get { return paymentCompleted; } set { paymentCompleted = value; } }
@@ -27,10 +29,11 @@ namespace WarehouseEN1
         public Order() 
         { 
         }
-        public Order(int on, Customer c, string da, List<OrderLine> i, DateTime date, bool pc)
+        public Order(int on, Customer c, string da, List<OrderLine> i, DateTime date, bool pc)//Customer c, string da, List<OrderLine> i, DateTime date, bool pc)
         {
             OrderNumber = on;
-            Customer = c;
+            Customer = c;            
+           // CustID = custid; //so that we only save cutomer id
             OrderDate = date;
             deliveryAddress = da;      
             paymentCompleted = pc;
@@ -41,7 +44,8 @@ namespace WarehouseEN1
         }
         public override string ToString()
         {   
-            return "ID: " + OrderNumber + "     Name: " + Customer.Name +"     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
+            return "ID: " + OrderNumber + "     Name: " + Customer + "     Date order was placed: " + OrderDate + "    Deliveryaddress: " + DeliveryAddress+ "    Payment completed:" + paymentCompleted + "   Payment refunded:" + PaymentRefunded +"    Dispatched: " + Dispatched;
+       
         }
         public void RefundPayment()
         {
