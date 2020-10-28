@@ -23,7 +23,8 @@ namespace WarehouseEN1
         private Product prd;
         private int amount;
         private string address;
-        private Customer cust; 
+        private Customer cust;
+        private int cid;    //test
 
 
         public NewOrderForm(ProductCatalogue prodCatalogue, OrderCatalogue orderCatalogue, CustomerCatalogue customerCatalogue)
@@ -55,6 +56,7 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
             }
             try
@@ -68,6 +70,7 @@ namespace WarehouseEN1
             }
            catch(Exception ex)
             {
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
             }
 
@@ -103,7 +106,7 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
                 // MessageBox.Show("Did not manage to execute because of: "+ ex);
             }
 
@@ -148,6 +151,7 @@ namespace WarehouseEN1
             }
             catch(Exception ex)
             {
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
             }
         }
@@ -170,7 +174,7 @@ namespace WarehouseEN1
 
         private void CustomerPageN_CheckedChanged(object sender, EventArgs e)
         {
-            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
+            CustomerList CustomerList = new CustomerList(customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }

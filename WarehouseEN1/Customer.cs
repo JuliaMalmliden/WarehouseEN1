@@ -26,7 +26,7 @@ namespace WarehouseEN1
        }
         public override string ToString()
         {
-            return "ID: " + CustomerID + "  Name:  " + Name  + "  Phone number" + phoneN + "   Email: " + eMail;
+            return "ID: " + CustomerID + "  Name:  " + Name  + "  Phone number:  " + phoneN + "   Email: " + eMail;
 
         }
 

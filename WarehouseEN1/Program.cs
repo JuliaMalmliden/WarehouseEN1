@@ -15,9 +15,10 @@ namespace WarehouseEN1
         static void Main() //WEEEEYWEEEEYY
         {
             ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue(); 
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue); 
-            
+            CustomerCatalogue customerCatalogue = new CustomerCatalogue(); //orderCatalogue
+            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
+
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

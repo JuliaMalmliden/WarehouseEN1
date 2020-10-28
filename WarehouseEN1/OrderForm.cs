@@ -40,6 +40,7 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
             }
 
@@ -55,22 +56,41 @@ namespace WarehouseEN1
 
         private void DispatchedOrdersButton_Click(object sender, EventArgs e) 
         {
-            IEnumerable<Order> query = from order in orderCatalogue.Orders
+            try
+            {
+                IEnumerable<Order> query = from order in orderCatalogue.Orders
                                        where order.Dispatched == true select order;
-                                      foreach (Order order in query)
-                                      {
-                                            OrderDisplayList.Items.Add(order);
-                                      }
+               foreach (Order order in query)
+               {
+                     OrderDisplayList.Items.Add(order);
+               }
+            }
+            catch (Exception ex)
+            {
+
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
+            }
+       
         }
         private void NonDispatchedOrderButton_Click(object sender, EventArgs e)
         {
-            IEnumerable<Order> query = from order in orderCatalogue.Orders
-                                       where order.Dispatched == false
-                                       select order;
-            foreach (Order order in query)
+            try
             {
-                OrderDisplayList.Items.Add(order);
+                IEnumerable<Order> query = from order in orderCatalogue.Orders
+                                           where order.Dispatched == false
+                                           select order;
+                foreach (Order order in query)
+                {
+                    OrderDisplayList.Items.Add(order);
+                }
+
             }
+            catch (Exception ex)
+            {
+
+                throw new OrderExceptions("Did not manage to execute because of: ", ex);
+            }
+
         }
         private void PendingOrdersButton_Click(object sender, EventArgs e)
         {
@@ -93,7 +113,7 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();
             Customerform.Show();
             this.Hide();*/
-            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
+            CustomerList CustomerList = new CustomerList(customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }

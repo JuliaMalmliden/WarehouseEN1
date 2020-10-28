@@ -10,18 +10,26 @@ namespace WarehouseEN1
 {
     public class CustomerCatalogue
     {
+        public OrderCatalogue orderCatalogue;
+
         public delegate void ChangeHandler();
         public List<Customer> Customers { get; set; }
         private string filename;
         public event ChangeHandler CatalogueChanged;
         public int currentCustID;
+
         public CustomerCatalogue()
         {
+          //  this.orderCatalogue = orderCatalogue;
             filename = "Customer.JSON";
             ReadCustomersFromFile();
 
             CurrentCustomerID();
         }
+        //new 28/10 error in program /
+        //public CustomerCatalogue()
+        //{
+        //}
 
         /// <summary>
         /// Private function to call the event in order to avoid repeating the null check.
@@ -109,7 +117,7 @@ namespace WarehouseEN1
 
         }
 
-        public bool UpdateCustomer(int custID, string name, string email, string ph) //maybe split to own functions for each
+        public bool UpdateCustomer(int custID, string name, string ph, string email) //maybe split to own functions for each
         {
                 try
                 {
