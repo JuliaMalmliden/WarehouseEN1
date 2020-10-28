@@ -35,10 +35,10 @@ namespace WarehouseEN1
             InitializeComponent();
 
             prodCatalogue.CatalogueChanged += RefreshListboxContents;
-            RefreshListboxContents();
 
             Productlist = new List<Product>();
-            Cart = new List<OrderLine>();
+            Cart = new List<OrderLine>(); 
+            RefreshListboxContents();
         }
 
         private void RefreshListboxContents()
@@ -60,13 +60,21 @@ namespace WarehouseEN1
 
             }
             try
-            {
-                IEnumerable<OrderLine> query2 = from item in Cart
-                                                select item;
-                foreach (OrderLine item in query2)
+            {  
+                if(Cart.Count == 0)
                 {
-                    CartList.Items.Add(item.OrderedProduct.ProductName.ToString() + " (" + item.Count + " st) ");
+
                 }
+                else
+                {
+                    IEnumerable<OrderLine> query2 = from item in Cart
+                                                    select item;
+                    foreach (OrderLine item in query2)
+                    {
+                        CartList.Items.Add(item.OrderedProduct.ProductName.ToString() + " (" + item.Count + " st) ");
+                    }
+                }
+
             }
            catch(Exception ex)
             {
@@ -115,8 +123,6 @@ namespace WarehouseEN1
         {
             TotalCostLable.Text = (Convert.ToDouble(TotalCostLable.Text) + prd.ProductPrice* amount).ToString();
 
-            //var Total = Cart.Sum(); 
-            //TotalCostLable.Text = 
         }
    
         private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -130,7 +136,8 @@ namespace WarehouseEN1
         }
 
         private void PlaceOrderButton_Click(object sender, EventArgs e)
-        {  try
+        {
+            try
             {
                 int c = Convert.ToInt32(CostumerTextBox.Text);
                
@@ -147,7 +154,6 @@ namespace WarehouseEN1
                 orderCatalogue.AddOrder(cust, address, Cart, dateOfOrder, paymentCompleted);
                 MessageBox.Show("Order placed, thank you for buying your things at KJ´s!");
                 ClearAllFields(); 
-
             }
             catch(Exception ex)
             {
