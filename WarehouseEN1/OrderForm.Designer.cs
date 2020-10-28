@@ -47,14 +47,14 @@
             this.OrderList.ItemHeight = 20;
             this.OrderList.Location = new System.Drawing.Point(11, 38);
             this.OrderList.Name = "OrderList";
-            this.OrderList.Size = new System.Drawing.Size(736, 204);
+            this.OrderList.Size = new System.Drawing.Size(1092, 204);
             this.OrderList.TabIndex = 0;
             this.OrderList.SelectedIndexChanged += new System.EventHandler(this.OrderList_SelectedIndexChanged);
             // 
             // ProductPageRBTN
             // 
             this.ProductPageRBTN.AutoSize = true;
-            this.ProductPageRBTN.Location = new System.Drawing.Point(764, 38);
+            this.ProductPageRBTN.Location = new System.Drawing.Point(1109, 65);
             this.ProductPageRBTN.Name = "ProductPageRBTN";
             this.ProductPageRBTN.Size = new System.Drawing.Size(117, 24);
             this.ProductPageRBTN.TabIndex = 1;
@@ -66,7 +66,7 @@
             // CustomerPageORBTN
             // 
             this.CustomerPageORBTN.AutoSize = true;
-            this.CustomerPageORBTN.Location = new System.Drawing.Point(764, 79);
+            this.CustomerPageORBTN.Location = new System.Drawing.Point(1109, 104);
             this.CustomerPageORBTN.Name = "CustomerPageORBTN";
             this.CustomerPageORBTN.Size = new System.Drawing.Size(129, 24);
             this.CustomerPageORBTN.TabIndex = 2;
@@ -78,7 +78,7 @@
             // OrderPageLable
             // 
             this.OrderPageLable.AutoSize = true;
-            this.OrderPageLable.Location = new System.Drawing.Point(764, 121);
+            this.OrderPageLable.Location = new System.Drawing.Point(1109, 140);
             this.OrderPageLable.Name = "OrderPageLable";
             this.OrderPageLable.Size = new System.Drawing.Size(132, 20);
             this.OrderPageLable.TabIndex = 3;
@@ -87,7 +87,7 @@
             // MenuLable
             // 
             this.MenuLable.AutoSize = true;
-            this.MenuLable.Location = new System.Drawing.Point(764, 9);
+            this.MenuLable.Location = new System.Drawing.Point(1109, 38);
             this.MenuLable.Name = "MenuLable";
             this.MenuLable.Size = new System.Drawing.Size(82, 20);
             this.MenuLable.TabIndex = 4;
@@ -136,7 +136,7 @@
             // MakeNewOrderPage
             // 
             this.MakeNewOrderPage.AutoSize = true;
-            this.MakeNewOrderPage.Location = new System.Drawing.Point(764, 163);
+            this.MakeNewOrderPage.Location = new System.Drawing.Point(1109, 173);
             this.MakeNewOrderPage.Name = "MakeNewOrderPage";
             this.MakeNewOrderPage.Size = new System.Drawing.Size(142, 24);
             this.MakeNewOrderPage.TabIndex = 9;
@@ -159,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 516);
+            this.ClientSize = new System.Drawing.Size(1263, 516);
             this.Controls.Add(this.NonDispatchedOrderButton);
             this.Controls.Add(this.MakeNewOrderPage);
             this.Controls.Add(this.OrderDisplayList);

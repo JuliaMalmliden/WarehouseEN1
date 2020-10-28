@@ -113,7 +113,7 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();
             Customerform.Show();
             this.Hide();*/
-            CustomerList CustomerList = new CustomerList(prodCatalogue,customerCatalogue, orderCatalogue);
+            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }

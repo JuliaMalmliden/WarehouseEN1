@@ -137,19 +137,10 @@ namespace WarehouseEN1
 
         private void ProductEditButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                GetTextBox(); 
-                Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
-                int prdID = prd.ProductID; 
-                prodCatalogue.EditProduct(prdID, productName, productPrice, productStock, productRestock);
-            }
-            catch (Exception ex)
-            {
-
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-            }
-
+            GetTextBox(); 
+            Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
+            int prdID = prd.ProductID; 
+            prodCatalogue.EditProduct(prdID, productName, productPrice, productStock, productRestock); 
 
 
         }
@@ -196,7 +187,7 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
             Customerform.Show();
             this.Hide(); */
-            CustomerList CustomerList = new CustomerList(prodCatalogue,customerCatalogue, orderCatalogue); //only cust before
+            CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
 
