@@ -21,10 +21,10 @@ namespace WarehouseEN1
         private OrderCatalogue orderCatalogue;      
         private List<Customer> Displaylist;
         //Customer customer;
-        public CustomerList(CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
+        public CustomerList(ProductCatalogue prodCatalogue,CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
         {
             this.custCatalogue = customerCatalogue;
-            //this.prodCatalogue = prodCatalogue;
+            this.prodCatalogue = prodCatalogue;
             this.orderCatalogue = orderCatalogue; 
             
             InitializeComponent();
@@ -143,7 +143,7 @@ namespace WarehouseEN1
                    GetTextBox();
                     // CustomerDisplayListBox.Items.Clear();
                     try
-                   {
+                    {
 
                        Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
                         int custID = cust.CustomerID;
@@ -157,18 +157,18 @@ namespace WarehouseEN1
                 //    CustomerDisplayListBox.Items.Add(customer);
                 //}
                 IEnumerable<Order> query = from ord in orderCatalogue.Orders
-                                           where ord.Customer == cust   //ord.Customer.CustomerID == cust.CustomerID
+                                           where ord.Customer.CustomerID == cust.CustomerID   //ord.Customer.CustomerID == cust.CustomerID
                                            select ord;
-                foreach (Order ord in query)
-                {
-                    CustomerDisplayListBox.Items.Add(cust);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
+                        foreach (Order ord in query)
+                        {
+                            CustomerDisplayListBox.Items.Add(cust);
+                        }
+                    }
+                     catch (Exception ex)
+                    {
+                        throw new CustomerExceptions("Did not manage to execute because of: ", ex);
 
-            }
+                    }
 
             //    IEnumerable<order> query = from order in OrderCatalogue.Orders
             //                               where Customer == selectedCustomer
