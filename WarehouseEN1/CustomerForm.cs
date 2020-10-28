@@ -21,10 +21,10 @@ namespace WarehouseEN1
         private OrderCatalogue orderCatalogue;      
         private List<Customer> Displaylist;
         //Customer customer;
-        public CustomerList(CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
+        public CustomerList(ProductCatalogue prodCatalogue, CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
         {
             this.custCatalogue = customerCatalogue;
-            //this.prodCatalogue = prodCatalogue;
+            this.prodCatalogue = prodCatalogue;
             this.orderCatalogue = orderCatalogue; 
             
             InitializeComponent();
