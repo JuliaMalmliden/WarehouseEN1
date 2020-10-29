@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
+using System.Security.Policy;
 
 namespace WarehouseEN1
 {    /// <summary>
@@ -11,7 +13,8 @@ namespace WarehouseEN1
 
         private int orderNumber;
         private Customer customer;        
-        private DateTime orderDate; 
+        private DateTime orderDate;
+        private DateTime firstAvailableDate;
         private String deliveryAddress;
         private bool paymentCompleted;
         private bool paymentRefunded;
@@ -27,6 +30,24 @@ namespace WarehouseEN1
         public bool PaymentRefunded { get { return paymentRefunded; } set { paymentRefunded = value; } }
         public bool Dispatched { get { return dispatched; } set { dispatched = value; } }        
         public List<OrderLine> Items { get { return items; } set { items = value; } }
+        public DateTime FirstAvailableDate { get { return firstAvailableDate; } 
+            set {
+                DateTime dt = DateTime.Now; 
+                foreach(OrderLine ol in Items)
+                {
+                    if(ol.OrderedProduct.ProductStock == 0)
+                    {
+                        if (ol.OrderedProduct.NextRestock > dt)
+                        {
+                            dt = ol.OrderedProduct.NextRestock; 
+                        }
+                    }
+
+                }
+                
+                firstAvailableDate = dt; 
+            } 
+        }
 
         public Order()
         { 

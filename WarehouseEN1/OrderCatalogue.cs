@@ -12,7 +12,7 @@ namespace WarehouseEN1
     /// This class is a list of orders and orderfunctions.
     /// The ordercatalogue contain functions related to the order objects. 
     /// </summary>
-    public class OrderCatalogue
+    public class OrderCatalogue : IOrderCatalogue
     {
         public delegate void OrderChangeHandler();
         public CustomerCatalogue customerCatalogue;
