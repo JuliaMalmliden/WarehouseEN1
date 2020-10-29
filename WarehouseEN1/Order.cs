@@ -23,9 +23,6 @@ namespace WarehouseEN1
 
 
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
-        public Customer Customer { get {return customer; } set { customer = value; } }
-        public DateTime OrderDate  { get { return orderDate; }  set { orderDate = value; } }
-        public string DeliveryAddress { get { return deliveryAddress; } set { deliveryAddress = value; } }
         public bool PaymentCompleted { get { return paymentCompleted; } set { paymentCompleted = value; } }
         public bool PaymentRefunded { get { return paymentRefunded; } set { paymentRefunded = value; } }
         public bool Dispatched { get { return dispatched; } set { dispatched = value; } }        
@@ -42,13 +39,10 @@ namespace WarehouseEN1
                             dt = ol.OrderedProduct.NextRestock; 
                         }
                     }
-
-                }
-                
+                }                
                 firstAvailableDate = dt; 
             } 
         }
-
         public Order()
         { 
         }
@@ -64,6 +58,50 @@ namespace WarehouseEN1
             Items = i;
 
         }
+        public string DeliveryAddress 
+        { get { return deliveryAddress; } 
+            set {
+
+                    if (string.IsNullOrWhiteSpace(deliveryAddress))
+                    { 
+                        throw new OrderExceptions("Address cannot be null."); 
+                    }
+                    else
+                    {
+                        deliveryAddress = value;
+                    }                
+               }         
+        }
+        public Customer Customer 
+        { get { return customer; }
+            set {
+
+                if ((customer) == null)
+                {
+                    throw new OrderExceptions("Error in retrieving customer information.");
+                }
+                else
+                {
+                    customer = value;
+                }                
+            }         
+        }
+        public DateTime OrderDate 
+        { get { return orderDate; } 
+            set {
+                
+                if (orderDate <= DateTime.Now)
+                {
+                    throw new OrderExceptions("Date format of Customer.");
+                }
+                else
+                {
+                    orderDate = value;
+                }
+            }
+        }
+
+
         public override string ToString()
         {   
             return "ID:" + OrderNumber + " Name: " + Customer.Name + " Date order was placed: " + OrderDate + " Deliveryaddress: " + DeliveryAddress+ " Payment completed:" + paymentCompleted + " Payment refunded:" + PaymentRefunded +" Dispatched: " + Dispatched;

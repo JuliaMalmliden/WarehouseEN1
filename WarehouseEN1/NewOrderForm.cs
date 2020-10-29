@@ -57,14 +57,7 @@ namespace WarehouseEN1
                 {
                     ProductList.Items.Add(prod);
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
-            }
-            try
-            {  
                 if(Cart.Count == 0)
                 {
 
@@ -78,23 +71,35 @@ namespace WarehouseEN1
                         CartList.Items.Add(item.OrderedProduct.ProductName.ToString() + " (" + item.Count + " st) ");
                     }
                 }
-
             }
-           catch(Exception ex)
+            catch (OrderExceptions ex)
             {
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
-
+                MessageBox.Show(ex.Message);
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void ClearAllFields()
         {
-            CostumerTextBox.Text = ""; 
-            AddressTextBox.Text = "";
-            if (PayRadioButton.Checked)
+            try
             {
-                PayRadioButton.Checked = false;
+                CostumerTextBox.Text = "";
+                AddressTextBox.Text = "";
+                if (PayRadioButton.Checked)
+                {
+                    PayRadioButton.Checked = false;
+                }
             }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
             Cart.Clear();
             RefreshListboxContents();
         }
@@ -114,29 +119,42 @@ namespace WarehouseEN1
                 ProductAmountTextBox.Clear();
                 RefreshListboxContents(); 
             }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
-                // MessageBox.Show("Did not manage to execute because of: "+ ex);
+                MessageBox.Show(ex.Message);
             }
 
         }
         private void TotalCostLable_Click(object sender, EventArgs e)
         {
+            try
+            {
             TotalCostLable.Text = (Convert.ToDouble(TotalCostLable.Text) + prd.ProductPrice* amount).ToString();
+
+            }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
    
         private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-
             if (PayRadioButton.Checked == true) 
             {paymentCompleted = true; } 
             else 
             { paymentCompleted = false;}
 
         }
-
         private void PlaceOrderButton_Click(object sender, EventArgs e)
         {
             try
@@ -157,10 +175,13 @@ namespace WarehouseEN1
                 MessageBox.Show("Order placed, thank you for buying your things at KJ´s!");
                 ClearAllFields(); 
             }
-            catch(Exception ex)
+            catch (OrderExceptions ex)
             {
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
-
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -169,10 +190,6 @@ namespace WarehouseEN1
             Cart.Clear();
             RefreshListboxContents(); 
         }
-
-
-
-
         private void ProductPageN_CheckedChanged(object sender, EventArgs e)
         {
             ProductForm Productform = new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue);
@@ -193,8 +210,6 @@ namespace WarehouseEN1
             Orderfrom.Show();
             this.Hide();
         }
-
-
         private void CostumerTextBox_TextChanged(object sender, EventArgs e)
         {
 

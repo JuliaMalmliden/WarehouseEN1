@@ -112,7 +112,6 @@ namespace WarehouseEN1
                 }
 
             }
-
             RaiseCatalogueChanged();
             WriteOrdersToFile();
         }

@@ -12,5 +12,10 @@ namespace WarehouseEN1
         {
 
         }
-}
+        public OrderExceptions(string message)
+    : base(message)
+        {
+
+        }
+    }
 }

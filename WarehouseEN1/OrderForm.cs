@@ -43,18 +43,33 @@ namespace WarehouseEN1
                     OrderList.Items.Add(order);
                 }
             }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
-
+                MessageBox.Show(ex.Message);
             }
 
         }
 
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
-            orderCatalogue.BatchProcessOrders();
-            RefreshListboxContents();
+            try
+            {
+                orderCatalogue.BatchProcessOrders();
+                RefreshListboxContents();
+            }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
             // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
             //Reducera stock anpassat efter Order. 
@@ -98,12 +113,15 @@ namespace WarehouseEN1
                      OrderDisplayList.Items.Add(order);
                }
             }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
+                MessageBox.Show(ex.Message);
             }
-       
+
         }
         /*Pending if no payment, not enough stock then dispatch will be false, othewise it's dispatched */
         private void PendingOrdersButton_Click(object sender, EventArgs e)
@@ -140,10 +158,13 @@ namespace WarehouseEN1
 
                 RefreshListboxContents();
             }
+            catch (OrderExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
+                MessageBox.Show(ex.Message);
             }
             //OrderDisplaylistan ska visa  "the earliest time the order can be dispatched"  --> FirstAvailable date
             //For Pending orders, display the list of customers and their contact information, along with the number of the pending order.
