@@ -145,11 +145,7 @@ namespace WarehouseEN1
                     MessageBox.Show("Invalid input, cannot be null or empty");
                 }
             }
-            catch (CustomerExceptions ex)
-            {
-                //throw new CustomerExceptions("wrong", ex);
-                MessageBox.Show(ex.Message);
-            }
+          
             catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -162,7 +158,11 @@ namespace WarehouseEN1
 
                 //throw new ArgumentException("Invalid arguments given", ex);
             }
-
+            catch (CustomerExceptions ex)
+            {
+                //throw new CustomerExceptions("wrong", ex);
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -178,11 +178,7 @@ namespace WarehouseEN1
                 custCatalogue.AddCustomer(customerName, phone, email);
 
             }
-            catch (CustomerExceptions ex)
-            {
-                //throw new CustomerExceptions("wrong", ex);
-                MessageBox.Show(ex.Message);
-            }
+
             catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -194,6 +190,11 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
 
                 //throw new ArgumentException("Invalid arguments given", ex);
+            }
+            catch (CustomerExceptions ex)
+            {
+                //throw new CustomerExceptions("wrong", ex);
+                MessageBox.Show(ex.Message);
             }
 
             catch (Exception ex)
