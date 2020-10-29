@@ -139,11 +139,11 @@ namespace WarehouseEN1
                 phone = CustomerNumber.Text;
                 email = CustomerEmail.Text;
 
-                if (string.IsNullOrEmpty(customerName) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
-                {
-                    //throw new ArgumentNullException();
-                    MessageBox.Show("Invalid input, cannot be null or empty");
-                }
+                //if (string.IsNullOrEmpty(customerName) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
+                //{
+                //    //throw new ArgumentNullException();
+                //    MessageBox.Show("Invalid input, cannot be null or empty");
+                //}
             }
           
             catch (ArgumentNullException ex)
@@ -178,7 +178,10 @@ namespace WarehouseEN1
                 custCatalogue.AddCustomer(customerName, phone, email);
 
             }
-
+            catch (CustomerExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -191,11 +194,11 @@ namespace WarehouseEN1
 
                 //throw new ArgumentException("Invalid arguments given", ex);
             }
-            catch (CustomerExceptions ex)
-            {
+            //catch (CustomerExceptions ex)
+            //{
                 //throw new CustomerExceptions("wrong", ex);
-                MessageBox.Show(ex.Message);
-            }
+              //  MessageBox.Show(ex.Message);
+            //}
 
             catch (Exception ex)
             {

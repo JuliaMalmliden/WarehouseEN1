@@ -36,7 +36,9 @@ namespace WarehouseEN1
             set
             {
                 if (value == null || value == "")
-                { }
+                {
+                    throw new CustomerExceptions("Name cannot be null or empty");
+                }
                 else
                     name = value;
             }
