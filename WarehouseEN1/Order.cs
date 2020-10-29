@@ -92,7 +92,7 @@ namespace WarehouseEN1
                 
                 if (orderDate <= DateTime.Now)
                 {
-                    throw new OrderExceptions("Date format of Customer.");
+                    throw new OrderExceptions("Date format incorrect, cannot be earlier than of current date.");
                 }
                 else
                 {

@@ -55,10 +55,13 @@ namespace WarehouseEN1
                     ProductList.Items.Add(prod);
                 }
             }
-            catch(Exception ex )
+            catch (ProductExceptions ex)
             {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -67,28 +70,41 @@ namespace WarehouseEN1
 
             selectedProduct = ProductList.SelectedIndex;
             Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
+            try
+            {
+                ProdNametextBox.Text = prd.ProductName;
+                 ProductPricetextbox.Text = prd.ProductPrice.ToString();
+                  ProductStocktextBox.Text = prd.ProductStock.ToString();     // have data in type int. prd.ProductStock.ToShortString(); 
+                  ProNextRestocktextBox.Text = prd.NextRestock.ToString();    // Have data in type DateTime  
+            }
+            catch (ProductExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
-            ProdNametextBox.Text = prd.ProductName;
-            ProductPricetextbox.Text = prd.ProductPrice.ToString();
-            ProductStocktextBox.Text = prd.ProductStock.ToString();     // have data in type int. prd.ProductStock.ToShortString(); 
-            ProNextRestocktextBox.Text = prd.NextRestock.ToString();    // Have data in type DateTime  
         }
 
         private void GetTextBox()
         {
             try
-            {
-                
+            {                
                 productName = ProdNametextBox.Text;
                 productPrice = Convert.ToDouble(ProductPricetextbox.Text);
                 productStock = Convert.ToInt32(ProductStocktextBox.Text);
                 productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
                 
             }
+            catch (ProductExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-               // throw new ProductExceptions("Did not manage to execute because of: ", ex);
-                MessageBox.Show("Did not manage to execute because of: " + ex);
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -99,12 +115,14 @@ namespace WarehouseEN1
             {
                 prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock);
             }
+            catch (ProductExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-
+                MessageBox.Show(ex.Message);
             }
-
         }
 
         private void ProductEditButton_Click(object sender, EventArgs e)
@@ -121,13 +139,23 @@ namespace WarehouseEN1
         {   
             RefreshListboxContents();
             Displaylist.Clear();
-
-            IEnumerable<Product> query = from prod in prodCatalogue.Products
-                                         where prod.ProductStock == 0
-                                         select prod;
-            foreach (Product prod in query)
+            try
             {
-                ProductDisplayList.Items.Add(prod);
+                    IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                                 where prod.ProductStock == 0
+                                                 select prod;
+                    foreach (Product prod in query)
+                    {
+                        ProductDisplayList.Items.Add(prod);
+                    }
+            }
+            catch (ProductExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
  
         }
@@ -137,21 +165,32 @@ namespace WarehouseEN1
             RefreshListboxContents();
             Displaylist.Clear();
 
-            List<DateTime> Restockdates = new List<DateTime>(); 
-
-            foreach (Product p in prodCatalogue.Products)
+            try
             {
-                Restockdates.Add(p.NextRestock); 
-            }
-            DateTime minDate = Restockdates.Min();
+                    List<DateTime> Restockdates = new List<DateTime>(); 
 
-            IEnumerable<Product> query = from prod in prodCatalogue.Products
-                                         where prod.NextRestock == minDate
-                                         select prod;
-            foreach (Product prod in query)
-            {
-                ProductDisplayList.Items.Add(prod);
+                    foreach (Product p in prodCatalogue.Products)
+                    {
+                        Restockdates.Add(p.NextRestock); 
+                    }
+                    DateTime minDate = Restockdates.Min();
+
+                    IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                                 where prod.NextRestock == minDate
+                                                 select prod;
+                    foreach (Product prod in query)
+                    {
+                        ProductDisplayList.Items.Add(prod);
+                    }
             }
+            catch (ProductExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }           
         }
 
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
@@ -159,6 +198,7 @@ namespace WarehouseEN1
             /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
             Customerform.Show();
             this.Hide(); */
+
             CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
