@@ -107,21 +107,22 @@ namespace WarehouseEN1
             OrderDisplayList.Items.Clear();
             try
             {
-                IEnumerable<Order> query = (from order in orderCatalogue.Orders
-                                            where order.Dispatched == false
-                                            select order);
-                foreach (Order order in query)
+                var orders = orderCatalogue.Orders.Where(o => !o.Dispatched && o.PaymentCompleted);
+
+                foreach (Order order in orders)
                 {
-                    var numPending= query.Count();
-                    OrderDisplayList.Items.Add(order.Customer);
-                    OrderDisplayList.Items.Add(numPending);
+                    var customerinfo = order.Customer;  //need to show cutomer info
+                    var orderid = order.OrderNumber;
 
+                    foreach (OrderLine orderline in order.Items)
+                    {
+                        var nextAvilabelDate = orderline.OrderedProduct.FirstAvailableDate;
 
-                    // OrderDisplayList.Items.Add(order.OrderNumber);  //testa denna visar 1
-                    // OrderDisplayList.Items.Add(order.);
-
+                        //var product = productCatalogue.Products.Single(p => p.ProductID == pid);
+                    }
 
                 }
+                RefreshListboxContents();
             }
             catch (Exception ex)
             {

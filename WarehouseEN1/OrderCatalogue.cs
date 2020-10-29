@@ -112,6 +112,7 @@ namespace WarehouseEN1
             RaiseCatalogueChanged();
             WriteOrdersToFile();
         }
+  
         public void DisplayPreviousOrers(Customer cust)
         {
             IEnumerable<Order> query = from ord in Orders
