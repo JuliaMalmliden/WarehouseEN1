@@ -23,7 +23,7 @@ namespace WarehouseEN1
 
         Customer() { }
 
-        public Customer(int id, string name, string em, string pn)
+        public Customer(int id, string name, string pn, string em)
         {
             CustomerID = id;
             Name = name;
@@ -37,18 +37,20 @@ namespace WarehouseEN1
             {
                 if (value == null || value == "")
                 {
-                    throw new CustomerExceptions("Name cannot be null or empty");
+                   throw new CustomerExceptions("Name cannot be null or empty");
                 }
                 else
                     name = value;
             }
         }
+
+
         public string EMail
         {
             get { return eMail; }
-            set 
+            set
             {
-                if (value!=null)
+                if (value != null)
                 {
                     for (int i = 0; i < value.Length; i++)
                     {
@@ -58,8 +60,10 @@ namespace WarehouseEN1
                         }
                     }
                 }
-                if (count!= 2)
-                { }
+                if (count !=2 || value == " ")
+                {
+                    throw new CustomerExceptions("Invalid email, please try again.");
+                }
                 else
                     eMail = value;
 
@@ -71,7 +75,9 @@ namespace WarehouseEN1
             set
             {
                 if (value == null || value == " " || value.Length <10)
-                { }
+                {
+                    throw new CustomerExceptions("Invalid phone number.");
+                }
                 else
                     phoneN = value;
             }
