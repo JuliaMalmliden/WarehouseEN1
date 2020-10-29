@@ -8,6 +8,11 @@ namespace WarehouseEN1
             :base(message, innerException)
         {
 
-        }        
+        }
+        public ProductExceptions(string message)
+            : base(message)
+        {
+
+        }
     }
 }
