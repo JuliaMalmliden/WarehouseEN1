@@ -28,7 +28,9 @@ namespace WarehouseEN1
             get { return productName; } 
             set 
             { if(value == null || value == "") 
-                { } 
+                {
+                    throw new ProductExceptions("Product name cannot be null or empty.");
+                } 
                 productName = value; 
             } 
         }
@@ -36,8 +38,9 @@ namespace WarehouseEN1
         { 
             get { return productPrice; } 
             set 
-            { if (value == null)
+            { if (productPrice == null || productPrice <= 0 )
                 {
+                    throw new ProductExceptions("Product price cannot be negative or 0.");
 
                 }
                 productPrice = value; 
@@ -48,9 +51,9 @@ namespace WarehouseEN1
             get { return productStock; } 
             set 
             {
-                if (value == null)
+                if (productStock == null)
                 {
-
+                    throw new ProductExceptions("Product Stock cannnot be empty");
                 }
                 productStock = value; 
             } 
@@ -59,21 +62,45 @@ namespace WarehouseEN1
         { 
             get { return nextRestock; } 
             set 
-            { nextRestock = value; } 
+            {
+                if (firstAvailableDate <= DateTime.Now)
+                {
+                    throw new OrderExceptions("Date format incorrect, cannot be earlier than of current date.");
+                }
+                else
+                {
+                    if (productStock == 0)
+                    {
+                        firstAvailableDate = nextRestock;
+                    }
+                    else
+                    {
+                        firstAvailableDate = DateTime.Now;
+                    }
+                }
+                nextRestock = value; } 
         }
         public DateTime FirstAvailableDate
         {
             get { return firstAvailableDate; }
             set
             {
-                if (productStock == 0)
+                if (firstAvailableDate <= DateTime.Now)
                 {
-                    firstAvailableDate = nextRestock;
+                    throw new OrderExceptions("Date format incorrect, cannot be earlier than of current date.");
                 }
-                else 
+                else
                 {
-                    firstAvailableDate = DateTime.Now; 
+                    if (productStock == 0)
+                    {
+                        firstAvailableDate = nextRestock;
+                    }
+                    else
+                    {
+                        firstAvailableDate = DateTime.Now;
+                    }
                 }
+                firstAvailableDate = value;
             }
         }
         public Product()
