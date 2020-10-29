@@ -21,7 +21,6 @@ namespace WarehouseEN1
 
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
         public Customer Customer { get {return customer; } set { customer = value; } }
-
         public DateTime OrderDate  { get { return orderDate; }  set { orderDate = value; } }
         public string DeliveryAddress { get { return deliveryAddress; } set { deliveryAddress = value; } }
         public bool PaymentCompleted { get { return paymentCompleted; } set { paymentCompleted = value; } }
