@@ -70,31 +70,6 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
             }
 
-
-            // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
-            //Reducera stock anpassat efter Order. 
-            // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true.
-
-            //OrderDisplayList.Items.Clear();
-            //try
-            //{
-            //    IEnumerable<Order> query = from order in orderCatalogue.Orders
-            //                               where order.Dispatched == true
-            //                               orderby order.OrderDate descending
-            //                               //where order in orderLines  //hur ska få fram orderlines och kolla stock?
-            //                               select order;
-            //    foreach (Order order in query)
-            //    {
-            //        OrderDisplayList.Items.Add(order);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw new OrderExceptions("Did not manage to execute because of: ", ex);
-            //}
-
-
         }
 
         private void DispatchedOrdersButton_Click(object sender, EventArgs e) 
@@ -123,13 +98,12 @@ namespace WarehouseEN1
             }
 
         }
-        /*Pending if no payment, not enough stock then dispatch will be false, othewise it's dispatched */
+
         private void PendingOrdersButton_Click(object sender, EventArgs e)
         {
             OrderDisplayList.Items.Clear();
             try
             {
-                //var orders = orderCatalogue.Orders.Where(o => !o.Dispatched && o.PaymentCompleted);
 
                 IEnumerable<Order> orders = (from order in orderCatalogue.Orders
                                             where order.Dispatched == false
@@ -139,22 +113,7 @@ namespace WarehouseEN1
                 {
                     OrderDisplayList.Items.Add(" OrderID: " + order.OrderNumber + " Customer information: " + order.Customer.EMail + ", " + order.Customer.PhoneN + " Order First Available: " + order.FirstAvailableDate);
                 }
-                //foreach (Order order in orders)
-                //{
-                //    var customerinfo = order.Customer;  //need to show cutomer info
-                //    var orderid = order.OrderNumber;
 
-                //    foreach (OrderLine orderline in order.Items)
-                //    {
-                //        var nextAvilabelDate = orderline.OrderedProduct.FirstAvailableDate;
-                //       // OrderDisplayList.Items.Add(order);
-
-
-                //        //var product = productCatalogue.Products.Single(p => p.ProductID == pid);
-                //    }
-
-
-                //}
 
                 RefreshListboxContents();
             }
