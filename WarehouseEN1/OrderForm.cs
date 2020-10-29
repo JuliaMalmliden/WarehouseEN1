@@ -111,24 +111,33 @@ namespace WarehouseEN1
             OrderDisplayList.Items.Clear();
             try
             {
-                var orders = orderCatalogue.Orders.Where(o => !o.Dispatched && o.PaymentCompleted);
+                //var orders = orderCatalogue.Orders.Where(o => !o.Dispatched && o.PaymentCompleted);
+
+                IEnumerable<Order> orders = (from order in orderCatalogue.Orders
+                                            where order.Dispatched == false
+                                            select order);
 
                 foreach (Order order in orders)
                 {
-                    var customerinfo = order.Customer;  //need to show cutomer info
-                    var orderid = order.OrderNumber;
-
-                    foreach (OrderLine orderline in order.Items)
-                    {
-                        var nextAvilabelDate = orderline.OrderedProduct.FirstAvailableDate;
-                       // OrderDisplayList.Items.Add(order);
-
-
-                        //var product = productCatalogue.Products.Single(p => p.ProductID == pid);
-                    }
-
-
+                    OrderDisplayList.Items.Add(" OrderID: " + order.OrderNumber + " Customer information: " + order.Customer.EMail + ", " + order.Customer.PhoneN + " Order First Available: " + order.FirstAvailableDate);
                 }
+                //foreach (Order order in orders)
+                //{
+                //    var customerinfo = order.Customer;  //need to show cutomer info
+                //    var orderid = order.OrderNumber;
+
+                //    foreach (OrderLine orderline in order.Items)
+                //    {
+                //        var nextAvilabelDate = orderline.OrderedProduct.FirstAvailableDate;
+                //       // OrderDisplayList.Items.Add(order);
+
+
+                //        //var product = productCatalogue.Products.Single(p => p.ProductID == pid);
+                //    }
+
+
+                //}
+
                 RefreshListboxContents();
             }
             catch (Exception ex)

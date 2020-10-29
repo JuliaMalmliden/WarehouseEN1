@@ -16,10 +16,10 @@ namespace WarehouseEN1
     {
         public OrderCatalogue orderCatalogue;
 
-        public delegate void ChangeHandler();
+        public delegate void CustomerChangeHandler();
         public List<Customer> Customers { get; set; }
         private string filename;
-        public event ChangeHandler CatalogueChanged;
+        public event CustomerChangeHandler CatalogueChanged;
         public int currentCustID;
 
         public CustomerCatalogue()
