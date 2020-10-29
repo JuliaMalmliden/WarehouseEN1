@@ -7,7 +7,7 @@
     },
     "additionalProbingPaths": [
       "C:\\Users\\julia\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\katar\\.nuget\\packages",
+      "C:\\Users\\julia\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "configProperties": {

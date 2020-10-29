@@ -29,7 +29,7 @@ namespace WarehouseEN1
             CurrentProductID(); 
         }
         /// <summary>
-        /// This method keeps the catalogue up to date.
+        /// This method check for null and calls the event.
         /// </summary>
         private void RaiseCatalogueChanged() 
         {

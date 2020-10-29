@@ -30,6 +30,9 @@ namespace WarehouseEN1
             EMail = em;
             PhoneN = pn;
         }
+        /// <summary>
+        /// This method ¨validate the name. 
+        /// </summary>
         public string Name
         {
             get { return name; }
@@ -43,8 +46,9 @@ namespace WarehouseEN1
                     name = value;
             }
         }
-
-
+        /// <summary>
+        /// This method validate the email. 
+        /// </summary>
         public string EMail
         {
             get { return eMail; }
@@ -69,6 +73,9 @@ namespace WarehouseEN1
 
             }
         }
+        /// <summary>
+        /// This method validate the phonenumber. 
+        /// </summary>
         public string PhoneN
         {
             get { return phoneN; }
@@ -82,7 +89,9 @@ namespace WarehouseEN1
                     phoneN = value;
             }
         }
-        
+        /// <summary>
+        /// This method converts the single object to a string. 
+        /// </summary>
         public override string ToString()
         {
             return "ID: " + CustomerID + "  Name:  " + Name  + "  Phone number:  " + phoneN + "   Email: " + eMail;
