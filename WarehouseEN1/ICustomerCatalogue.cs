@@ -4,6 +4,9 @@ using System.Text;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This interface gives you a picture of all the public properties of the CustomerCatalogue
+    /// </summary>
     public delegate void CustomerChangeHandler();
     interface ICustomerCatalogue
     {

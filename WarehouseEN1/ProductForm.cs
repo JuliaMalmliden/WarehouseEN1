@@ -42,6 +42,9 @@ namespace WarehouseEN1
             
         }
 
+        /// <summary>
+        /// This method writes the productlist to the list visual to the user. 
+        /// </summary>
         private void RefreshListboxContents()
         {
             ProductDisplayList.Items.Clear(); 
@@ -55,59 +58,50 @@ namespace WarehouseEN1
                     ProductList.Items.Add(prod);
                 }
             }
-            catch (ProductExceptions ex)
+            catch(Exception ex )
             {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+
             }
         }
-
+        /// <summary>
+        /// This method checks for what index is selected in the list of products.
+        /// It also prints the properties of the selected item in the textboxes. 
+        /// </summary>
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             selectedProduct = ProductList.SelectedIndex;
             Product prd = prodCatalogue.Products.ElementAt(selectedProduct);
-            try
-            {
-                ProdNametextBox.Text = prd.ProductName;
-                 ProductPricetextbox.Text = prd.ProductPrice.ToString();
-                  ProductStocktextBox.Text = prd.ProductStock.ToString();     // have data in type int. prd.ProductStock.ToShortString(); 
-                  ProNextRestocktextBox.Text = prd.NextRestock.ToString();    // Have data in type DateTime  
-            }
-            catch (ProductExceptions ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
             
+            ProdNametextBox.Text = prd.ProductName;
+            ProductPricetextbox.Text = prd.ProductPrice.ToString();
+            ProductStocktextBox.Text = prd.ProductStock.ToString();     
+            ProNextRestocktextBox.Text = prd.NextRestock.ToString();    
         }
-
+        /// <summary>
+        /// This method retrieves the information from the textboxes.
+        /// </summary>
         private void GetTextBox()
         {
             try
-            {                
+            {
                 productName = ProdNametextBox.Text;
                 productPrice = Convert.ToDouble(ProductPricetextbox.Text);
                 productStock = Convert.ToInt32(ProductStocktextBox.Text);
                 productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
                 
             }
-            catch (ProductExceptions ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                MessageBox.Show("Did not manage to execute because of: " + ex);
             }
 
         }
+        /// <summary>
+        /// This method adds a newly created product.
+        /// </summary>
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
@@ -115,16 +109,15 @@ namespace WarehouseEN1
             {
                 prodCatalogue.AddProduct(productName, productPrice, productStock, productRestock);
             }
-            catch (ProductExceptions ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new ProductExceptions("Did not manage to execute because of: ", ex);
+
             }
         }
-
+        /// <summary>
+        /// This method saves the changes made to an previously added product.
+        /// </summary>
         private void ProductEditButton_Click(object sender, EventArgs e)
         {
             GetTextBox(); 
@@ -134,83 +127,69 @@ namespace WarehouseEN1
 
 
         }
-
+        /// <summary>
+        /// This method display the products that are out of stock.
+        /// </summary>
         private void OutOfStockButton_Click(object sender, EventArgs e)
         {   
             RefreshListboxContents();
             Displaylist.Clear();
-            try
+
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         where prod.ProductStock == 0
+                                         select prod;
+            foreach (Product prod in query)
             {
-                    IEnumerable<Product> query = from prod in prodCatalogue.Products
-                                                 where prod.ProductStock == 0
-                                                 select prod;
-                    foreach (Product prod in query)
-                    {
-                        ProductDisplayList.Items.Add(prod);
-                    }
-            }
-            catch (ProductExceptions ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                ProductDisplayList.Items.Add(prod);
             }
  
         }
-
+        /// <summary>
+        /// This method Display the product that are to be re-stocked first out of the products. 
+        /// </summary>
         private void NextRestockButton_Click(object sender, EventArgs e)
         {
             RefreshListboxContents();
             Displaylist.Clear();
 
-            try
-            {
-                    List<DateTime> Restockdates = new List<DateTime>(); 
+            List<DateTime> Restockdates = new List<DateTime>(); 
 
-                    foreach (Product p in prodCatalogue.Products)
-                    {
-                        Restockdates.Add(p.NextRestock); 
-                    }
-                    DateTime minDate = Restockdates.Min();
+            foreach (Product p in prodCatalogue.Products)
+            {
+                Restockdates.Add(p.NextRestock); 
+            }
+            DateTime minDate = Restockdates.Min();
 
-                    IEnumerable<Product> query = from prod in prodCatalogue.Products
-                                                 where prod.NextRestock == minDate
-                                                 select prod;
-                    foreach (Product prod in query)
-                    {
-                        ProductDisplayList.Items.Add(prod);
-                    }
-            }
-            catch (ProductExceptions ex)
+            IEnumerable<Product> query = from prod in prodCatalogue.Products
+                                         where prod.NextRestock == minDate
+                                         select prod;
+            foreach (Product prod in query)
             {
-                MessageBox.Show(ex.Message);
+                ProductDisplayList.Items.Add(prod);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }           
         }
-
+        /// <summary>
+        /// This method takes the user to the Customerform.
+        /// </summary>
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
-            /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
-            Customerform.Show();
-            this.Hide(); */
-
             CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
 
         }
-
+        /// <summary>
+        /// This method takes the user to the Orderform.
+        /// </summary>
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
         {
             OrderForm Orderfrom = new OrderForm(prodCatalogue, customerCatalogue, orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
+        /// <summary>
+        /// This method takes the user to the NewOrderform.
+        /// </summary>
         private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
         {
 

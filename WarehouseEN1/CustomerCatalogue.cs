@@ -36,7 +36,7 @@ namespace WarehouseEN1
         //}
 
         /// <summary>
-        /// Private function to call the event in order to avoid repeating the null check.
+        /// this methos keeps track of the current customerID.
         /// </summary>
         public void CurrentCustomerID()
         {
@@ -49,17 +49,25 @@ namespace WarehouseEN1
                 currentCustID = Customers.Count;
             }
         }
+         /// <summary>
+        /// This method check for null and calls the event. 
+        /// </summary>
         private void RaiseCatalogueChanged()
         {
             if (CatalogueChanged != null)
                 CatalogueChanged();
         }
-
+        /// <summary>
+        ///  This method writes down the Customerlist to a JSON-file, and uses the file as the programs database for the customerinformation.
+        /// </summary>
         private void WriteCustomersToFile()
         {
             string contents = JsonSerializer.Serialize(Customers);
             File.WriteAllText(filename, contents);
         }
+        /// <summary>
+        /// This method extract the customerlist from the JASON-file, and splits the list into objects of customer. 
+        /// </summary>
         private void ReadCustomersFromFile()
         {
 
@@ -70,7 +78,9 @@ namespace WarehouseEN1
             }
             else Customers = new List<Customer>();
         }
-
+        /// <summary>
+        /// This method recieves the information it needs to create an object of sort customer and saves it to the customerlist, it also saves it to the "database". 
+        /// </summary>
         public void AddCustomer(string name, string phone,string email)
         {
             currentCustID++;
@@ -88,33 +98,9 @@ namespace WarehouseEN1
                     return obj;
             return null;
         }
-   //     Customer GetCustomerbyID(int id)		//DONT NEED THIS
-   //     {
-   //         foreach (Customer obj in Customers)
-   //             if (obj.CustomerID == id)
-   //             {
-   //                 return obj;
-   //             }
-
-   //         return null; 
-   //     }
-
-   //     public bool RemoveCustomerID(int custID)
-   //     {
-   //         if (GetCustomerbyID(custID) != null)
-   //         {
-   //             Customer obj = GetCustomerbyID(custID);
-   //             Customers.Remove(obj);
-   //             WriteCustomersToFile();
-   //             return true;
-   //         }
-			//else
-   //         {
-   //             return false;
-   //         }
-
-   //     }
-
+        /// <summary>
+        /// This method recieves new customerinformation and finds the matching customerobject based on ID and overrides the old information in the list and the database.
+        /// </summary>
         public void UpdateCustomer(int custID, string name, string ph, string email)
         {
 

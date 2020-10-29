@@ -103,8 +103,6 @@ namespace WarehouseEN1
                 firstAvailableDate = value;
             }
         }
-
-
         public Product()
         {
 
@@ -118,6 +116,9 @@ namespace WarehouseEN1
             NextRestock = ns; 
 
         }
+        /// <summary>
+        /// This method converts the single object to a string. 
+        /// </summary>
         public override string ToString()
         {   
             return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ NextRestock;

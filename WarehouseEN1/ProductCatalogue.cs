@@ -28,13 +28,17 @@ namespace WarehouseEN1
 
             CurrentProductID(); 
         }
-
-        private void RaiseCatalogueChanged() //to check if a change was made and if so update the catalogue
+        /// <summary>
+        /// This method check for null and calls the event.
+        /// </summary>
+        private void RaiseCatalogueChanged() 
         {
             if (CatalogueChanged != null)
                 CatalogueChanged();
         }
-
+        /// <summary>
+        /// This method keeps track of the productID.
+        /// </summary>
         public void CurrentProductID()
         {
             if (Products.Count == 0)
@@ -46,13 +50,17 @@ namespace WarehouseEN1
                 currentProdID = Products.Count; 
             }
         }
-
-
+        /// <summary>
+        /// This method writes down the productlist to a JSON-file, and uses the file as the programs database for the productinformation.
+        /// </summary>
         private void WriteProductsToFile()
         {
             string contents = JsonSerializer.Serialize(Products);
             File.WriteAllText(filename, contents);
         }
+        /// <summary>
+        /// This method extract the productlist from the JASON-file, and splits the list into products. 
+        /// </summary>
         private void ReadProductsFromFile()
         {
             if (File.Exists(filename))
@@ -62,9 +70,11 @@ namespace WarehouseEN1
             }
             else Products = new List<Product>();
         }
-
-       public void AddProduct(String productName, double productPrice, int productStock, DateTime productRestock) //string productRestock)
-       {
+        /// <summary>
+        /// This method recieves the information it needs to create an object of sort product and saves it to the Productlist, it also saves it to the "database". 
+        /// </summary>
+        public void AddProduct(String productName, double productPrice, int productStock, DateTime productRestock) //string productRestock)
+        {
             currentProdID++;
             
                 Product prod = new Product(currentProdID, productName, productPrice, productStock, productRestock); 
@@ -72,8 +82,10 @@ namespace WarehouseEN1
                 WriteProductsToFile();
                 RaiseCatalogueChanged();
 
-       }
-
+        }
+        /// <summary>
+        /// This method recieves the new productinformation and finds the matching object based on ID and overrides the old information in the list and the database.
+        /// </summary>
         public void EditProduct(int pID, String productName, double productPrice, int productStock, DateTime productRestock)
         {
                Product product = Products.Single(p => p.ProductID == pID);

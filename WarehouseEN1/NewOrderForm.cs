@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace WarehouseEN1
 {
@@ -27,9 +28,7 @@ namespace WarehouseEN1
         private Product prd;
         private int amount;
         private string address;
-        private Customer cust;
-        private int cid;    //test
-
+        private Customer cust; 
 
         public NewOrderForm(ProductCatalogue prodCatalogue, OrderCatalogue orderCatalogue, CustomerCatalogue customerCatalogue)
         {
@@ -44,7 +43,9 @@ namespace WarehouseEN1
             Cart = new List<OrderLine>(); 
             RefreshListboxContents();
         }
-
+        /// <summary>
+        /// This method writes the productlist and the content of the cart to the lists visual to the user. 
+        /// </summary>
         private void RefreshListboxContents()
         {
             ProductList.Items.Clear();
@@ -81,6 +82,9 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// This method clear all fields. 
+        /// </summary>
         private void ClearAllFields()
         {
             try
@@ -103,11 +107,17 @@ namespace WarehouseEN1
             Cart.Clear();
             RefreshListboxContents();
         }
+        /// <summary>
+        /// This method checks for what index is selected in the list of products.
+        /// </summary>
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedProduct = ProductList.SelectedIndex;
         }
-
+        /// <summary>
+        /// This method checks for what index is selected in the list of products and what amount of the product is typed in.
+        /// The product is then added to the cartlist and displayed in the cartlistbox.
+        /// </summary>
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
             try
@@ -129,6 +139,9 @@ namespace WarehouseEN1
             }
 
         }
+        /// <summary>
+        /// This method display the total cost of the chosen products
+        /// </summary>
         private void TotalCostLable_Click(object sender, EventArgs e)
         {
             try
@@ -146,15 +159,13 @@ namespace WarehouseEN1
             }
 
         }
-   
         private void PayRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (PayRadioButton.Checked == true) 
-            {paymentCompleted = true; } 
-            else 
-            { paymentCompleted = false;}
+        { 
 
         }
+        /// <summary>
+        /// This method creates a new order. Matches the customer to excisting customers and check if payment is completed.
+        /// </summary>
         private void PlaceOrderButton_Click(object sender, EventArgs e)
         {
             try
@@ -168,6 +179,11 @@ namespace WarehouseEN1
                 {
                     cust = cus;
                 }
+
+                if (PayRadioButton.Checked == true)
+                { paymentCompleted = true; }
+                else
+                { paymentCompleted = false; }
 
                 dateOfOrder = DateTime.Now;
                 address = AddressTextBox.Text;
@@ -184,26 +200,35 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// This method delete the ongoing order.
+        /// </summary>
         private void DeleteOrderButton_Click(object sender, EventArgs e)
         {
             Cart.Clear();
             RefreshListboxContents(); 
         }
+        /// <summary>
+        /// This method takes the user to the productform.
+        /// </summary>
         private void ProductPageN_CheckedChanged(object sender, EventArgs e)
         {
             ProductForm Productform = new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue);
             Productform.Show();
             this.Hide();
         }
-
+        /// <summary>
+        /// This method takes the user to the customerform.
+        /// </summary>
         private void CustomerPageN_CheckedChanged(object sender, EventArgs e)
         {
             CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }
-
+        /// <summary>
+        /// This method takes the user to the Orderform.
+        /// </summary>
         private void OrderPageN_CheckedChanged(object sender, EventArgs e)
         {
             OrderForm Orderfrom = new OrderForm(prodCatalogue, customerCatalogue, orderCatalogue);

@@ -11,6 +11,10 @@ using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class handle all the interaction with the use of the CustomerForm.
+    /// The Customerform purpose is to add, edit and display customer.
+    /// </summary>
     public partial class CustomerList : Form
     {
 
@@ -22,8 +26,7 @@ namespace WarehouseEN1
         private CustomerCatalogue custCatalogue;
         private OrderCatalogue orderCatalogue;      
         private List<Customer> Displaylist;
-        //Customer customer;
-        public CustomerList(ProductCatalogue prodCatalogue, CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue) //Customer cust) //new cust
+        public CustomerList(ProductCatalogue prodCatalogue, CustomerCatalogue customerCatalogue, OrderCatalogue orderCatalogue)
         {
             this.custCatalogue = customerCatalogue;
             this.prodCatalogue = prodCatalogue;
@@ -37,6 +40,9 @@ namespace WarehouseEN1
             Displaylist = new List<Customer>();
 
         }
+        /// <summary>
+        /// This method writes the Customerlist to the list visual to the user. 
+        /// </summary>
         private void RefreshListboxContents()
         {
             CustomerDisplayListBox.Items.Clear();
@@ -60,6 +66,10 @@ namespace WarehouseEN1
             }
 
         }
+        /// <summary>
+        /// This method checks for what index is selected in the list of customers.
+        /// It also prints the properties of the selected item in the textboxes. 
+        /// </summary>
         private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedCustomer = CustomerListBox.SelectedIndex;
@@ -78,28 +88,10 @@ namespace WarehouseEN1
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
-
-        private void CustomerName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CustomerNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CustomerEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CustomerDisplayListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// This method retrieves the information from the textboxes.
+        /// </summary>
         private void GetTextBox()
         {
             try
@@ -117,6 +109,9 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// This method adds a newly created customer.
+        /// </summary>
         private void CustomerAddButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
@@ -135,7 +130,9 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// This method saves the changes made to an previously added customer.
+        /// </summary>
         private void CustomerUpdateButton_Click(object sender, EventArgs e)
         {
             try
@@ -156,7 +153,9 @@ namespace WarehouseEN1
             }
 
         }
-        /*more than a month old*/
+        /// <summary>
+        /// This method Display the previous orders of a selected customer.
+        /// </summary>
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
         {
                    GetTextBox();
@@ -187,8 +186,10 @@ namespace WarehouseEN1
             }
 
         }
-
-    private void RecentOrdersButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// This method Display the recent orders of a selected customer.
+        /// </summary>
+        private void RecentOrdersButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
             CustomerDisplayListBox.Items.Clear();
@@ -218,7 +219,9 @@ namespace WarehouseEN1
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// This method takes the user to the productform.
+        /// </summary>
         private void ProductPageC_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -226,7 +229,9 @@ namespace WarehouseEN1
             Productform.Show();
             this.Hide();
         }
-
+        /// <summary>
+        /// This method takes the user to the orderform.
+        /// </summary>
         private void OrderPageC_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -234,13 +239,34 @@ namespace WarehouseEN1
             Orderfrom.Show();
             this.Hide();
         }
-
+        /// <summary>
+        /// This method takes the user to the NewOrderform.
+        /// </summary>
         private void MakeNewOrderPageC_CheckedChanged(object sender, EventArgs e)
         {
 
             NewOrderForm NewOrderform = new NewOrderForm(prodCatalogue, orderCatalogue, custCatalogue);
             NewOrderform.Show();
             this.Hide();
+        }   
+        private void CustomerName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CustomerNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CustomerEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CustomerDisplayListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
