@@ -8,6 +8,10 @@ using System.Threading;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class is the mold for creating a customer.
+    /// The customer purpose is to define what properties a customer have to have and to protect the integrity of these. 
+    /// </summary>
     public class Customer
     {
         private int customerID;

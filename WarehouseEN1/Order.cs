@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 
 namespace WarehouseEN1
-{
+{    /// <summary>
+     /// This class is the mold for creating an order.
+     /// The order purpose is to define what properties an order have to have and to protect the integrity of these. 
+     /// </summary>
     public class Order
     {
 
@@ -18,7 +21,6 @@ namespace WarehouseEN1
 
         public int OrderNumber { get { return orderNumber; } set { orderNumber = value; } }
         public Customer Customer { get {return customer; } set { customer = value; } }
-
         public DateTime OrderDate  { get { return orderDate; }  set { orderDate = value; } }
         public string DeliveryAddress { get { return deliveryAddress; } set { deliveryAddress = value; } }
         public bool PaymentCompleted { get { return paymentCompleted; } set { paymentCompleted = value; } }

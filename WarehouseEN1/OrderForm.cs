@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class handle all the interaction with the use of the OrderForm.
+    /// The orderform purpose is to deal with the orders from the warehouse-point of view. 
+    /// </summary>
     public partial class OrderForm : Form
     {
         private ProductCatalogue prodCatalogue;

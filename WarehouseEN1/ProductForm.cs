@@ -11,7 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WarehouseEN1
-{
+{    
+    /// <summary>
+     /// This class handle all the interaction with the use of the ProductForm.
+     /// The Productform purpose is to add, edit and display products to the warehouse-employees point of view. 
+     /// </summary>
     public partial class ProductForm : Form
     {
         int selectedProduct;

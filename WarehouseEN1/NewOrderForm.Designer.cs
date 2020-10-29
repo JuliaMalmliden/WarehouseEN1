@@ -51,7 +51,7 @@
             this.ProductList.ItemHeight = 20;
             this.ProductList.Location = new System.Drawing.Point(31, 12);
             this.ProductList.Name = "ProductList";
-            this.ProductList.Size = new System.Drawing.Size(232, 284);
+            this.ProductList.Size = new System.Drawing.Size(300, 284);
             this.ProductList.TabIndex = 0;
             this.ProductList.SelectedIndexChanged += new System.EventHandler(this.ProductList_SelectedIndexChanged);
             // 

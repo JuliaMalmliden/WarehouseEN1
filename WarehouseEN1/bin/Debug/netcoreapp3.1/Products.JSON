@@ -1,1 +1,1 @@
-[{"ProductID":1,"ProductName":"uppstoppadkatt","ProductPrice":45,"ProductStock":600,"NextRestock":"2021-01-02T00:00:00"}]
+[{"ProductID":1,"ProductName":"uppstoppadkatt","ProductPrice":45,"ProductStock":600,"NextRestock":"2021-01-02T00:00:00","FirstAvailableDate":"0001-01-01T00:00:00"},{"ProductID":2,"ProductName":"\u00E4ggulor","ProductPrice":40,"ProductStock":500,"NextRestock":"2020-12-17T00:00:00","FirstAvailableDate":"0001-01-01T00:00:00"}]

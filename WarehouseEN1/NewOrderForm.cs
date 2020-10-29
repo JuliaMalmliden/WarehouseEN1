@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class handle all the interaction with the use of the NewOrderForm.
+    /// The NewOrderform purpose is to deal with the orders from the customers-point of view, mainly to purchase products. 
+    /// </summary>
     public partial class NewOrderForm : Form
     {
         private ProductCatalogue prodCatalogue;
@@ -81,8 +85,6 @@ namespace WarehouseEN1
                 throw new OrderExceptions("Did not manage to execute because of: ", ex);
 
             }
-
-
 
         }
         private void ClearAllFields()
@@ -191,8 +193,6 @@ namespace WarehouseEN1
             Orderfrom.Show();
             this.Hide();
         }
-
-
 
 
         private void CostumerTextBox_TextChanged(object sender, EventArgs e)

@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class is a list of customers and customerfunctions.
+    /// The customercatalogue contain functions related to the customer objects. 
+    /// </summary>
     public class CustomerCatalogue
     {
         public OrderCatalogue orderCatalogue;

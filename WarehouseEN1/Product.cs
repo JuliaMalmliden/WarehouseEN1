@@ -8,18 +8,19 @@ using System.Text.Json;
 using System.Windows.Forms;
 
 namespace WarehouseEN1
-
 {
-   
+    /// <summary>
+    /// This class is the mold for creating a product.
+    /// The product purpose is to define what properties an product have to have and to protect the integrity of these. 
+    /// </summary>
     public class Product
     {
         private int productID;
         private string productName;
         private double productPrice;
         private int productStock;
-       private DateTime nextRestock;
+        private DateTime nextRestock;
         private DateTime firstAvailableDate; 
-        private char[] nrestock = new char[8];
 
         public int ProductID { get { return productID; } set { productID = value; } }
         public string ProductName 
@@ -73,7 +74,6 @@ namespace WarehouseEN1
                 {
                     firstAvailableDate = DateTime.Now; 
                 }
-                    
             }
         }
 
@@ -92,13 +92,7 @@ namespace WarehouseEN1
 
         }
         public override string ToString()
-        {   //string nr = NextRestock.ToString(); 
-            
-            //for(int i = 0 ; i <= 8; i++)
-            //{
-              //  nrestock[0] = nr[0];
-            //}
-            //string restock = nrestock.ToString(); 
+        {   
             return  "ID: " + ProductID + "    Name:  " + ProductName + "(" + ProductPrice + " kr)" + "   Stock: " +ProductStock + "     Next restock: "+ NextRestock;
         }
 
