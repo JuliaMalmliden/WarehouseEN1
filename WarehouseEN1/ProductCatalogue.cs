@@ -19,8 +19,6 @@ namespace WarehouseEN1
         public event ProductChangeHandler CatalogueChanged;
         public int currentProdID;
     
-        
-        //DateTime currentTime = new DateTime(2019, 1, 1);
         public ProductCatalogue()
         {
             filename = "Products.JSON";
@@ -37,7 +35,7 @@ namespace WarehouseEN1
                 CatalogueChanged();
         }
         /// <summary>
-        /// This method keeps track of the productID.
+        /// This method keeps track of the current productID.
         /// </summary>
         public void CurrentProductID()
         {
