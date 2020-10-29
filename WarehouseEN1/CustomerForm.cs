@@ -37,8 +37,6 @@ namespace WarehouseEN1
             Displaylist = new List<Customer>();
 
         }
-        public CustomerList ()  // complains in product form without
-            {}
         private void RefreshListboxContents()
         {
             CustomerDisplayListBox.Items.Clear();
@@ -56,28 +54,12 @@ namespace WarehouseEN1
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (ArgumentNullException ex)
-            {
-                MessageBox.Show(ex.Message);
-                // throw ArgumentNullException("Invalid arguments given, can't be empty", ex);
-
-
-            }
-            catch (ArgumentException ex)
-            {
-                //throw new ArgumentException("Invalid arguments given", ex);
-                MessageBox.Show(ex.Message);
-            }
             catch (Exception ex)
             {
-                //throw new Exception("Did not manage to execute because of: ", ex);
                 MessageBox.Show(ex.Message);
-
             }
 
         }
-
-
         private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedCustomer = CustomerListBox.SelectedIndex;
@@ -85,29 +67,16 @@ namespace WarehouseEN1
             try
             {
                 CustomerName.Text = cust.Name;
+                CustomerNumber.Text = cust.PhoneN.ToString();
                 CustomerEmail.Text = cust.EMail;
-                CustomerNumber.Text = cust.PhoneN.ToString();     // have dates in type DateTime. prd.Pr
             }
             catch (CustomerExceptions ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (ArgumentNullException ex)
-            {
-                MessageBox.Show(ex.Message);
-                // throw new ArgumentNullException("Invalid arguments given, can't be empty", ex);
-
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-                //throw new ArgumentException("Invalid arguments given", ex);
-            }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //throw new Exception("Did not manage to execute because of: ", ex);
             }
 
         }
@@ -138,38 +107,16 @@ namespace WarehouseEN1
                 customerName = CustomerName.Text;
                 phone = CustomerNumber.Text;
                 email = CustomerEmail.Text;
-
-                //if (string.IsNullOrEmpty(customerName) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
-                //{
-                //    //throw new ArgumentNullException();
-                //    MessageBox.Show("Invalid input, cannot be null or empty");
-                //}
-            }
-          
-            catch (ArgumentNullException ex)
-            {
-                MessageBox.Show(ex.Message);
-                // throw new ArgumentNullException("Invalid arguments given, can't be empty", ex);
-
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-
-                //throw new ArgumentException("Invalid arguments given", ex);
             }
             catch (CustomerExceptions ex)
             {
-                //throw new CustomerExceptions("wrong", ex);
                 MessageBox.Show(ex.Message);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
         }
-
         private void CustomerAddButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
@@ -180,30 +127,12 @@ namespace WarehouseEN1
             }
             catch (CustomerExceptions ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                MessageBox.Show(ex.Message);
-                // throw new ArgumentNullException("Invalid arguments given, can't be empty", ex);
+               MessageBox.Show(ex.Message);
 
             }
-            catch(ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-
-                //throw new ArgumentException("Invalid arguments given", ex);
-            }
-            //catch (CustomerExceptions ex)
-            //{
-                //throw new CustomerExceptions("wrong", ex);
-              //  MessageBox.Show(ex.Message);
-            //}
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
         }
 
@@ -215,14 +144,17 @@ namespace WarehouseEN1
                 Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
                 int custID = cust.CustomerID;
 
-
                 custCatalogue.UpdateCustomer(custID, customerName, phone, email);
             }
             catch (CustomerExceptions ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
         /*more than a month old*/
         private void PreviousOrdersButton_Click(object sender, EventArgs e)
@@ -245,10 +177,13 @@ namespace WarehouseEN1
                     CustomerDisplayListBox.Items.Add(ord);
                 }
             }
+            catch (CustomerExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
 
         }
@@ -274,11 +209,13 @@ namespace WarehouseEN1
                     CustomerDisplayListBox.Items.Add(ord);
                 }
             }
+            catch (CustomerExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
-                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
         }
 

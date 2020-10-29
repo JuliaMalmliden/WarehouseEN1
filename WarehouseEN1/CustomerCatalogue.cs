@@ -88,32 +88,32 @@ namespace WarehouseEN1
                     return obj;
             return null;
         }
-        Customer GetCustomerbyID(int id)		//DONT NEED THIS
-        {
-            foreach (Customer obj in Customers)
-                if (obj.CustomerID == id)
-                {
-                    return obj;
-                }
+   //     Customer GetCustomerbyID(int id)		//DONT NEED THIS
+   //     {
+   //         foreach (Customer obj in Customers)
+   //             if (obj.CustomerID == id)
+   //             {
+   //                 return obj;
+   //             }
 
-            return null; 
-        }
+   //         return null; 
+   //     }
 
-        public bool RemoveCustomerID(int custID)
-        {
-            if (GetCustomerbyID(custID) != null)
-            {
-                Customer obj = GetCustomerbyID(custID);
-                Customers.Remove(obj);
-                WriteCustomersToFile();
-                return true;
-            }
-			else
-            {
-                return false;
-            }
+   //     public bool RemoveCustomerID(int custID)
+   //     {
+   //         if (GetCustomerbyID(custID) != null)
+   //         {
+   //             Customer obj = GetCustomerbyID(custID);
+   //             Customers.Remove(obj);
+   //             WriteCustomersToFile();
+   //             return true;
+   //         }
+			//else
+   //         {
+   //             return false;
+   //         }
 
-        }
+   //     }
 
         public void UpdateCustomer(int custID, string name, string ph, string email)
         {
@@ -121,8 +121,8 @@ namespace WarehouseEN1
             Customer customer = Customers.Single(c => c.CustomerID == custID); 
 
             customer.Name = name;
-            customer.EMail = email;
             customer.PhoneN = ph;
+            customer.EMail = email;
             WriteCustomersToFile();
             RaiseCatalogueChanged();
             
