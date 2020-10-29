@@ -121,9 +121,12 @@ namespace WarehouseEN1
                     foreach (OrderLine orderline in order.Items)
                     {
                         var nextAvilabelDate = orderline.OrderedProduct.FirstAvailableDate;
+                       // OrderDisplayList.Items.Add(order);
+
 
                         //var product = productCatalogue.Products.Single(p => p.ProductID == pid);
                     }
+
 
                 }
                 RefreshListboxContents();
