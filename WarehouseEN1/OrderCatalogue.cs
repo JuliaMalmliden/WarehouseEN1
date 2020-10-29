@@ -31,12 +31,17 @@ namespace WarehouseEN1
 
             CurrentOrderID();
         }
-        private void RaiseCatalogueChanged() //to check if a change was made and if so update the catalogue
+        /// <summary>
+        /// This method check for null and calls the event.
+        /// </summary>
+        private void RaiseCatalogueChanged() 
         {
             if (CatalogueChanged != null)
                 CatalogueChanged();
         }
-
+        /// <summary>
+        /// This method keeps track of the current orderID.
+        /// </summary>
         public void CurrentOrderID()
         {
             if (Orders.Count == 0)
@@ -48,11 +53,17 @@ namespace WarehouseEN1
                 currentOrderID = Orders.Count;
             }
         }
+        /// <summary>
+        /// This method writes down the orderlist to a JSON-file, and uses the file as the programs database for the orderinformation.
+        /// </summary>
         private void WriteOrdersToFile()
         {
             string contents = JsonSerializer.Serialize(Orders);
             File.WriteAllText(filename, contents);
         }
+        /// <summary>
+        /// This method extract the orderlist from the JASON-file, and splits the list into orders. 
+        /// </summary>
         private void ReadOrdersFromFile()
         {
             if (File.Exists(filename))
@@ -64,10 +75,7 @@ namespace WarehouseEN1
 
             foreach (Order order in Orders)
             {
-                //  var cid = order.Customer.Name; //works with customer name, email, and phone. something wrong with id.
-                //  order.Customer = customerCatalogue.Customers.Single(c => c.Name == cid);
-
-                var cid = order.Customer.CustomerID;    //Name works
+                var cid = order.Customer.CustomerID;   
                 order.Customer = customerCatalogue.Customers.Single(c => c.CustomerID == cid);
 
                 foreach (OrderLine ol in order.Items)
@@ -77,7 +85,10 @@ namespace WarehouseEN1
                 }
             }
         }
-        public void AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)//Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
+        /// <summary>
+        /// This method recieves the information it needs to create an object of sort order and saves it to the orderlist, it also saves it to the "database". 
+        /// </summary>
+        public void AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) 
         {
             currentOrderID++;
 
@@ -88,9 +99,12 @@ namespace WarehouseEN1
                 RaiseCatalogueChanged();
 
         }
+        /// <summary>
+        /// This method checks for the orderes that can be dispatched and dispatches them. 
+        /// </summary>
         public void BatchProcessOrders()
         {
-            var orders = Orders.Where(o => !o.Dispatched && o.PaymentCompleted && o.Items.All(o => o.OrderedProduct.ProductStock >= o.Count)); //o=> o.OrderedProduct.FirstAvailableDate <= DateTime.Now)// kan vara att datetime ska vara mindre 
+            var orders = Orders.Where(o => !o.Dispatched && o.PaymentCompleted && o.Items.All(o => o.OrderedProduct.ProductStock >= o.Count));
             orders = orders.OrderByDescending(o => o.OrderDate);
             foreach(Order order in orders)
             {
@@ -115,7 +129,9 @@ namespace WarehouseEN1
             RaiseCatalogueChanged();
             WriteOrdersToFile();
         }
-  
+        /// <summary>
+        /// This method displayed the previous orderes of a customer. 
+        /// </summary>
         public void DisplayPreviousOrers(Customer cust)
         {
             IEnumerable<Order> query = from ord in Orders
