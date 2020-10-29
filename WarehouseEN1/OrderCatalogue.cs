@@ -17,7 +17,7 @@ namespace WarehouseEN1
         private string filename;
         public event OrderChangeHandler CatalogueChanged;
         public int currentOrderID;
-        private List<Order> NonDispatchedorders; 
+
         public OrderCatalogue(CustomerCatalogue customerCatalogue, ProductCatalogue productCatalogue)
         {          
             this.customerCatalogue = customerCatalogue;
@@ -71,10 +71,7 @@ namespace WarehouseEN1
                     var pid = ol.OrderedProduct.ProductID;
                     ol.OrderedProduct = productCatalogue.Products.Single(p => p.ProductID == pid);
                 }
-
             }
-
-
         }
         public void AddOrder(Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)//Customer customer, string deliveryaddress, List<OrderLine> orderlist, DateTime date, bool paymentcompleted) //string productRestock)
         {
@@ -102,14 +99,26 @@ namespace WarehouseEN1
             orders = orders.OrderByDescending(o => o.OrderDate);
             foreach(Order order in orders)
             {
-                order.Dispatched = true;
-                foreach (OrderLine orderline in order.Items)
+                try
+                {
+                    foreach (OrderLine orderline in order.Items)
+                    {
+                        var pid = orderline.OrderedProduct.ProductID;
+                        var count = orderline.Count;
+                        var product = productCatalogue.Products.Single(p => p.ProductID == pid);
+                        product.ProductStock -=  count;
+
+                    }
+                    order.DispatchOrder();
+                }
+                catch
                 {
 
                 }
-            }
-               
 
+            }
+
+            RaiseCatalogueChanged();
             WriteOrdersToFile();
         }
         public void DisplayPreviousOrers(Customer cust)
