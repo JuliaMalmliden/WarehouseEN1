@@ -14,15 +14,19 @@ namespace WarehouseEN1
         [STAThread]
         static void Main() //WEEEEYWEEEEYY
         {
-            ProductCatalogue prodCatalogue = new ProductCatalogue();
-            CustomerCatalogue customerCatalogue = new CustomerCatalogue(); //orderCatalogue
-            OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
+
+                ProductCatalogue prodCatalogue = new ProductCatalogue();
+                CustomerCatalogue customerCatalogue = new CustomerCatalogue(); //orderCatalogue
+                OrderCatalogue orderCatalogue = new OrderCatalogue(customerCatalogue, prodCatalogue);
 
 
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue));
+                Application.SetHighDpiMode(HighDpiMode.SystemAware);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new ProductForm(prodCatalogue, customerCatalogue, orderCatalogue));
+            
+          
+
 
            /* var currentTime = DateTime.Now;
             currentTime.ToShortDateString();

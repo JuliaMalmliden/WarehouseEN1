@@ -5,7 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace WarehouseEN1
 {
@@ -44,15 +46,32 @@ namespace WarehouseEN1
             try
             {
                 IEnumerable<Customer> query = from customer in custCatalogue.Customers
-                                                select customer;
+                                              select customer;
                 foreach (Customer customer in query)
                 {
                     CustomerListBox.Items.Add(customer);
                 }
             }
+            catch (CustomerExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                // throw ArgumentNullException("Invalid arguments given, can't be empty", ex);
+
+
+            }
+            catch (ArgumentException ex)
+            {
+                //throw new ArgumentException("Invalid arguments given", ex);
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
+                //throw new Exception("Did not manage to execute because of: ", ex);
+                MessageBox.Show(ex.Message);
 
             }
 
@@ -63,10 +82,34 @@ namespace WarehouseEN1
         {
             selectedCustomer = CustomerListBox.SelectedIndex;
             Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
+            try
+            {
+                CustomerName.Text = cust.Name;
+                CustomerEmail.Text = cust.EMail;
+                CustomerNumber.Text = cust.PhoneN.ToString();     // have dates in type DateTime. prd.Pr
+            }
+            catch (CustomerExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                // throw new ArgumentNullException("Invalid arguments given, can't be empty", ex);
 
-            CustomerName.Text = cust.Name;
-            CustomerEmail.Text = cust.EMail;
-            CustomerNumber.Text = cust.PhoneN.ToString();     // have dates in type DateTime. prd.ProductStock.ToShortString(); 
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                //throw new ArgumentException("Invalid arguments given", ex);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //throw new Exception("Did not manage to execute because of: ", ex);
+            }
+
         }
 
         private void CustomerName_TextChanged(object sender, EventArgs e)
@@ -90,32 +133,40 @@ namespace WarehouseEN1
         }
         private void GetTextBox()
         {
-
             try
-            {
+            {                
                 customerName = CustomerName.Text;
-            }
-            catch (Exception ex)
-            {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
-            }
-            try
-            {
                 phone = CustomerNumber.Text;
-
-            }
-            catch (Exception ex)
-            {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
-            }
-            try
-            {
                 email = CustomerEmail.Text;
 
+                if (string.IsNullOrEmpty(customerName) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
+                {
+                    //throw new ArgumentNullException();
+                    MessageBox.Show("Invalid input, cannot be null or empty");
+                }
             }
+            catch (CustomerExceptions ex)
+            {
+                //throw new CustomerExceptions("wrong", ex);
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                // throw new ArgumentNullException("Invalid arguments given, can't be empty", ex);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                //throw new ArgumentException("Invalid arguments given", ex);
+            }
+
             catch (Exception ex)
             {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
+                MessageBox.Show(ex.Message);
+                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
         }
 
@@ -125,20 +176,48 @@ namespace WarehouseEN1
             try
             {
                 custCatalogue.AddCustomer(customerName, phone, email);
+
             }
+            catch (CustomerExceptions ex)
+            {
+                //throw new CustomerExceptions("wrong", ex);
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                // throw new ArgumentNullException("Invalid arguments given, can't be empty", ex);
+
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                //throw new ArgumentException("Invalid arguments given", ex);
+            }
+
             catch (Exception ex)
             {
-
-                throw new CustomerExceptions("Adding failed, please try again. See to that all fields are filled in correctly.", ex);
+                MessageBox.Show(ex.Message);
+                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
         }
 
         private void CustomerUpdateButton_Click(object sender, EventArgs e)
         {
-            GetTextBox();
-            Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
-            int custID = cust.CustomerID;
-            custCatalogue.UpdateCustomer(custID, customerName, phone, email);
+            try
+            {
+                GetTextBox();
+                Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
+                int custID = cust.CustomerID;
+
+
+                custCatalogue.UpdateCustomer(custID, customerName, phone, email);
+            }
+            catch (CustomerExceptions ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
         }
         /*more than a month old*/
@@ -148,7 +227,6 @@ namespace WarehouseEN1
                    CustomerDisplayListBox.Items.Clear();
             try
             {
-
                 Customer cust = custCatalogue.Customers.ElementAt(selectedCustomer);
                 int custID = cust.CustomerID;
 
@@ -165,8 +243,8 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
-
+                MessageBox.Show(ex.Message);
+                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
 
         }
@@ -194,11 +272,10 @@ namespace WarehouseEN1
             }
             catch (Exception ex)
             {
-                throw new CustomerExceptions("Did not manage to execute because of: ", ex);
+                MessageBox.Show(ex.Message);
 
+                //throw new CustomerExceptions("Did not manage to execute because of: ", ex);
             }
-
-
         }
 
         private void ProductPageC_CheckedChanged(object sender, EventArgs e)

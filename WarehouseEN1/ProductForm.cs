@@ -74,45 +74,18 @@ namespace WarehouseEN1
         {
             try
             {
+                
                 productName = ProdNametextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-               // MessageBox.Show("Did not manage to execute because of: "+ ex);
-            }
-            try
-            {
                 productPrice = Convert.ToDouble(ProductPricetextbox.Text);
-
-            }
-            catch (Exception ex)
-            {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-                //MessageBox.Show("Did not manage to execute because of: " + ex);
-            }
-            try
-            {
                 productStock = Convert.ToInt32(ProductStocktextBox.Text);
-
-            }
-            catch (Exception ex)
-            {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-                //MessageBox.Show("Did not manage to execute because of: " + ex);
-            }
-            try
-            {
-
                 productRestock = Convert.ToDateTime(ProNextRestocktextBox.Text);
                 
             }
             catch (Exception ex)
             {
-                throw new ProductExceptions("Did not manage to execute because of: ", ex);
-                //MessageBox.Show("Did not manage to execute because of: " + ex);
+               // throw new ProductExceptions("Did not manage to execute because of: ", ex);
+                MessageBox.Show("Did not manage to execute because of: " + ex);
             }
-
 
         }
         private void ProductAddButton_Click(object sender, EventArgs e)

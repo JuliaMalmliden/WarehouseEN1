@@ -58,6 +58,7 @@ namespace WarehouseEN1
         }
         private void ReadCustomersFromFile()
         {
+
             if (File.Exists(filename))
             {
                 string fileContents = File.ReadAllText(filename);
