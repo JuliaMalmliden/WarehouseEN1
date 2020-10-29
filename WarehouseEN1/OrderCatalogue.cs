@@ -77,16 +77,7 @@ namespace WarehouseEN1
         {
             currentOrderID++;
 
-                //for (int i = 0; i< customerCatalogue.Customers.Count; i++)
-                //{
-                //    int customerID = customerCatalogue.Customers.ElementAt(i).CustomerID; 
-                //    if (customer == customerID)
-                //    {
-                //        c = customerCatalogue.Customers.ElementAt(i);
-                //    }
-                //}
 
-                //customer
                 Order order = new Order(currentOrderID, customer, deliveryaddress, orderlist, date, paymentcompleted);
                 Orders.Add(order);
                 WriteOrdersToFile();
