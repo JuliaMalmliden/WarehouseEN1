@@ -7,6 +7,10 @@ using System.Text.Json;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class is a list of product and productfunctions.
+    /// The productCatalogue contain functions related to the product objects. 
+    /// </summary>
     public class ProductCatalogue
     {
         public delegate void ProductChangeHandler();

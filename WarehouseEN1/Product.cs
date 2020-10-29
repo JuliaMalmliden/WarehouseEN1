@@ -73,7 +73,6 @@ namespace WarehouseEN1
                 {
                     firstAvailableDate = DateTime.Now; 
                 }
-                    
             }
         }
 

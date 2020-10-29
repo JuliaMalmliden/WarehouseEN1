@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace WarehouseEN1
 {
+    /// <summary>
+    /// This class is a list of orders and orderfunctions.
+    /// The ordercatalogue contain functions related to the order objects. 
+    /// </summary>
     public class OrderCatalogue
     {
         public delegate void OrderChangeHandler();

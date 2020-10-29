@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 
 namespace WarehouseEN1
-{
+{    /// <summary>
+     /// This class is the mold for creating an order.
+     /// The order purpose is to define what properties an order have to have and to protect the integrity of these. 
+     /// </summary>
     public class Order
     {
 
