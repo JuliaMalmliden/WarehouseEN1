@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -16,6 +18,7 @@ namespace WarehouseEN1
         private double productPrice;
         private int productStock;
        private DateTime nextRestock;
+        private DateTime firstAvailableDate; 
         private char[] nrestock = new char[8];
 
         public int ProductID { get { return productID; } set { productID = value; } }
@@ -27,7 +30,6 @@ namespace WarehouseEN1
                 { } 
                 productName = value; 
             } 
-        
         }
         public double ProductPrice 
         { 
@@ -57,6 +59,22 @@ namespace WarehouseEN1
             get { return nextRestock; } 
             set 
             { nextRestock = value; } 
+        }
+        public DateTime FirstAvailableDate
+        {
+            get { return firstAvailableDate; }
+            set
+            {
+                if (productStock == 0)
+                {
+                    firstAvailableDate = nextRestock;
+                }
+                else 
+                {
+                    firstAvailableDate = DateTime.Now; 
+                }
+                    
+            }
         }
 
 

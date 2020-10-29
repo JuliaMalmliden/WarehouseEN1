@@ -49,29 +49,31 @@ namespace WarehouseEN1
 
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
+            orderCatalogue.BatchProcessOrders();
+            RefreshListboxContents();
 
             // Sortera beställningar efter datum och tid.(tänker att de tidigaste beställningarna ska hanteras först..?  
             //Reducera stock anpassat efter Order. 
             // Om alla produkter i en order är tillgängliga så ändras Orders "Dispatched" till true.
 
-            OrderDisplayList.Items.Clear();
-            try
-            {
-                IEnumerable<Order> query = from order in orderCatalogue.Orders
-                                           where order.Dispatched == true
-                                           orderby order.OrderDate descending
-                                           //where order in orderLines  //hur ska få fram orderlines och kolla stock?
-                                           select order;
-                foreach (Order order in query)
-                {
-                    OrderDisplayList.Items.Add(order);
-                }
-            }
-            catch (Exception ex)
-            {
+            //OrderDisplayList.Items.Clear();
+            //try
+            //{
+            //    IEnumerable<Order> query = from order in orderCatalogue.Orders
+            //                               where order.Dispatched == true
+            //                               orderby order.OrderDate descending
+            //                               //where order in orderLines  //hur ska få fram orderlines och kolla stock?
+            //                               select order;
+            //    foreach (Order order in query)
+            //    {
+            //        OrderDisplayList.Items.Add(order);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-                throw new OrderExceptions("Did not manage to execute because of: ", ex);
-            }
+            //    throw new OrderExceptions("Did not manage to execute because of: ", ex);
+            //}
 
 
         }
