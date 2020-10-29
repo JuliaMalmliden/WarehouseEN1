@@ -42,6 +42,9 @@ namespace WarehouseEN1
             
         }
 
+        /// <summary>
+        /// This method writes the productlist to the list visual to the user. 
+        /// </summary>
         private void RefreshListboxContents()
         {
             ProductDisplayList.Items.Clear(); 
@@ -61,7 +64,10 @@ namespace WarehouseEN1
 
             }
         }
-
+        /// <summary>
+        /// This method checks for what index is selected in the list of products.
+        /// It also prints the properties of the selected item in the textboxes. 
+        /// </summary>
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -70,15 +76,16 @@ namespace WarehouseEN1
             
             ProdNametextBox.Text = prd.ProductName;
             ProductPricetextbox.Text = prd.ProductPrice.ToString();
-            ProductStocktextBox.Text = prd.ProductStock.ToString();     // have data in type int. prd.ProductStock.ToShortString(); 
-            ProNextRestocktextBox.Text = prd.NextRestock.ToString();    // Have data in type DateTime  
+            ProductStocktextBox.Text = prd.ProductStock.ToString();     
+            ProNextRestocktextBox.Text = prd.NextRestock.ToString();    
         }
-
+        /// <summary>
+        /// This method retrieves the information from the textboxes.
+        /// </summary>
         private void GetTextBox()
         {
             try
             {
-                
                 productName = ProdNametextBox.Text;
                 productPrice = Convert.ToDouble(ProductPricetextbox.Text);
                 productStock = Convert.ToInt32(ProductStocktextBox.Text);
@@ -92,6 +99,9 @@ namespace WarehouseEN1
             }
 
         }
+        /// <summary>
+        /// This method adds a newly created product.
+        /// </summary>
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
             GetTextBox();
@@ -104,9 +114,10 @@ namespace WarehouseEN1
                 throw new ProductExceptions("Did not manage to execute because of: ", ex);
 
             }
-
         }
-
+        /// <summary>
+        /// This method saves the changes made to an previously added product.
+        /// </summary>
         private void ProductEditButton_Click(object sender, EventArgs e)
         {
             GetTextBox(); 
@@ -116,7 +127,9 @@ namespace WarehouseEN1
 
 
         }
-
+        /// <summary>
+        /// This method display the products that are out of stock.
+        /// </summary>
         private void OutOfStockButton_Click(object sender, EventArgs e)
         {   
             RefreshListboxContents();
@@ -131,7 +144,9 @@ namespace WarehouseEN1
             }
  
         }
-
+        /// <summary>
+        /// This method Display the product that are to be re-stocked first out of the products. 
+        /// </summary>
         private void NextRestockButton_Click(object sender, EventArgs e)
         {
             RefreshListboxContents();
@@ -153,24 +168,28 @@ namespace WarehouseEN1
                 ProductDisplayList.Items.Add(prod);
             }
         }
-
+        /// <summary>
+        /// This method takes the user to the Customerform.
+        /// </summary>
         private void CustomerPageP_CheckedChanged(object sender, EventArgs e)
         {
-            /*CustomerList Customerform = new CustomerList();     //gives error, not enough arguments
-            Customerform.Show();
-            this.Hide(); */
             CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue); //only cust before
             CustomerList.Show();
             this.Hide();
 
         }
-
+        /// <summary>
+        /// This method takes the user to the Orderform.
+        /// </summary>
         private void OrderPageP_CheckedChanged(object sender, EventArgs e)
         {
             OrderForm Orderfrom = new OrderForm(prodCatalogue, customerCatalogue, orderCatalogue);
             Orderfrom.Show();
             this.Hide();
         }
+        /// <summary>
+        /// This method takes the user to the NewOrderform.
+        /// </summary>
         private void MakeNewOrderPageP_CheckedChanged(object sender, EventArgs e)
         {
 
