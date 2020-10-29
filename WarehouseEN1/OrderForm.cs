@@ -29,6 +29,9 @@ namespace WarehouseEN1
 
             RefreshListboxContents(); 
         }
+        /// <summary>
+        /// This method writes the orderlist to the list visual to the user. 
+        /// </summary>
         private void RefreshListboxContents()
         {
             OrderList.Items.Clear();
@@ -53,7 +56,9 @@ namespace WarehouseEN1
             }
 
         }
-
+        /// <summary>
+        /// This method process the orderes ready to be dispatched. 
+        /// </summary>
         private void BatchProcessButton_Click(object sender, EventArgs e)
         {
             try
@@ -71,7 +76,9 @@ namespace WarehouseEN1
             }
 
         }
-
+        /// <summary>
+        /// This method displayed the dispatched orderes.. 
+        /// </summary>
         private void DispatchedOrdersButton_Click(object sender, EventArgs e) 
         {
             OrderDisplayList.Items.Clear();
@@ -80,9 +87,6 @@ namespace WarehouseEN1
                 IEnumerable<Order> query = (from order in orderCatalogue.Orders
                                             where order.Dispatched == true
                                             select order);
-                                             //.Union(from pro in prodCatalogue
-                                             //       where pro.stock > 0
-                                             //       select pro.nextRestock) ;
                foreach (Order order in query)
                {
                      OrderDisplayList.Items.Add(order);
@@ -98,7 +102,9 @@ namespace WarehouseEN1
             }
 
         }
-
+        /// <summary>
+        /// This method displayes the pending orderes. 
+        /// </summary>
         private void PendingOrdersButton_Click(object sender, EventArgs e)
         {
             OrderDisplayList.Items.Clear();
@@ -125,28 +131,29 @@ namespace WarehouseEN1
             {
                 MessageBox.Show(ex.Message);
             }
-            //OrderDisplaylistan ska visa  "the earliest time the order can be dispatched"  --> FirstAvailable date
-            //For Pending orders, display the list of customers and their contact information, along with the number of the pending order.
 
         }
-
+        /// <summary>
+        /// This method takes the user to the productform.
+        /// </summary>
         private void ProductPageRBTN_CheckedChanged(object sender, EventArgs e)
         { 
             ProductForm Productform = new ProductForm(prodCatalogue,  customerCatalogue,  orderCatalogue);
             Productform.Show();
             this.Hide();
         }
-
+        /// <summary>
+        /// This method takes the user to the customerform.
+        /// </summary>
         private void CustomerPageORBTN_CheckedChanged(object sender, EventArgs e)
         {
-            /*CustomerList Customerform = new CustomerList();
-            Customerform.Show();
-            this.Hide();*/
             CustomerList CustomerList = new CustomerList(prodCatalogue, customerCatalogue, orderCatalogue);
             CustomerList.Show();
             this.Hide();
         }
-
+        /// <summary>
+        /// This method takes the user to the NewOrderform.
+        /// </summary>
         private void MakeNewOrderPage_CheckedChanged(object sender, EventArgs e)
         {
 
